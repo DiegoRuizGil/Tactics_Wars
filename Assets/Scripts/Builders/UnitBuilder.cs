@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class UnitBuilder : IBuilder<Unit>
 {
-    private Unit _unit;
+    private readonly Unit _unit;
 
     public UnitBuilder()
     {

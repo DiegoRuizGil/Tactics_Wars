@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d8ecc7185402b247930bd72357733a1, type: 3}
   m_Name: BasicBuildingInfo
   m_EditorClassIdentifier: 
-  EntityPrefab: {fileID: 3682632254968282960, guid: 5646f13cedc5d0042b0c2bd5469ced85, type: 3}
-  FoodAmount: 200
-  GoldAmount: 150
+  _entityPrefab: {fileID: 3682632254968282960, guid: 5646f13cedc5d0042b0c2bd5469ced85, type: 3}
+  _foodAmount: 0
+  _goldAmount: 0

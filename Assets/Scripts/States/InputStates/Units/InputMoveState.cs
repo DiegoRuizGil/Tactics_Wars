@@ -73,7 +73,7 @@ public class InputMoveState : InputBaseState
             }
             catch (NullReferenceException ex)
             {
-                Debug.LogWarning(ex.ToString() + ": Ratón fuera del grid");
+                Debug.LogWarning($"{ex.Message}: Ratón fuera del grid");
             }
         }
     }

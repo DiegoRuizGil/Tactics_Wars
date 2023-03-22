@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 928a4a4e66f37c947862823d5367e8d8, type: 3}
   m_Name: GoldResource
   m_EditorClassIdentifier: 
-  ResourceType: 2
-  ResourceTile: {fileID: 11400000, guid: b0b9853b6801daf4ea1c30fbe33da1f2, type: 2}
+  _resourceType: 2
+  _resourceTile: {fileID: 11400000, guid: b0b9853b6801daf4ea1c30fbe33da1f2, type: 2}

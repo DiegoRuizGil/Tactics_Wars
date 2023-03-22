@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GridManagerBuilder : IBuilder<GridManager>
 {
-    private GridManager _manager;
+    private readonly GridManager _manager;
 
     public GridManagerBuilder()
     {

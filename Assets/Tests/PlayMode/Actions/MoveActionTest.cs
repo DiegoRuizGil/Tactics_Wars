@@ -22,7 +22,7 @@ public class MoveActionTest
     [UnityTest]
     public IEnumerator Negative_Execute()
     {
-        List<Vector3> positions = new List<Vector3>() { new Vector3(_width, _height) };
+        List<Vector3> positions = new List<Vector3> { new Vector3(_width, _height) };
         Unit unit = An.Unit.WithPosition(new Vector3(_width - 1, _height - 1, 0f));
         Node node = Grid.Instance.GetNode(unit.transform.position);
         node.AddEntity(unit);
@@ -41,7 +41,7 @@ public class MoveActionTest
     [UnityTest]
     public IEnumerator Positive_Execute()
     {
-        List<Vector3> positions = new List<Vector3>()
+        List<Vector3> positions = new List<Vector3>
         {
             new Vector3(_width - 2, _height - 2, 0f),
             new Vector3(_width - 1, _height - 1, 0f)

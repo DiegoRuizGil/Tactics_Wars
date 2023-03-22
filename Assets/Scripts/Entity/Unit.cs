@@ -12,9 +12,9 @@ public class Unit : Entity
     [SerializeField]
     private int _attackRange = 1;
     [SerializeField]
-    private bool _hasMoved = false;
+    private bool _hasMoved;
     [SerializeField]
-    private bool _hasFinished = false;
+    private bool _hasFinished;
     [SerializeField]
     private SpriteRenderer _sprite;
     [SerializeField]

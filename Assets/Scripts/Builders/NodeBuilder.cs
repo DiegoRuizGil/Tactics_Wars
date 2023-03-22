@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class NodeBuilder : IBuilder<Node>
 {
-    private int _gridX = 0;
-    private int _gridY = 0;
-    private Vector3 _position = Vector3.zero;
+    private int _gridX;
+    private int _gridY;
+    private Vector3 _position;
     private Unit _unit;
     private Building _building;
 

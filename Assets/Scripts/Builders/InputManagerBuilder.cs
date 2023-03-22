@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class InputManagerBuilder : IBuilder<InputManager>
 {
-    private InputManager _manager;
+    private readonly InputManager _manager;
 
     public InputManagerBuilder()
     {
