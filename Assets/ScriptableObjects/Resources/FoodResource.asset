@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 928a4a4e66f37c947862823d5367e8d8, type: 3}
   m_Name: FoodResource
   m_EditorClassIdentifier: 
-  ResourceType: 1
-  ResourceTile: {fileID: 11400000, guid: 5de0cd415c4b7bf4f9a75ab691388859, type: 2}
+  _resourceType: 1
+  _resourceTile: {fileID: 11400000, guid: 5de0cd415c4b7bf4f9a75ab691388859, type: 2}

@@ -25,17 +25,17 @@ public class GridTest
     {
         int x = -1;
         int y = -2;
-        Assert.Throws<NullReferenceException>(() => Grid.Instance.GetNodeWorldPosition(x, y));
+        Assert.Throws<GridOutOfBoundsException>(() => Grid.Instance.GetNodeWorldPosition(x, y));
 
         x = _width;
         y = _height;
-        Assert.Throws<NullReferenceException>(() => Grid.Instance.GetNodeWorldPosition(x, y));
+        Assert.Throws<GridOutOfBoundsException>(() => Grid.Instance.GetNodeWorldPosition(x, y));
 
         Node node = new Node(Vector3.zero, x, y);
-        Assert.Throws<NullReferenceException>(() => Grid.Instance.GetNodeWorldPosition(node));
+        Assert.Throws<GridOutOfBoundsException>(() => Grid.Instance.GetNodeWorldPosition(node));
 
         Vector3 position = new Vector3(_width + 1, _height + 1, 0f) + _originPosition;
-        Assert.Throws<NullReferenceException>(() => Grid.Instance.GetNodeWorldPosition(position));
+        Assert.Throws<GridOutOfBoundsException>(() => Grid.Instance.GetNodeWorldPosition(position));
     }
 
     [Test]

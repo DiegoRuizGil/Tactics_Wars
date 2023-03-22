@@ -5,9 +5,9 @@ using UnityEngine;
 public class MoveAction : BaseAction
 {
     private const float POSITION_OFFSET = 0.5f;
-    private int _unitSpeed;
-    private List<Vector3> _positions;
-    private Unit _selectedUnit;
+    private readonly int _unitSpeed;
+    private readonly List<Vector3> _positions;
+    private  readonly Unit _selectedUnit;
 
     public MoveAction(Unit selectedUnit, List<Vector3> positions, int unitSpeed)
     {

@@ -6,11 +6,11 @@ public class Grid
 {
     public static Grid Instance { get; set; }
 
-    private Node[,] _nodes;
-    private int _width;
-    private int _height;
-    private int _cellSize;
-    private Vector3 _startPosition;
+    private readonly Node[,] _nodes;
+    private readonly int _width;
+    private readonly int _height;
+    private readonly int _cellSize;
+    private readonly Vector3 _startPosition;
 
     public int Width { get { return _width; } }
     public int Height { get { return _height; } }
@@ -42,13 +42,13 @@ public class Grid
         if (x >= 0 && y >= 0 && x < _width && y < _height)
             return new Vector3(x * _cellSize, y * _cellSize, 0) + _startPosition;
         else
-            throw new NullReferenceException();
+            throw new GridOutOfBoundsException(x, y);
     }
 
     public Vector3 GetNodeWorldPosition(Vector3 position)
     {
         if (GetNode(position) == null)
-            throw new NullReferenceException();
+            throw new GridOutOfBoundsException(position.x, position.y);
         return GetNodeWorldPosition(GetNode(position));
     }
 

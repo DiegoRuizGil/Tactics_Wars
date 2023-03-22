@@ -1,7 +1,7 @@
 public abstract class InputBaseState
 {
-    private InputManager _context;
-    private InputStateFactory _factory;
+    private readonly InputManager _context;
+    private readonly InputStateFactory _factory;
     private InputBaseState _nextState;
 
     protected InputManager Context { get { return _context; } }

@@ -38,7 +38,6 @@ public sealed class Pathfinding
             foreach (Node node in neighbours)
             {
                 int parentCost = node.NodeParent.DistanceCost;
-                int nodeCost = node.DistanceCost;
 
                 node.DistanceCost = parentCost + moveCost;
                 area.Add(node);
@@ -96,7 +95,7 @@ public sealed class Pathfinding
     {
         if (node.NodeParent == null)
         {
-            return new List<Node>() { node };
+            return new List<Node> { node };
         }
         else
         {

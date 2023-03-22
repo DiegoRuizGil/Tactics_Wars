@@ -31,9 +31,9 @@ public class InputAttackState : InputBaseState
                 Vector3 mousePosition = Context.GetMouseNodePosition();
                 if (_attackArea.Contains(mousePosition))
                 {
-                    _entityToAttack = Grid.Instance.GetNode(mousePosition).GetTopEntity();
+                    Entity entityToAttack = Grid.Instance.GetNode(mousePosition).GetTopEntity();
 
-                    BaseAction action = new AttackAction(Context.SelectedUnit, _entityToAttack);
+                    BaseAction action = new AttackAction(Context.SelectedUnit, entityToAttack);
                     Context.ActionHandler.ActionToHandle = action;
                     Context.ActionHandler.ExecuteCommand();
 

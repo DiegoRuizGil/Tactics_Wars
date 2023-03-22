@@ -4,6 +4,9 @@ using UnityEngine.Tilemaps;
 [CreateAssetMenu(fileName = "NewResourceType", menuName = "Resource Type")]
 public class ResourceTypeSO : ScriptableObject
 {
-    public ResourceType ResourceType;
-    public TileBase ResourceTile;
+    [SerializeField] private ResourceType _resourceType;
+    [SerializeField] private TileBase _resourceTile;
+
+    public ResourceType ResourceType { get { return _resourceType; } set { _resourceType = value; } }
+    public TileBase ResourceTile { get { return _resourceTile; } set { _resourceTile = value; } }
 }

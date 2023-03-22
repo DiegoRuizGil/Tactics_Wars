@@ -14,7 +14,7 @@ public class Node
     private bool _isWall;
     private bool _canBuildUB;
     private bool _canBuilFarm;
-    private Entity[] _nodeEntities;
+    private readonly Entity[] _nodeEntities;
     private ResourceType _resource;
     #endregion
 

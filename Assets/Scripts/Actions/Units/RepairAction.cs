@@ -1,6 +1,6 @@
 public class RepairAction : BaseAction
 {
-    private Unit _selectedUnit;
+    private readonly Unit _selectedUnit;
 
     public RepairAction(Unit selectedUnit)
     {

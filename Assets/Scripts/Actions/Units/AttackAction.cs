@@ -1,12 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AttackAction : BaseAction
 {
     private const float DAMAGE_COEFFICIENT = 0.5f;
-    private Unit _attacker;
-    private Entity _defender;
+    private readonly Unit _attacker;
+    private readonly Entity _defender;
 
     public AttackAction(Unit attacker, Entity defender)
     {

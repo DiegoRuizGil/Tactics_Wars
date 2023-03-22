@@ -45,7 +45,7 @@ public class ActionAreaManager : MonoBehaviour
 
     void Start()
     {
-        _middleArrowMap = new Dictionary<string, TileBase>() {
+        _middleArrowMap = new Dictionary<string, TileBase> {
             {"VERTICAL", _middleVerticalArrowTile},
             {"HORIZONTAL", _middleHorizontalArrowTile},
             // corners
@@ -55,7 +55,7 @@ public class ActionAreaManager : MonoBehaviour
             {"URLD", _cornerURLDArrowTile}
         };
 
-        _finalArrowMap = new Dictionary<string, TileBase>() {
+        _finalArrowMap = new Dictionary<string, TileBase> {
             {"UP", _finalUpArrowTile},
             {"DOWN", _finalDownArrowTile},
             {"RIGHT", _finalRightArrowTile},

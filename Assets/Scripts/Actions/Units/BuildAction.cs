@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class BuildAction : BaseAction
 {
-    private EntityInfoSO _buildingInfo;
-    private Unit _selectedUnit;
-    private GameObject _parent;
+    private readonly EntityInfoSO _buildingInfo;
+    private readonly Unit _selectedUnit;
+    private readonly GameObject _parent;
 
     public BuildAction(EntityInfoSO buildingInfo, Unit selectedUnit, GameObject parent)
     {

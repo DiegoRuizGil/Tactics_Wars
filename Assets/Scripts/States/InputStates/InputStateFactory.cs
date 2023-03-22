@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class InputStateFactory
 {
-    private InputManager _context;
+    private readonly InputManager _context;
 
     public InputStateFactory(InputManager context)
     {

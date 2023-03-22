@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class UnitBuildingBuilder : IBuilder<UnitBuilding>
 {
-    private UnitBuilding _building;
+    private readonly UnitBuilding _building;
 
     public UnitBuildingBuilder()
     {
