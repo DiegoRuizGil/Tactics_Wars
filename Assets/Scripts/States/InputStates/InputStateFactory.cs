@@ -24,7 +24,7 @@ public class InputStateFactory
         return new InputAttackState(_context, this);
     }
 
-    public InputBaseState BuildAction(EntityInfoSO buildingInfo)
+    public InputBaseState BuildAction(BuildingInfoSO buildingInfo)
     {
         return new InputBuildState(_context, this, buildingInfo);
     }
@@ -32,6 +32,11 @@ public class InputStateFactory
     public InputBaseState RepairAction()
     {
         return new InputRepairState(_context, this);
+    }
+
+    public InputBaseState GenerateUnitAction(UnitInfoSO unitInfo)
+    {
+        return new InputGenerateUnitState(_context, this, unitInfo);
     }
 
     public InputBaseState FinalizeUnit()

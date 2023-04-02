@@ -12,8 +12,8 @@ public class Node
     private Node _nodeParent;
     private List<Node> _neighbours;
     private bool _isWall;
-    private bool _canBuildUB;
-    private bool _canBuilFarm;
+    //private bool _canBuildUB;
+    //private bool _canBuilFarm;
     private readonly Entity[] _nodeEntities;
     private ResourceType _resource;
     #endregion
@@ -26,8 +26,8 @@ public class Node
     public Node NodeParent { get { return _nodeParent; } set { _nodeParent = value; } }
     public List<Node> Neighbours { get { return _neighbours; } set { _neighbours = value; } }
     public bool IsWall { get { return _isWall; } set { _isWall = value; } }
-    public bool CanBuildUB { get { return _canBuildUB; } set { _canBuildUB = value; } }
-    public bool CanBuildFarm { get { return _canBuilFarm; } set { _canBuilFarm = value; } }
+    //public bool CanBuildUB { get { return _canBuildUB; } set { _canBuildUB = value; } }
+    //public bool CanBuildFarm { get { return _canBuilFarm; } set { _canBuilFarm = value; } }
     public ResourceType Resource { get { return _resource; } set { _resource = value; } }
     #endregion
 
@@ -107,8 +107,46 @@ public class Node
         return _nodeEntities[index];
     }
 
+    public bool CanBuildUnitBuilding(TeamEnum team)
+    {
+        foreach (Node neighhour in Neighbours)
+        {
+            if (neighhour.GetEntity(0) == null)
+                continue;
+
+            Building building = neighhour.GetEntity(0) as Building;
+
+            if (building.Team != team)
+                continue;
+
+            if (building.BuildingType == BuildingType.URBAN_CENTER)
+                return true;
+        }
+
+        return false;
+    }
+
+    public bool CanBuildFarm(TeamEnum team)
+    {
+        foreach (Node neighhour in Neighbours)
+        {
+            if (neighhour.GetEntity(0) == null)
+                continue;
+
+            Building building = neighhour.GetEntity(0) as Building;
+
+            if (building.Team != team)
+                continue;
+
+            if (building.BuildingType == BuildingType.WINDMILL)
+                return true;
+        }
+
+        return false;
+    }
+
     public void ShowInfo()
     {
-        Debug.Log($"Edificio: {_nodeEntities[0]?.Name}. Unidad: {_nodeEntities[1]?.Name}. Recurso: {_resource}. Edf Entidad: {_canBuildUB}");
+        Debug.Log($"Edificio: {_nodeEntities[0]?.Name}. Unidad: {_nodeEntities[1]?.Name}. Recurso: {_resource}.");
     }
 }

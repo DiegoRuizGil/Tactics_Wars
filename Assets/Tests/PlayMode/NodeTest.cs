@@ -13,7 +13,7 @@ public class NodeTest
     {
         GameObject gameObject = new GameObject();
         _unit = gameObject.AddComponent<Unit>();
-        _building = gameObject.AddComponent<UnitBuilding>();
+        _building = gameObject.AddComponent<Building>();
     }
 
     [UnityTest]

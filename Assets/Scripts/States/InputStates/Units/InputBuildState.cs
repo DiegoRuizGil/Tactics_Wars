@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class InputBuildState : InputBaseState
 {
-    private EntityInfoSO _buildingInfo;
+    private BuildingInfoSO _buildingInfo;
 
-    public InputBuildState(InputManager context, InputStateFactory factory, EntityInfoSO buildingInfo)
+    public InputBuildState(InputManager context, InputStateFactory factory, BuildingInfoSO buildingInfo)
         : base(context, factory)
     {
         _buildingInfo = buildingInfo;
@@ -14,7 +14,7 @@ public class InputBuildState : InputBaseState
     public override void EnterState()
     {
         Debug.Log("<color=magenta>Build</color>: Entering the state");
-        BaseAction action = new BuildAction(_buildingInfo, Context.SelectedUnit, Context.BuildingsParent);
+        BaseAction action = new BuildAction(_buildingInfo, Context.SelectedUnit, Context.BuildingsParentBlueTeam);
         Context.ActionHandler.ActionToHandle = action;
         Context.ActionHandler.ExecuteCommand();
     }

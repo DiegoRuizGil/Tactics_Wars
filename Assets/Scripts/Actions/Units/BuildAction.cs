@@ -2,11 +2,11 @@ using UnityEngine;
 
 public class BuildAction : BaseAction
 {
-    private readonly EntityInfoSO _buildingInfo;
+    private readonly BuildingInfoSO _buildingInfo;
     private readonly Unit _selectedUnit;
-    private readonly GameObject _parent;
+    private readonly Transform _parent;
 
-    public BuildAction(EntityInfoSO buildingInfo, Unit selectedUnit, GameObject parent)
+    public BuildAction(BuildingInfoSO buildingInfo, Unit selectedUnit, Transform parent)
     {
         _buildingInfo = buildingInfo;
         _selectedUnit = selectedUnit;
@@ -16,19 +16,17 @@ public class BuildAction : BaseAction
     public override void Execute()
     {
         Debug.Log($"Quitamos al jugador {_buildingInfo.FoodAmount} de comida y {_buildingInfo.GoldAmount} de oro.");
-        Entity building = GameObject.Instantiate(
-            _buildingInfo.EntityPrefab,
+        Transform tr = GameObject.Instantiate(
+            _buildingInfo.Entity,
             _selectedUnit.transform.position,
-            Quaternion.identity).GetComponent<Entity>();
+            Quaternion.identity
+        ).transform;
 
         if (_parent != null)
-            building.transform.parent = _parent.transform;
+            tr.parent = _parent;
 
-        if (building != null)
-        {
-            Node node = Grid.Instance.GetNode(_selectedUnit.transform.position);
-            node.AddEntity(building);
-        }
+        Node node = Grid.Instance.GetNode(_selectedUnit.transform.position);
+        node.AddEntity(_buildingInfo.Entity);
 
         _selectedUnit.HasFinished = true;
     }

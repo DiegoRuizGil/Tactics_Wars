@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class InputAttackState : InputBaseState
 {
-    private Entity _entityToAttack;
     private List<Vector3> _attackArea;
 
     public InputAttackState(InputManager context, InputStateFactory factory)
