@@ -4,13 +4,7 @@ using UnityEngine.UI;
 
 public class UnitActionsUIManager : MonoBehaviour
 {
-    [Header("Game Events")]
-    [SerializeField]
-    private UnitEvent _onBuildActionSelected;
-
     [Header("Unit Actions")]
-    [SerializeField]
-    private GameObject _actionsPanel;
     [SerializeField]
     private Button _moveButton;
     [SerializeField]
@@ -22,38 +16,36 @@ public class UnitActionsUIManager : MonoBehaviour
     [SerializeField]
     private Button _repairButton;
 
-    [Header("Buildings Menu")]
+    [Header("Buildings Buttons")]
     [SerializeField]
-    private GameObject _buildingMenu;
+    private Button[] _unitBuildingsButtons;
+    [SerializeField]
+    private Button _windmillButton;
+    [SerializeField]
+    private Button _farmButton;
+    [SerializeField]
+    private Button _goldmineButton;
 
     private const int NUM_OF_BUTTONS = 5;
-    private Button[] _buttons;
+    private Button[] _actionsButtons;
     private Unit _unit;
+    private Node _unitNode;
 
     void Awake()
     {
-        _buttons = new Button[NUM_OF_BUTTONS];
+        _actionsButtons = new Button[NUM_OF_BUTTONS];
 
-        _buttons[0] = _moveButton;
-        _buttons[1] = _attackButton;
-        _buttons[2] = _finalizeButton;
-        _buttons[3] = _buildButton;
-        _buttons[4] = _repairButton;
-    }
-
-    public void CleanUI()
-    {
-        _actionsPanel.SetActive(false);
-        _buildingMenu.SetActive(false);
+        _actionsButtons[0] = _moveButton;
+        _actionsButtons[1] = _attackButton;
+        _actionsButtons[2] = _finalizeButton;
+        _actionsButtons[3] = _buildButton;
+        _actionsButtons[4] = _repairButton;
     }
 
     public void ShowUnitActions(Unit unit)
     {
         _unit = unit;
-        _actionsPanel.SetActive(true);
-
-        _buildButton.gameObject.SetActive(_unit.UnitType == UnitType.ALDEANO);
-        _repairButton.gameObject.SetActive(_unit.UnitType == UnitType.ALDEANO);
+        _unitNode = Grid.Instance.GetNode(_unit.transform.position);
 
         if (_unit.HasFinished)
         {
@@ -71,7 +63,7 @@ public class UnitActionsUIManager : MonoBehaviour
 
     private void DeactivateButtons()
     {
-        foreach (Button button in _buttons)
+        foreach (Button button in _actionsButtons)
         {
             button.interactable = false;
         }
@@ -104,12 +96,15 @@ public class UnitActionsUIManager : MonoBehaviour
             return;
         }
 
-        _buildButton.gameObject.SetActive(true);
-        Node node = Grid.Instance.GetNode(_unit.transform.position);
+        SetBuildingsButtons();
 
-        if (node.Resource != ResourceType.NONE)
+        _buildButton.gameObject.SetActive(true);
+
+        if (_unitNode.CanBuildUnitBuilding(_unit.Team))
             _buildButton.interactable = true;
-        else if (node.CanBuildUB)
+        else if (_unitNode.CanBuildFarm(_unit.Team))
+            _buildButton.interactable = true;
+        else if (_unitNode.Resource != ResourceType.NONE)
             _buildButton.interactable = true;
         else
             _buildButton.interactable = false;
@@ -124,12 +119,18 @@ public class UnitActionsUIManager : MonoBehaviour
         }
 
         _repairButton.gameObject.SetActive(true);
-        Node node = Grid.Instance.GetNode(_unit.transform.position);
-        _repairButton.interactable = node.GetEntity(0) != null;
+        _repairButton.interactable = _unitNode.GetEntity(0) != null;
     }
 
-    public void RaiseBuildButtonEvent()
+    private void SetBuildingsButtons()
     {
-        _onBuildActionSelected?.Raise(_unit);
+        foreach (Button b in _unitBuildingsButtons)
+        {
+            b.gameObject.SetActive(_unitNode.CanBuildUnitBuilding(_unit.Team));
+        }
+
+        _windmillButton.gameObject.SetActive(_unitNode.Resource == ResourceType.FOOD);
+        _farmButton.gameObject.SetActive(_unitNode.CanBuildFarm(_unit.Team));
+        _goldmineButton.gameObject.SetActive(_unitNode.Resource == ResourceType.GOLD);
     }
 }

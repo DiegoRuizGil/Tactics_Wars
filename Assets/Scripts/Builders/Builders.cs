@@ -7,7 +7,7 @@ public static class A
 public static class An
 {
     public static UnitBuilder Unit => new UnitBuilder();
-    public static UnitBuildingBuilder UnitBuilding => new UnitBuildingBuilder();
-    public static EntityInfoSOBuilder EntityInfoSO => new EntityInfoSOBuilder();
+    public static BuildingBuilder Building => new BuildingBuilder();
+    public static BuildingInfoSOBuilder BuildingInfoSO => new BuildingInfoSOBuilder();
     public static InputManagerBuilder InputManager => new InputManagerBuilder();
 }

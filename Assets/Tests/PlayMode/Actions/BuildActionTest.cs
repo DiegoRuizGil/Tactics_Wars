@@ -23,22 +23,21 @@ public class BuildActionTest
     {
         GameObject parent = new GameObject();
         Unit unit = An.Unit.WithPosition(new Vector3(_width - 1, _height - 1, 0f));
-        UnitBuilding building = An.UnitBuilding;
-        EntityInfoSO info = An.EntityInfoSO.WithPrefab(building.gameObject).WithFoodAmount(0).WithGoldAmount(0);
+        Building building = An.Building;
+        BuildingInfoSO info = An.BuildingInfoSO.WithBuilding(building).WithFoodAmount(0).WithGoldAmount(0);
 
         yield return null;
 
         Node node = Grid.Instance.GetNode(unit.transform.position);
         node.AddEntity(unit);
 
-        BuildAction action = new BuildAction(info, unit, parent);
+        BuildAction action = new BuildAction(info, unit, parent.transform);
         action.Execute();
 
         Assert.AreEqual(1, parent.transform.childCount);
 
-        UnitBuilding buildingInstance = parent.transform.GetChild(0).GetComponent<UnitBuilding>();
+        Building buildingInstance = parent.transform.GetChild(0).GetComponent<Building>();
 
         Assert.AreEqual(unit.transform.position, buildingInstance.transform.position);
-        Assert.AreEqual(buildingInstance, node.GetEntity(0));
     }
 }

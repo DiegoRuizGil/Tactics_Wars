@@ -35,13 +35,6 @@ public class EntitiesInitializer : MonoBehaviour
             if (node != null)
             {
                 node.AddEntity(entity);
-
-                // se cambiara cuando se implementen los distintos tipos de edificios
-                if (entity is UnitBuilding)
-                {
-                    foreach (Node neighbour in node.Neighbours)
-                        neighbour.CanBuildUB = true;
-                }
             }
         }
     }

@@ -6,7 +6,7 @@ using UnityEngine.TestTools;
 public class InputManagerTest
 {
     private Unit _unit;
-    private EntityInfoSO _entityInfo;
+    private BuildingInfoSO _buildingInfo;
 
     [SetUp]
     public void SetUp()
@@ -20,8 +20,8 @@ public class InputManagerTest
         _unit = An.Unit.WithPosition(Vector3.zero);
         Grid.Instance.GetNode(_unit.transform.position).AddEntity(_unit);
 
-        UnitBuilding prefab = An.UnitBuilding;
-        _entityInfo = An.EntityInfoSO.WithPrefab(prefab.gameObject);
+        Building prefab = An.Building;
+        _buildingInfo = An.BuildingInfoSO.WithBuilding(prefab);
     }
 
     [UnityTest]
@@ -38,7 +38,7 @@ public class InputManagerTest
         manager.SetAttackState();
         Assert.IsTrue(manager.CurrentState is InputAttackState);
 
-        manager.SetBuildState(_entityInfo);
+        manager.SetBuildState(_buildingInfo);
         Assert.IsTrue(manager.CurrentState is InputBuildState);
 
         manager.SetRepairState();

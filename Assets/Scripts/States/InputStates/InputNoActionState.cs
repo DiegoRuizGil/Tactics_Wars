@@ -22,20 +22,7 @@ public class InputNoActionState : InputBaseState
             if (node != null)
             {
                 Entity entity = node.GetTopEntity();
-                if (entity == null)
-                {
-                    if (Context.OnEntityDeselectedEvent != null)
-                        Context.OnEntityDeselectedEvent.Raise();
-                }
-                else if (entity is Unit)
-                {
-                    Context.SelectedUnit = (Unit)entity;
-                    if (Context.OnUnitSelectedEvent != null)
-                        Context.OnUnitSelectedEvent.Raise(Context.SelectedUnit);
-                }
-                else
-                    Context.SelectedUnit = null;
-
+                Context.SetSelectedEntity(entity);
             }
         }
     }
