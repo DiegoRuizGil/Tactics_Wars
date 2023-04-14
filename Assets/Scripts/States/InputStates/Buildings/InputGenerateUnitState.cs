@@ -16,8 +16,8 @@ public class InputGenerateUnitState : InputBaseState
         Debug.Log("<color=yellow>Generate Unit</color>: Entering the state");
         BaseAction action = new GenerateUnitAction(
             _unitInfo,
-            Context.UnitsParentBlueTeam,
-            Context.SelectedBuilding.transform.position
+            Context.SelectedBuilding.transform.position,
+            TeamEnum.BLUE
         );
         Context.ActionHandler.ActionToHandle = action;
         Context.ActionHandler.ExecuteCommand();

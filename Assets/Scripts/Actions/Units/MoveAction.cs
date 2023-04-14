@@ -7,7 +7,7 @@ public class MoveAction : BaseAction
     private const float POSITION_OFFSET = 0.5f;
     private readonly int _unitSpeed;
     private readonly List<Vector3> _positions;
-    private  readonly Unit _selectedUnit;
+    private readonly Unit _selectedUnit;
 
     public MoveAction(Unit selectedUnit, List<Vector3> positions, int unitSpeed)
     {
@@ -15,13 +15,17 @@ public class MoveAction : BaseAction
         _selectedUnit = selectedUnit;
         _positions = positions;
         _unitSpeed = unitSpeed;
+        _isRunning = true;
     }
 
     public override void Execute()
     {
         if (!UpdateNodes())
+        {
+            _isRunning = false;
             return;
-        _selectedUnit.HasMoved = true;
+        }
+        
         _selectedUnit.StartCoroutine(MovementCoroutine());
     }
 
@@ -48,7 +52,7 @@ public class MoveAction : BaseAction
         int index = 0;
         Vector3 nextPos = GetPositionWithOffset(_positions[index]);
         while (index < _positions.Count)
-        {            
+        {
             if (_selectedUnit.transform.position != nextPos)
             {
                 _selectedUnit.transform.position = Vector3.MoveTowards(
@@ -66,7 +70,10 @@ public class MoveAction : BaseAction
         }
 
         _selectedUnit.Animator.SetBool("IsMoving", false);
+        _selectedUnit.HasMoved = true;
+
         ActionFinished?.Invoke();
+        _isRunning = false;
     }
 
     private Vector3 GetPositionWithOffset(Vector3 position)

@@ -17,7 +17,7 @@ public class RepairActionTest
         Grid.Instance = new Grid(width, height, cellSize, Vector3.zero);
 
         _unit = An.Unit.WithPosition(new Vector3(width - 1, height - 1, 0f));
-        _building = An.Building.WithPosition(new Vector3(width - 1, height - 1, 0f));
+        _building = A.Building.WithPosition(new Vector3(width - 1, height - 1, 0f));
 
         _building.ApplyDamage(_building.MaxHealth / 2);
     }

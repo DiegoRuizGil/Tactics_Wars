@@ -14,7 +14,7 @@ public class InputBuildState : InputBaseState
     public override void EnterState()
     {
         Debug.Log("<color=magenta>Build</color>: Entering the state");
-        BaseAction action = new BuildAction(_buildingInfo, Context.SelectedUnit, Context.BuildingsParentBlueTeam);
+        BaseAction action = new BuildAction(_buildingInfo, Context.SelectedUnit, TeamEnum.BLUE);
         Context.ActionHandler.ActionToHandle = action;
         Context.ActionHandler.ExecuteCommand();
     }

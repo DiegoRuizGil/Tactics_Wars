@@ -4,30 +4,30 @@ public class BuildAction : BaseAction
 {
     private readonly BuildingInfoSO _buildingInfo;
     private readonly Unit _selectedUnit;
-    private readonly Transform _parent;
+    private readonly TeamEnum _team;
 
-    public BuildAction(BuildingInfoSO buildingInfo, Unit selectedUnit, Transform parent)
+    public BuildAction(BuildingInfoSO buildingInfo, Unit selectedUnit, TeamEnum team)
     {
         _buildingInfo = buildingInfo;
         _selectedUnit = selectedUnit;
-        _parent = parent;
+        _team = team;
     }
 
     public override void Execute()
     {
-        Debug.Log($"Quitamos al jugador {_buildingInfo.FoodAmount} de comida y {_buildingInfo.GoldAmount} de oro.");
-        Transform tr = GameObject.Instantiate(
-            _buildingInfo.Entity,
-            _selectedUnit.transform.position,
-            Quaternion.identity
-        ).transform;
+        if (GameManager.Instance.UpdateResources(_team, _buildingInfo.FoodAmount, _buildingInfo.GoldAmount))
+        {
+            GameManager.Instance.InstantiateBuilding(
+                    _buildingInfo.Entity,
+                    _selectedUnit.transform.position,
+                    _team
+                );
 
-        if (_parent != null)
-            tr.parent = _parent;
-
-        Node node = Grid.Instance.GetNode(_selectedUnit.transform.position);
-        node.AddEntity(_buildingInfo.Entity);
-
-        _selectedUnit.HasFinished = true;
+            _selectedUnit.HasFinished = true;
+        }
+        else
+        {
+            Debug.LogWarning("No hay suficientes recursos para generar el edificio");
+        }
     }
 }

@@ -43,21 +43,21 @@ public class MoveActionTest
     {
         List<Vector3> positions = new List<Vector3>
         {
-            new Vector3(_width - 2, _height - 2, 0f),
-            new Vector3(_width - 1, _height - 1, 0f)
+            new Vector3(_width - 2, _height - 3, 0f),
+            new Vector3(_width - 2, _height - 2, 0f)
         };
         int movementSpeed = 1;
         Unit unit = An.Unit.WithPosition(new Vector3(_width - 3, _height - 3, 0f));
         Node node = Grid.Instance.GetNode(unit.transform.position);
         node.AddEntity(unit);
-        Node newNode = Grid.Instance.GetNode(_width - 1, _height - 1);
+        Node newNode = Grid.Instance.GetNode(_width - 2, _height - 2);
 
         yield return null;
 
         MoveAction action = new MoveAction(unit, positions, movementSpeed);
         action.Execute();
 
-        yield return new WaitForSeconds(movementSpeed * positions.Count);
+        yield return new WaitForSeconds((movementSpeed * positions.Count) + 1f);
 
         Assert.IsTrue(unit.HasMoved);
         Assert.IsNull(node.GetTopEntity());

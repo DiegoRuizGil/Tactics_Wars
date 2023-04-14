@@ -27,7 +27,6 @@ public class Healthbar : MonoBehaviour
         {
             gameObject.SetActive(false);
             _onDeathEvent?.Invoke();
-        }
-            
+        } 
     }
 }

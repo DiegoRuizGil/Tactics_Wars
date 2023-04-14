@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class UnitActionsUIManager : MonoBehaviour
@@ -15,16 +16,6 @@ public class UnitActionsUIManager : MonoBehaviour
     private Button _buildButton;
     [SerializeField]
     private Button _repairButton;
-
-    [Header("Buildings Buttons")]
-    [SerializeField]
-    private Button[] _unitBuildingsButtons;
-    [SerializeField]
-    private Button _windmillButton;
-    [SerializeField]
-    private Button _farmButton;
-    [SerializeField]
-    private Button _goldmineButton;
 
     private const int NUM_OF_BUTTONS = 5;
     private Button[] _actionsButtons;
@@ -90,13 +81,11 @@ public class UnitActionsUIManager : MonoBehaviour
 
     private void ShowBuildButton()
     {
-        if (_unit.UnitType != UnitType.ALDEANO)
+        if (_unit.gameObject.GetComponent<BuildingGenerator>() == null)
         {
             _buildButton.gameObject.SetActive(false);
             return;
         }
-
-        SetBuildingsButtons();
 
         _buildButton.gameObject.SetActive(true);
 
@@ -120,17 +109,5 @@ public class UnitActionsUIManager : MonoBehaviour
 
         _repairButton.gameObject.SetActive(true);
         _repairButton.interactable = _unitNode.GetEntity(0) != null;
-    }
-
-    private void SetBuildingsButtons()
-    {
-        foreach (Button b in _unitBuildingsButtons)
-        {
-            b.gameObject.SetActive(_unitNode.CanBuildUnitBuilding(_unit.Team));
-        }
-
-        _windmillButton.gameObject.SetActive(_unitNode.Resource == ResourceType.FOOD);
-        _farmButton.gameObject.SetActive(_unitNode.CanBuildFarm(_unit.Team));
-        _goldmineButton.gameObject.SetActive(_unitNode.Resource == ResourceType.GOLD);
     }
 }

@@ -1,17 +1,40 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Blue Team Entity Parents")]
+    [SerializeField]
+    private Transform _blueTeamUnitParent;
+    [SerializeField]
+    private Transform _blueTeamBuildingParent;
+
+    [Header("Red Team Entity Parents")]
+    [SerializeField]
+    private Transform _redTeamUnitParent;
+    [SerializeField]
+    private Transform _redTeamBuildingParent;
+
     [Header("Game Events")]
     [SerializeField]
     private TeamEnumEvent _onTurnUpdate;
 
+    [Header("Debug")]
+    [SerializeField]
+    private int _debugFoodAmount;
+    [SerializeField]
+    private int _debugGoldAmount;
+
     private Dictionary<TeamEnum, int> _foodResources;
     private Dictionary<TeamEnum, int> _goldResources;
 
+    private Dictionary<TeamEnum, Transform> _unitParents;
+    private Dictionary<TeamEnum, Transform> _buildingParents;
+
+    private Dictionary<TeamEnum, List<Unit>> _unitLists;
+    private Dictionary<TeamEnum, List<Building>> _buildingLists;
+
+    [Space(20)]
     [SerializeField]
     private int _turn;
     [SerializeField]
@@ -23,11 +46,15 @@ public class GameManager : MonoBehaviour
 
     public Dictionary<TeamEnum, int> FoodResources { get { return _foodResources; } }
     public Dictionary<TeamEnum, int> GoldResources { get { return _goldResources; } }
+    public Dictionary<TeamEnum, List<Unit>> UnitLists { get { return _unitLists; } }
+    public Dictionary<TeamEnum, List<Building>> BuildingLists { get { return _buildingLists; } }
+    public TeamEnum CurrentTeam { get { return _currentTeam; } }
 
     private void Awake()
     {
         _instance = this;
 
+        // SET RESOURCES
         _foodResources = new Dictionary<TeamEnum, int>
         {
             {TeamEnum.BLUE, 0},
@@ -40,6 +67,31 @@ public class GameManager : MonoBehaviour
             {TeamEnum.RED, 0}
         };
 
+        // SET ENTITIES LISTS
+        _unitLists = new Dictionary<TeamEnum, List<Unit>>
+        {
+            {TeamEnum.BLUE,  new List<Unit>()},
+            {TeamEnum.RED,  new List<Unit>()}
+        };
+
+        _buildingLists = new Dictionary<TeamEnum, List<Building>>
+        {
+            {TeamEnum.BLUE,  new List<Building>()},
+            {TeamEnum.RED,  new List<Building>()}
+        };
+
+        // SET ENTITIES PARENTS
+        _unitParents = new Dictionary<TeamEnum, Transform>
+        {
+            {TeamEnum.BLUE, _blueTeamUnitParent},
+            {TeamEnum.RED, _redTeamUnitParent}
+        };
+
+        _buildingParents = new Dictionary<TeamEnum, Transform>
+        {
+            {TeamEnum.BLUE, _blueTeamBuildingParent},
+            {TeamEnum.RED, _redTeamBuildingParent}
+        };
     }
 
     private void Start()
@@ -48,16 +100,14 @@ public class GameManager : MonoBehaviour
             _onTurnUpdate.Raise(_currentTeam);
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            Debug.Log($"[EQUIPO AZUL] Food: {_foodResources[TeamEnum.BLUE]}, Gold: {_goldResources[TeamEnum.BLUE]}");
-        }
-    }
-
     public void FinalizeCurrentTurn()
     {
+        foreach (Unit unit in _unitLists[_currentTeam])
+        {
+            unit.HasMoved = false;
+            unit.HasFinished = false;
+        }
+
         _turn++;
         _currentTeam = (_currentTeam == TeamEnum.BLUE) ? TeamEnum.RED : TeamEnum.BLUE;
 
@@ -65,34 +115,165 @@ public class GameManager : MonoBehaviour
             _onTurnUpdate.Raise(_currentTeam);
     }
 
-    public void UpdateResources(TeamEnum team, ResourceType resourceType, int amount)
+    [ContextMenu("Debug Resources")]
+    private void UpdateDebugResources()
     {
+        _foodResources[TeamEnum.BLUE] = _debugFoodAmount;
+        _goldResources[TeamEnum.BLUE] = _debugGoldAmount;
+    }
+
+    #region RESOURCES
+    public bool UpdateResources(TeamEnum team, int foodAmount, int goldAmount)
+    {
+        if (_foodResources[team] + foodAmount < 0 || _goldResources[team] + goldAmount < 0)
+        {
+            return false;
+        }
+        else
+        {
+            UpdateFoodResources(team, foodAmount);
+            UpdateGoldResources(team, goldAmount);
+            return true;
+        }
+    }
+
+    public bool UpdateResource(TeamEnum team, ResourceType resourceType, int amount)
+    {
+        bool hasUpdated = false;
         switch (resourceType)
         {
             case ResourceType.FOOD:
-                UpdateFoodResources(team, amount);
+                hasUpdated = UpdateFoodResources(team, amount);
                 break;
             case ResourceType.GOLD:
-                UpdateGoldResources(team, amount);
+                hasUpdated = UpdateGoldResources(team, amount);
                 break;
             default:
                 break;
         }
+
+        return hasUpdated;
     }
 
-    private void UpdateFoodResources(TeamEnum team, int amount)
+    private bool UpdateFoodResources(TeamEnum team, int amount)
     {
-        if (_foodResources[team] < amount * -1f)
-            Debug.LogWarning("[FOOD RESOURCE] No se puede actualizar el rescuros a un número negativo. No se realizará la actuaización.");
+        if (_foodResources[team] + amount < 0)
+        {
+            Debug.LogWarning("[FOOD RESOURCE] No se puede actualizar el rescuros a un número negativo. No se realizará la actualización.");
+            return false;
+        }
         else
+        {
             _foodResources[team] += amount;
+            return true;
+        } 
     }
 
-    private void UpdateGoldResources(TeamEnum team, int amount)
+    private bool UpdateGoldResources(TeamEnum team, int amount)
     {
-        if (_goldResources[team] < amount * -1f)
-            Debug.LogWarning("[GOLD RESOURCE] No se puede actualizar el rescuros a un número negativo. No se realizará la actuaización.");
+        if (_goldResources[team] + amount < 0)
+        {
+            Debug.LogWarning("[GOLD RESOURCE] No se puede actualizar el rescuros a un número negativo. No se realizará la actualización.");
+            return false;
+        }
         else
+        {
             _goldResources[team] += amount;
+            return true;
+        }  
     }
+    #endregion
+
+    #region ENTITIES
+    public Entity InstantiateEntity(Entity entityPrefab, Vector3 pos, TeamEnum team)
+    {
+        return InstantiateEntity(entityPrefab, pos, Quaternion.identity, team);
+    }
+
+    public Entity InstantiateEntity(Entity entityPrefab, Vector3 pos, Quaternion rotation, TeamEnum team)
+    {
+        if (entityPrefab is Unit)
+        {
+            return InstantiateUnit(entityPrefab as Unit, pos, rotation, team);
+        }
+        else if (entityPrefab is Building)
+        {
+            return InstantiateBuilding(entityPrefab as Building, pos, rotation, team);
+        }
+        else
+        {
+            Debug.Log($"No se pudo crear instancia de la entidad {entityPrefab.name}, no es Unit ni Building.");
+            return null;
+        }
+    }
+
+    public Unit InstantiateUnit(Unit unitPrefab, Vector3 pos, TeamEnum team)
+    {
+        return InstantiateUnit(unitPrefab, pos, Quaternion.identity, team);
+    }
+
+    public Unit InstantiateUnit(Unit unitPrefab, Vector3 pos, Quaternion rotation, TeamEnum team)
+    {
+        Unit unit = GameObject.Instantiate(
+                unitPrefab,
+                pos,
+                rotation,
+                _unitParents[team]
+            );
+
+        _unitLists[team].Add(unit);
+        unit.SetEntityInGrid();
+
+        return unit;
+    }
+
+    public Building InstantiateBuilding(Building buildingPrefab, Vector3 pos, TeamEnum team)
+    {
+        return InstantiateBuilding(buildingPrefab, pos, Quaternion.identity, team);
+    }
+
+    public Building InstantiateBuilding(Building buildingPrefab, Vector3 pos, Quaternion rotation, TeamEnum team)
+    {
+        Building building = GameObject.Instantiate(
+                buildingPrefab,
+                pos,
+                rotation,
+                _buildingParents[team]
+            );
+
+        _buildingLists[team].Add(building);
+        building.SetEntityInGrid();
+
+        return building;
+    }
+    
+    public void RemoveUnit(Unit unit)
+    {
+        _unitLists[unit.Team].Remove(unit);
+
+        Node node = Grid.Instance.GetNode(unit.transform.position);
+        node.RemoveTopEntity();
+
+        Destroy(unit.gameObject);
+    }
+
+    public void RemoveBuilding(Building building)
+    {
+        _buildingLists[building.Team].Remove(building);
+        Destroy(building.gameObject);
+    }
+    #endregion
+
+    #region PARENTS
+    public void SetUnitParent(TeamEnum team, Transform parent)
+    {
+        _unitParents[team] = parent;
+    }
+
+    public void SetBuildingParent(TeamEnum team, Transform parent)
+    {
+        _buildingParents[team] = parent;
+    }
+    #endregion
+
 }

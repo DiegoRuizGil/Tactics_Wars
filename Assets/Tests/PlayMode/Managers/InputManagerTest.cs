@@ -20,8 +20,8 @@ public class InputManagerTest
         _unit = An.Unit.WithPosition(Vector3.zero);
         Grid.Instance.GetNode(_unit.transform.position).AddEntity(_unit);
 
-        Building prefab = An.Building;
-        _buildingInfo = An.BuildingInfoSO.WithBuilding(prefab);
+        Building prefab = A.Building;
+        _buildingInfo = A.BuildingInfoSO.WithBuilding(prefab);
     }
 
     [UnityTest]

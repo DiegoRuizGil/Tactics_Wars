@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -14,31 +12,35 @@ public class GenerateUnitUI : MonoBehaviour
 
     public void SetButtons(Building building)
     {
+        // COMPROBAR QUE EL EDIFICIO TENGA EL COMPONENTE UnitGenerator
         UnitGenerator unitGenerator = building.gameObject.GetComponent<UnitGenerator>();
 
+        int foodAmount = GameManager.Instance.FoodResources[TeamEnum.BLUE];
+        int goldAmount = GameManager.Instance.GoldResources[TeamEnum.BLUE];
+
+        UnitInfoSO unitInfo = null;
         for (int i = 0; i < _generateUnitButtons.Length; i++)
         {
             if (i >= unitGenerator.UnitsInfo.Length)
             {
-                Debug.Log($"Indice fuera del rango: {i}");
                 _generateUnitButtons[i].gameObject.SetActive(false);
                 continue;
             }
 
-            Debug.Log($"Indice dentro del rango: {i}");
-            _generateUnitButtons[i].gameObject.SetActive(true);
-            _generateUnitButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = unitGenerator.UnitsInfo[i].Entity.name;
+            unitInfo = unitGenerator.UnitsInfo[i];
 
-            UnitInfoSO unitInfo = unitGenerator.UnitsInfo[i];
+            _generateUnitButtons[i].gameObject.SetActive(true);
+            _generateUnitButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = unitInfo.Entity.name;
+
+            if (foodAmount < unitInfo.FoodAmount || goldAmount < unitInfo.FoodAmount)
+            {
+                _generateUnitButtons[i].interactable = false;
+                continue;
+            }
 
             _generateUnitButtons[i].onClick.AddListener(
                 () => _inputManager.SetGenerateUnitState(unitInfo)
             );
         }
-    }
-
-    public void Pruebas(int n)
-    {
-        Debug.Log($"Acción numero {n}");
     }
 }

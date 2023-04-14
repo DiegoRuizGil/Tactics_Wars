@@ -10,12 +10,13 @@ public class AttackAction : BaseAction
     {
         _attacker = attacker;
         _defender = defender;
+        _isRunning = true;
     }
 
     public override void Execute()
     {
         AnimationEventSystem.AnimationFinishedEvent += ApplyDamage;
-        _attacker.Animator.SetTrigger("Attack");
+        _attacker.Animator.SetTrigger("Attack"); // action called at the end of the animation
     }
 
     public void ApplyDamage()
@@ -29,6 +30,7 @@ public class AttackAction : BaseAction
         }
 
         _attacker.HasFinished = true;
+        _isRunning = false;
         ActionFinished?.Invoke();
     }
 
@@ -38,10 +40,16 @@ public class AttackAction : BaseAction
             return _attacker.Damage;
         
         if ((_defender as Unit).Weaknesses.Contains(_attacker.UnitType))
+        {
             return Mathf.RoundToInt(_attacker.Damage * (1 + DAMAGE_COEFFICIENT));
+        }
         else if (_attacker.Weaknesses.Contains((_defender as Unit).UnitType))
+        {
             return Mathf.RoundToInt(_attacker.Damage * (1 - DAMAGE_COEFFICIENT));
+        }
         else
+        {
             return _attacker.Damage;
+        }  
     }
 }

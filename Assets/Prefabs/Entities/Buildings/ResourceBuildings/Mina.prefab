@@ -435,7 +435,7 @@ MonoBehaviour:
   _maxHealth: 100
   _currentHealth: 100
   _team: 0
-  _buildingType: 3
+  _buildingType: 4
 --- !u!114 &8610929512437010597
 MonoBehaviour:
   m_ObjectHideFlags: 0

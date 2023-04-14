@@ -27,6 +27,6 @@ public class ResourceGenerator : MonoBehaviour
         if (_team == team)
             return;
         Debug.Log($"{_team}: Actualizando recursos");
-        GameManager.Instance.UpdateResources(_team, _resourceType, _resourceAmount);
+        GameManager.Instance.UpdateResource(_team, _resourceType, _resourceAmount);
     }
 }

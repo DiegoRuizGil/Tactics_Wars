@@ -60,7 +60,8 @@ public class Unit : Entity
 
     public void DestroyObject() // called at the end of an animation
     {
-        Destroy(gameObject);
+        // Destroy(gameObject);
+        GameManager.Instance.RemoveUnit(this);
     }
 }
 

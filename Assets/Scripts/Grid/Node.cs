@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 public class Node
 {
@@ -9,11 +8,11 @@ public class Node
     private int _gridX;
     private int _gridY;
     private int _distanceCost;
+    private int _gCost;
+    private int _hCost;
     private Node _nodeParent;
     private List<Node> _neighbours;
     private bool _isWall;
-    //private bool _canBuildUB;
-    //private bool _canBuilFarm;
     private readonly Entity[] _nodeEntities;
     private ResourceType _resource;
     #endregion
@@ -23,11 +22,12 @@ public class Node
     public int GridX { get { return _gridX; } set { _gridX = Mathf.Max(0, value); } }
     public int GridY { get { return _gridY; } set { _gridY = Mathf.Max(0, value); } }
     public int DistanceCost { get { return _distanceCost; } set { _distanceCost = value; } }
+    public int GCost { get { return _gCost; } set { _gCost = value; } }
+    public int HCost { get { return _hCost; } set { _hCost = value; } }
+    public int FCost { get { return _gCost + _hCost; } }
     public Node NodeParent { get { return _nodeParent; } set { _nodeParent = value; } }
     public List<Node> Neighbours { get { return _neighbours; } set { _neighbours = value; } }
     public bool IsWall { get { return _isWall; } set { _isWall = value; } }
-    //public bool CanBuildUB { get { return _canBuildUB; } set { _canBuildUB = value; } }
-    //public bool CanBuildFarm { get { return _canBuilFarm; } set { _canBuilFarm = value; } }
     public ResourceType Resource { get { return _resource; } set { _resource = value; } }
     #endregion
 
@@ -36,7 +36,11 @@ public class Node
         _position = position;
         _gridX = gridX;
         _gridY = gridY;
+
         _distanceCost = 0;
+        _gCost = int.MaxValue / 2;
+        _hCost = int.MaxValue / 2;
+        
         _nodeParent = null;
         _neighbours = new List<Node>();
         _nodeEntities = new Entity[2];
@@ -96,8 +100,7 @@ public class Node
         {
             Debug.LogWarning($"Intento de añadir más de dos entidades al nodo ({GridX}, {GridY})");
             return false;
-        }
-            
+        } 
     }
 
     public Entity GetEntity(int index)
