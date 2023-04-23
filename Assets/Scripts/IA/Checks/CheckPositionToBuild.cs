@@ -1,16 +1,15 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using BehaviourTree;
 
-public class CheckTargetToBuild : TreeNode
+public class CheckPositionToBuild : TreeNode
 {
     private Unit _unit;
     private Tilemap _resourcesTilemap;
 
-    public CheckTargetToBuild(BehaviourTree.Tree tree, Unit unit, Tilemap resourcesTilemap)
+    public CheckPositionToBuild(BehaviourTree.Tree tree, Unit unit, Tilemap resourcesTilemap)
         : base(tree)
     {
         _unit = unit;
@@ -39,7 +38,7 @@ public class CheckTargetToBuild : TreeNode
                 .ToList();
 
             
-
+            
 
             return _state;
         }

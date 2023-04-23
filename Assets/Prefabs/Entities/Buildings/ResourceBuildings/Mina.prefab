@@ -354,8 +354,8 @@ MonoBehaviour:
   _onDeathEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnitBuilding, Assembly-CSharp
+      - m_Target: {fileID: 8610929512437010587}
+        m_TargetAssemblyTypeName: Building, Scripts
         m_MethodName: EntityDeath
         m_Mode: 1
         m_Arguments:

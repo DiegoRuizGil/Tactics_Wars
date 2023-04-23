@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private int _debugGoldAmount;
 
+    private TeamEnum _playerTeam = TeamEnum.BLUE;
+
     private Dictionary<TeamEnum, int> _foodResources;
     private Dictionary<TeamEnum, int> _goldResources;
 
@@ -44,6 +46,7 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance { get { return _instance; } }
 
+    public TeamEnum PlayerTeam { get { return _playerTeam; } }
     public Dictionary<TeamEnum, int> FoodResources { get { return _foodResources; } }
     public Dictionary<TeamEnum, int> GoldResources { get { return _goldResources; } }
     public Dictionary<TeamEnum, List<Unit>> UnitLists { get { return _unitLists; } }
@@ -118,8 +121,8 @@ public class GameManager : MonoBehaviour
     [ContextMenu("Debug Resources")]
     private void UpdateDebugResources()
     {
-        _foodResources[TeamEnum.BLUE] = _debugFoodAmount;
-        _goldResources[TeamEnum.BLUE] = _debugGoldAmount;
+        _foodResources[PlayerTeam] = _debugFoodAmount;
+        _goldResources[PlayerTeam] = _debugGoldAmount;
     }
 
     #region RESOURCES
@@ -260,6 +263,10 @@ public class GameManager : MonoBehaviour
     public void RemoveBuilding(Building building)
     {
         _buildingLists[building.Team].Remove(building);
+
+        Node node = Grid.Instance.GetNode(building.transform.position);
+        node.RemoveTopEntity();
+
         Destroy(building.gameObject);
     }
     #endregion

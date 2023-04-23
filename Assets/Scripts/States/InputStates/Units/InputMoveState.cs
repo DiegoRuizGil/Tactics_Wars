@@ -33,26 +33,33 @@ public class InputMoveState : InputBaseState
 
         if (Input.GetMouseButtonDown(0))
         {
-            Vector3 mousePosition = Context.GetMouseWorldPosition();
-            Node node = Grid.Instance.GetNode(mousePosition);
-            if (node != null)
+            try
             {
-                if (!_moveAreaPositions.Contains(node.Position))
+                Vector3 mousePosition = Context.GetMouseWorldPosition();
+                Node node = Grid.Instance.GetNode(mousePosition);
+                if (node != null)
                 {
-                    SwitchState(Factory.NoAction());
+                    if (!_moveAreaPositions.Contains(node.Position))
+                    {
+                        SwitchState(Factory.NoAction());
+                    }
+                    else
+                    {
+                        BaseAction action = new MoveAction(Context.SelectedUnit, _arrowPathPositions, Context.MovementSpeed);
+                        NextState = Factory.Waiting(action);
+                        Context.ActionHandler.ActionToHandle = action;
+                        Context.ActionHandler.ExecuteCommand();
+                        SwitchToNextState();
+                    }
                 }
                 else
                 {
-                    BaseAction action = new MoveAction(Context.SelectedUnit, _arrowPathPositions, Context.MovementSpeed);
-                    NextState = Factory.Waiting(action);
-                    Context.ActionHandler.ActionToHandle = action;
-                    Context.ActionHandler.ExecuteCommand();
-                    SwitchToNextState();
+                    SwitchState(Factory.NoAction());
                 }
             }
-            else
+            catch (GridOutOfBoundsException ex)
             {
-                SwitchState(Factory.NoAction());
+                Debug.LogWarning($"{ex.GetType()}: Ratón fuera del grid");
             }
         }
     }
@@ -71,9 +78,9 @@ public class InputMoveState : InputBaseState
                     Context.UpdateMovementArrowEvent.Raise(_arrowPathPositions);
                 }
             }
-            catch (NullReferenceException ex)
+            catch (GridOutOfBoundsException ex)
             {
-                Debug.LogWarning($"{ex.Message}: Ratón fuera del grid");
+                Debug.LogWarning($"{ex.GetType()}: Ratón fuera del grid");
             }
         }
     }

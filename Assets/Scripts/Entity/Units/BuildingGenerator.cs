@@ -39,6 +39,7 @@ public class BuildingGenerator : MonoBehaviour
                     break;
                 
                 default:
+                    Debug.LogWarning($"Tipo de edificio no contemplado: {buildingInfo.Entity.BuildingType}");
                     break;
             }
         }

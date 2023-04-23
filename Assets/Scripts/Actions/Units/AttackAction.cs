@@ -16,18 +16,28 @@ public class AttackAction : BaseAction
     public override void Execute()
     {
         AnimationEventSystem.AnimationFinishedEvent += ApplyDamage;
-        _attacker.Animator.SetTrigger("Attack"); // action called at the end of the animation
+        _attacker.SetAttackAnimation(); // action called at the end of the animation
     }
 
     public void ApplyDamage()
     {
         AnimationEventSystem.AnimationFinishedEvent -= ApplyDamage;
-        _defender.ApplyDamage(CalculateDamage());
-        if (_defender is Unit)
+        AnimationEventSystem.AnimationFinishedEvent += SetActionFinished;
+
+        bool isDead =_defender.ApplyDamage(CalculateDamage());
+        
+        if (!isDead)
         {
-            Unit defenderUnit = _defender as Unit;
-            defenderUnit.Animator?.SetTrigger("Hurt");
+            if (_defender is Unit)
+                (_defender as Unit).SetHurtAnimation();
+            else
+                SetActionFinished();
         }
+    }
+
+    public void SetActionFinished()
+    {
+        AnimationEventSystem.AnimationFinishedEvent -= SetActionFinished;
 
         _attacker.HasFinished = true;
         _isRunning = false;

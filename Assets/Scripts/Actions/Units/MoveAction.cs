@@ -22,6 +22,7 @@ public class MoveAction : BaseAction
     {
         if (!UpdateNodes())
         {
+            _selectedUnit.HasMoved = true;
             _isRunning = false;
             return;
         }

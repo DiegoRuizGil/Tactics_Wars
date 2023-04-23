@@ -20,6 +20,9 @@ public class TaskAttack : TreeNode
             _action = new AttackAction(_attacker, target);
             _action.Execute();
 
+            if (target.CurrentHealth <= 0)
+                Tree.ClearData("target");
+
             _state = TreeNodeState.RUNNING;
             return _state;
         }

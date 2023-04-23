@@ -15,8 +15,8 @@ public class GenerateUnitUI : MonoBehaviour
         // COMPROBAR QUE EL EDIFICIO TENGA EL COMPONENTE UnitGenerator
         UnitGenerator unitGenerator = building.gameObject.GetComponent<UnitGenerator>();
 
-        int foodAmount = GameManager.Instance.FoodResources[TeamEnum.BLUE];
-        int goldAmount = GameManager.Instance.GoldResources[TeamEnum.BLUE];
+        int foodAmount = GameManager.Instance.FoodResources[GameManager.Instance.PlayerTeam];
+        int goldAmount = GameManager.Instance.GoldResources[GameManager.Instance.PlayerTeam];
 
         UnitInfoSO unitInfo = null;
         for (int i = 0; i < _generateUnitButtons.Length; i++)

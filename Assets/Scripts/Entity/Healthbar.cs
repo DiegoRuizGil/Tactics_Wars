@@ -17,7 +17,6 @@ public class Healthbar : MonoBehaviour
     public void UpdateHealthbar(float amount)
     {
         _target = amount;
-
     }
 
     private void Update()

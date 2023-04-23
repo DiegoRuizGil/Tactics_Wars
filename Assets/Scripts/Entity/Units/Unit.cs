@@ -25,7 +25,7 @@ public class Unit : Entity
     private List<UnitType> _weaknesses = new List<UnitType>();
 
     private Animator _animator;
-    
+    private AnimationEventSystem _animEventSys;
 
     public int Damage { get { return _damage; } }
     public int MovementRange { get { return _movementRange; } }
@@ -51,6 +51,7 @@ public class Unit : Entity
     private void Start()
     {
         _animator = GetComponent<Animator>();
+        _animEventSys = GetComponent<AnimationEventSystem>();
     }
 
     public override void EntityDeath()
@@ -60,8 +61,20 @@ public class Unit : Entity
 
     public void DestroyObject() // called at the end of an animation
     {
-        // Destroy(gameObject);
         GameManager.Instance.RemoveUnit(this);
+        Debug.Log("SA MATAO");
+        if (_animEventSys != null)
+            _animEventSys.FinishAnimation();
+    }
+
+    public void SetAttackAnimation()
+    {
+        _animator.SetTrigger("Attack");
+    }
+
+    public void SetHurtAnimation()
+    {
+        _animator.SetTrigger("Hurt");
     }
 }
 

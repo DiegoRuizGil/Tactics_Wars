@@ -6,11 +6,21 @@ public class Building : Entity
     [SerializeField]
     private BuildingType _buildingType;
 
+    private AnimationEventSystem _animEventSys;
+
     public BuildingType BuildingType { get { return _buildingType; } set { _buildingType = value; } }
+
+    private void Start()
+    {
+        _animEventSys = GetComponent<AnimationEventSystem>();
+    }
 
     public override void EntityDeath()
     {
-        Destroy(gameObject);
+        GameManager.Instance.RemoveBuilding(this);
+
+        if (_animEventSys != null)
+            _animEventSys.FinishAnimation();
     }
 }
 

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -38,7 +36,7 @@ public class TopHUDManager : MonoBehaviour
 
     private void UpdateResourcesAmount(TeamEnum team)
     {
-        if (team != TeamEnum.BLUE)
+        if (team != GameManager.Instance.PlayerTeam)
             return;
 
         _foodResourcesText.text = GameManager.Instance.FoodResources[team].ToString();
@@ -47,6 +45,6 @@ public class TopHUDManager : MonoBehaviour
 
     private void SetInteracionEndTurn(TeamEnum team)
     {
-        _endTurnButton.interactable = team == TeamEnum.BLUE;
+        _endTurnButton.interactable = team == GameManager.Instance.PlayerTeam;
     }
 }

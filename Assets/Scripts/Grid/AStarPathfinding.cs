@@ -25,7 +25,7 @@ public sealed class AStarPathfinding
         }
     }
 
-    public List<Vector3> GetPath(Vector3 startPosition, Vector3 finalPosition, TeamEnum team)
+    public List<Node> GetPath(Vector3 startPosition, Vector3 finalPosition, TeamEnum team)
     {
         List<Node> solution = new List<Node>();
 
@@ -84,37 +84,37 @@ public sealed class AStarPathfinding
             }
         }
 
-        List<Vector3> path = GetVectorsPath(startNode, finalNode, team);
+        List<Node> path = GetNodePath(startNode, finalNode, team);
         ResetNodes();
 
         return path;
     }
 
-    private List<Node> GetNodePath(Node node)
+    private List<Node> GetAStarPath(Node node)
     {
         if (node.NodeParent == null)
             return new List<Node>() { node };
         else
         {
             List<Node> list = new List<Node>();
-            list.AddRange(GetNodePath(node.NodeParent));
+            list.AddRange(GetAStarPath(node.NodeParent));
             list.Add(node);
             return list;
         }
     }
 
-    private List<Vector3> GetVectorsPath(Node startNode, Node finalNode, TeamEnum team)
+    private List<Node> GetNodePath(Node startNode, Node finalNode, TeamEnum team)
     {
-        List<Node> nodePath = GetNodePath(finalNode);
-        return GetVectorsPath(nodePath, startNode, finalNode, team);
+        List<Node> aStarPath = GetAStarPath(finalNode);
+        return GetNodePath(aStarPath, startNode, finalNode, team);
     }
 
-    private List<Vector3> GetVectorsPath(List<Node> nodePath, Node startNode, Node finalNode, TeamEnum team)
+    private List<Node> GetNodePath(List<Node> aStarPath, Node startNode, Node finalNode, TeamEnum team)
     {
-        List<Vector3> path = new List<Vector3>();
+        List<Node> path = new List<Node>();
 
         Entity topEntity;
-        foreach (Node node in nodePath)
+        foreach (Node node in aStarPath)
         {
             if (node == startNode)
                 continue;
@@ -122,14 +122,11 @@ public sealed class AStarPathfinding
             topEntity = node.GetTopEntity();
             if (topEntity != null)
             {
-                if (topEntity is Unit && topEntity.Team == team)
-                    continue;
-
                 if (node == finalNode && topEntity.Team != team)
                     continue;
             }
 
-            path.Add(node.Position);
+            path.Add(node);
         }
 
         return path;
@@ -174,6 +171,7 @@ public sealed class AStarPathfinding
     {
         List<Node> neighbours = new List<Node>();
 
+        Entity topEntityFinalNode = finalNode.GetTopEntity();
         Entity topEntity;
         foreach (Node node in currentNode.Neighbours)
         {
@@ -187,8 +185,19 @@ public sealed class AStarPathfinding
             }
 
             topEntity = node.GetTopEntity();
-            if (topEntity != null && topEntity.Team != team)
-                continue;
+            if (topEntity != null)
+            {
+                // enemy entities are walls
+                if (topEntity.Team != team)
+                    continue;
+
+                if (topEntityFinalNode != null && topEntityFinalNode.Team != team)
+                {
+                    // avoid path with team unit next to finalnode
+                    if (topEntity.Team == team && topEntity is Unit && finalNode.Neighbours.Contains(node))
+                        continue;
+                }
+            }
             
             neighbours.Add(node);
         }

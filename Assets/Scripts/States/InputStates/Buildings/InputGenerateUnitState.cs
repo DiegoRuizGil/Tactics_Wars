@@ -17,7 +17,7 @@ public class InputGenerateUnitState : InputBaseState
         BaseAction action = new GenerateUnitAction(
             _unitInfo,
             Context.SelectedBuilding.transform.position,
-            TeamEnum.BLUE
+            GameManager.Instance.PlayerTeam
         );
         Context.ActionHandler.ActionToHandle = action;
         Context.ActionHandler.ExecuteCommand();

@@ -1,13 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using BehaviourTree;
 
 public class TaskFinalize : TreeNode
 {
     private Unit _unit;
 
-    public TaskFinalize(BehaviourTree.Tree tree, Unit unit)
+    public TaskFinalize(Tree tree, Unit unit)
         : base(tree)
     {
         _unit = unit;
