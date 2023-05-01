@@ -17,7 +17,9 @@ public class CheckEnemyInAttackRange : TreeNode
         if (target == null)
         {
             Tree.ClearData("target");
-            Tree.ClearData("targetPosition");
+            if (Tree.GetData("buildMode") == null) // dont clear build position
+                Tree.ClearData("targetPosition");
+
             _state = TreeNodeState.FAILURE;
             return _state;
         }

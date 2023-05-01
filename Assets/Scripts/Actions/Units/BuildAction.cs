@@ -15,7 +15,7 @@ public class BuildAction : BaseAction
 
     public override void Execute()
     {
-        if (GameManager.Instance.UpdateResources(_team, _buildingInfo.FoodAmount, _buildingInfo.GoldAmount))
+        if (GameManager.Instance.UpdateResources(_team, _buildingInfo.FoodAmount * -1, _buildingInfo.GoldAmount * -1))
         {
             GameManager.Instance.InstantiateBuilding(
                     _buildingInfo.Entity,

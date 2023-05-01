@@ -9,8 +9,10 @@ public class TopHUDManager : MonoBehaviour
     [SerializeField] private Image _redTeamIcon;
 
     [Header("Resources Text")]
-    [SerializeField] private TextMeshProUGUI _foodResourcesText;
-    [SerializeField] private TextMeshProUGUI _goldResourcesText;
+    [SerializeField] private TextMeshProUGUI _foodResourcesTextBlue;
+    [SerializeField] private TextMeshProUGUI _goldResourcesTextBlue;
+    [SerializeField] private TextMeshProUGUI _foodResourcesTextRed;
+    [SerializeField] private TextMeshProUGUI _goldResourcesTextRed;
 
     [Header("Buttons UI")]
     [SerializeField] private Button _endTurnButton;
@@ -18,7 +20,7 @@ public class TopHUDManager : MonoBehaviour
     public void UpdateHUD(TeamEnum team)
     {
         UpdateTeamIcon(team);
-        UpdateResourcesAmount(team);
+        UpdateResourcesAmount();
         SetInteracionEndTurn(team);
     }
 
@@ -34,13 +36,16 @@ public class TopHUDManager : MonoBehaviour
         _redTeamIcon.color = redIconColor;
     }
 
-    private void UpdateResourcesAmount(TeamEnum team)
+    public void UpdateResourcesAmount()
     {
-        if (team != GameManager.Instance.PlayerTeam)
-            return;
+        //if (team != GameManager.Instance.PlayerTeam)
+        //    return;
 
-        _foodResourcesText.text = GameManager.Instance.FoodResources[team].ToString();
-        _goldResourcesText.text = GameManager.Instance.GoldResources[team].ToString();
+        _foodResourcesTextBlue.text = GameManager.Instance.FoodResources[TeamEnum.BLUE].ToString();
+        _goldResourcesTextBlue.text = GameManager.Instance.GoldResources[TeamEnum.BLUE].ToString();
+
+        _foodResourcesTextRed.text = GameManager.Instance.FoodResources[TeamEnum.RED].ToString();
+        _goldResourcesTextRed.text = GameManager.Instance.GoldResources[TeamEnum.RED].ToString();
     }
 
     private void SetInteracionEndTurn(TeamEnum team)

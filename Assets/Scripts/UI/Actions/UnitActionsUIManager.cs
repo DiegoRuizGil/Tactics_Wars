@@ -93,7 +93,7 @@ public class UnitActionsUIManager : MonoBehaviour
             _buildButton.interactable = true;
         else if (_unitNode.CanBuildFarm(_unit.Team))
             _buildButton.interactable = true;
-        else if (_unitNode.Resource != ResourceType.NONE)
+        else if (_unitNode.Resource != ResourceType.NONE && _unitNode.GetEntity(0) == null)
             _buildButton.interactable = true;
         else
             _buildButton.interactable = false;

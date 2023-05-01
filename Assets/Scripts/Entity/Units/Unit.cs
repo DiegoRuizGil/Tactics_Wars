@@ -18,8 +18,6 @@ public class Unit : Entity
     [SerializeField]
     private SpriteRenderer _sprite;
     [SerializeField]
-    private Color _inactiveUnitColor;
-    [SerializeField]
     private UnitType _unitType;
     [SerializeField]
     private List<UnitType> _weaknesses = new List<UnitType>();
@@ -38,10 +36,8 @@ public class Unit : Entity
             _hasFinished = value;
             if (_sprite == null)
                 return;
-            if (_hasFinished)
-                _sprite.color = _inactiveUnitColor;
-            else
-                _sprite.color = Color.white;
+
+            _sprite.material.SetFloat("_HasFinished", _hasFinished? 1f : 0f);
         }
     }
     public UnitType UnitType { get { return _unitType; } set { _unitType = value; } }
@@ -62,7 +58,7 @@ public class Unit : Entity
     public void DestroyObject() // called at the end of an animation
     {
         GameManager.Instance.RemoveUnit(this);
-        Debug.Log("SA MATAO");
+        
         if (_animEventSys != null)
             _animEventSys.FinishAnimation();
     }

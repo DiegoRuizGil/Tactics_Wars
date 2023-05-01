@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 478456672062584949}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -52,7 +52,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: dbbfdb1722b507f46b0344aa40b441b8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 2045723631
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 901936234, guid: 7eb75684080fade4bbec0882e6f37947, type: 3}
+  m_Sprite: {fileID: 1565389891, guid: ab0c09ef8ba40534abd208c832cdb031, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -144,7 +144,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 1632498519
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!114 &3266550030066379773
 MonoBehaviour:
@@ -227,9 +227,9 @@ GameObject:
   - component: {fileID: 5577005709104302683}
   - component: {fileID: 3035013608622303125}
   - component: {fileID: 1109210306339172455}
-  - component: {fileID: -8070802551870794294}
+  - component: {fileID: 2843562385831562170}
   m_Layer: 0
-  m_Name: BasicUnit
+  m_Name: Ballestero
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -311,38 +311,31 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  _name: BasicUnit
+  _name: Ballestero
   _maxHealth: 20
   _currentHealth: 20
   _team: 0
   _damage: 4
   _movementRange: 4
-  _attackRange: 1
+  _attackRange: 3
   _hasMoved: 0
   _hasFinished: 0
   _sprite: {fileID: 2960605644864773474}
-  _inactiveUnitColor: {r: 0.35, g: 0.35, b: 0.35, a: 1}
-  _unitType: 1
-  _weaknesses: 0400000005000000
---- !u!114 &-8070802551870794294
+  _unitType: 8
+  _weaknesses: 
+--- !u!114 &2843562385831562170
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2194316704349638734}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0e06ccd155dd97449d5fd5f0c1cde2b, type: 3}
+  m_Script: {fileID: 11500000, guid: 596e5c1a179342140bea7cfd855675b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buildingsInfo:
-  - {fileID: 11400000, guid: 73d8bc2319d590e4294d8601517da4fc, type: 2}
-  - {fileID: 11400000, guid: 0cab9834adee8294281bc427910f968a, type: 2}
-  - {fileID: 11400000, guid: 9187181e202879f439a0fe751a4c96e5, type: 2}
-  - {fileID: 11400000, guid: 7ca32d355fcd73c43a38c61b18c12f73, type: 2}
-  - {fileID: 11400000, guid: 557cc39b3c4e6ad468e96f9298dfc51c, type: 2}
-  - {fileID: 11400000, guid: 9604be54c4a235f48a69775596c38b6d, type: 2}
+  _unit: {fileID: 1109210306339172455}
 --- !u!1 &2546471576217603899
 GameObject:
   m_ObjectHideFlags: 0

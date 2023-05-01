@@ -1,14 +1,11 @@
 using BehaviourTree;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 public class VillagerBT : BehaviourTree.Tree
 {
     [SerializeField]
     private Unit _unit;
-    [SerializeField]
-    private Tilemap _resourcesTilemap;
 
     protected override TreeNode SetupTree()
     {
@@ -19,13 +16,22 @@ public class VillagerBT : BehaviourTree.Tree
             {
                 new Sequence(this, new List<TreeNode>
                 {
-                    new CheckEnemyInAttackRange(this, _unit),
-                    new TaskAttack(this, _unit)
+                    new Selector(this, new List<TreeNode>
+                    {
+                        new CheckPositionToBuild(this, _unit),
+                        new CheckTargetToAttack(this, _unit),
+                    }),
+                    new TaskMove(this, _unit)
                 }),
                 new Sequence(this, new List<TreeNode>
                 {
-                    new CheckTargetToAttack(this, _unit),
-                    new TaskMove(this, _unit)
+                    new CheckUnitInBuildPosition(this, _unit),
+                    new TaskBuild(this, _unit)
+                }),
+                new Sequence(this, new List<TreeNode>
+                {
+                    new CheckEnemyInAttackRange(this, _unit),
+                    new TaskAttack(this, _unit)
                 }),
                 new TaskFinalize(this, _unit)
             })

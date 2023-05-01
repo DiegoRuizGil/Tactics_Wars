@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e381bd2710aeb5547859f0aadc3e65f0, type: 3}
-  m_Name: BasicUnitInfo
+  m_Name: Aldeano Info
   m_EditorClassIdentifier: 
-  _entity: {fileID: 1109210306339172455, guid: c2e0925836b551f4487b2aadba671cc5, type: 3}
-  _foodAmount: 10
-  _goldAmount: 10
+  _entity: {fileID: 1109210306339172455, guid: 8bf26e9f20e51a9418a207bbaa612512, type: 3}
+  _foodAmount: 0
+  _goldAmount: 0

@@ -18,7 +18,6 @@ public class GenerateUnitUI : MonoBehaviour
         int foodAmount = GameManager.Instance.FoodResources[GameManager.Instance.PlayerTeam];
         int goldAmount = GameManager.Instance.GoldResources[GameManager.Instance.PlayerTeam];
 
-        UnitInfoSO unitInfo = null;
         for (int i = 0; i < _generateUnitButtons.Length; i++)
         {
             if (i >= unitGenerator.UnitsInfo.Length)
@@ -27,7 +26,7 @@ public class GenerateUnitUI : MonoBehaviour
                 continue;
             }
 
-            unitInfo = unitGenerator.UnitsInfo[i];
+            UnitInfoSO unitInfo = unitGenerator.UnitsInfo[i];
 
             _generateUnitButtons[i].gameObject.SetActive(true);
             _generateUnitButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = unitInfo.Entity.name;

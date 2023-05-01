@@ -26,7 +26,7 @@ public class GenerateBuildingUI : MonoBehaviour
         int foodAmount = GameManager.Instance.FoodResources[GameManager.Instance.PlayerTeam];
         int goldAmount = GameManager.Instance.GoldResources[GameManager.Instance.PlayerTeam];
 
-        BuildingInfoSO buildingInfo;
+        // BuildingInfoSO buildingInfo;
         for (int i = 0; i < _generateBuildingButtons.Length; i++)
         {
             if (i >= buildingsToBuild.Count)
@@ -35,7 +35,7 @@ public class GenerateBuildingUI : MonoBehaviour
                 continue;
             }
 
-            buildingInfo = buildingsToBuild[i];
+            BuildingInfoSO buildingInfo = buildingsToBuild[i];
 
             _generateBuildingButtons[i].gameObject.SetActive(true);
             _generateBuildingButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = buildingInfo.Entity.name;
@@ -46,6 +46,7 @@ public class GenerateBuildingUI : MonoBehaviour
                 continue;
             }
 
+            _generateBuildingButtons[i].onClick.RemoveAllListeners();
             _generateBuildingButtons[i].onClick.AddListener(
                 () => _inputManager.SetBuildState(buildingInfo)
             );

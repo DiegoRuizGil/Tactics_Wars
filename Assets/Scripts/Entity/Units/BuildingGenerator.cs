@@ -24,7 +24,7 @@ public class BuildingGenerator : MonoBehaviour
                     break;
                 
                 case BuildingType.WINDMILL:
-                    if (currentNode.Resource == ResourceType.FOOD)
+                    if (currentNode.Resource == ResourceType.FOOD && currentNode.GetEntity(0) == null)
                         buildings.Add(buildingInfo);
                     break;
                 
@@ -34,7 +34,7 @@ public class BuildingGenerator : MonoBehaviour
                     break;
                 
                 case BuildingType.GOLDMINE:
-                    if (currentNode.Resource == ResourceType.GOLD)
+                    if (currentNode.Resource == ResourceType.GOLD && currentNode.GetEntity(0) == null)
                         buildings.Add(buildingInfo);
                     break;
                 

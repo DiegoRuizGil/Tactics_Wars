@@ -1,8 +1,17 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Settings")]
+    [SerializeField]
+    private int _maxUnitAmount = 10;
+    [SerializeField]
+    private int _initialFood = 450;
+    [SerializeField]
+    private int _initialGold = 450;
+
     [Header("Blue Team Entity Parents")]
     [SerializeField]
     private Transform _blueTeamUnitParent;
@@ -18,6 +27,8 @@ public class GameManager : MonoBehaviour
     [Header("Game Events")]
     [SerializeField]
     private TeamEnumEvent _onTurnUpdate;
+    [SerializeField]
+    private VoidEvent _onTopHUDUpdate;
 
     [Header("Debug")]
     [SerializeField]
@@ -46,6 +57,7 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance { get { return _instance; } }
 
+    public int MaxUnitAmount { get { return _maxUnitAmount; } }
     public TeamEnum PlayerTeam { get { return _playerTeam; } }
     public Dictionary<TeamEnum, int> FoodResources { get { return _foodResources; } }
     public Dictionary<TeamEnum, int> GoldResources { get { return _goldResources; } }
@@ -60,14 +72,14 @@ public class GameManager : MonoBehaviour
         // SET RESOURCES
         _foodResources = new Dictionary<TeamEnum, int>
         {
-            {TeamEnum.BLUE, 0},
-            {TeamEnum.RED, 0}
+            {TeamEnum.BLUE, _initialFood},
+            {TeamEnum.RED, _initialFood}
         };
 
         _goldResources = new Dictionary<TeamEnum, int>
         {
-            {TeamEnum.BLUE, 0},
-            {TeamEnum.RED, 0}
+            {TeamEnum.BLUE, _initialGold},
+            {TeamEnum.RED, _initialGold}
         };
 
         // SET ENTITIES LISTS
@@ -105,6 +117,7 @@ public class GameManager : MonoBehaviour
 
     public void FinalizeCurrentTurn()
     {
+        // reset units actions
         foreach (Unit unit in _unitLists[_currentTeam])
         {
             unit.HasMoved = false;
@@ -113,6 +126,13 @@ public class GameManager : MonoBehaviour
 
         _turn++;
         _currentTeam = (_currentTeam == TeamEnum.BLUE) ? TeamEnum.RED : TeamEnum.BLUE;
+
+        // recover units hp on top of buildings
+        foreach (Unit unit in _unitLists[_currentTeam])
+        {
+            if (Grid.Instance.GetNode(unit.transform.position).GetEntity(0) != null)
+                unit.RecoverHealth(unit.MaxHealth / 4);
+        }
 
         if (_onTurnUpdate != null)
             _onTurnUpdate.Raise(_currentTeam);
@@ -123,9 +143,23 @@ public class GameManager : MonoBehaviour
     {
         _foodResources[PlayerTeam] = _debugFoodAmount;
         _goldResources[PlayerTeam] = _debugGoldAmount;
+
+        if (_onTopHUDUpdate != null)
+            _onTopHUDUpdate.Raise();
+    }
+
+    [ContextMenu("Resources Red Team")]
+    private void ShowResourcesRed()
+    {
+        Debug.Log($"[RED] Food: {_foodResources[TeamEnum.RED]} Gold: {_goldResources[TeamEnum.RED]}");
     }
 
     #region RESOURCES
+    public bool HasEnoughResources(int foodAmount, int goldAmount, TeamEnum team)
+    {
+        return foodAmount <= _foodResources[team] && goldAmount <= _goldResources[team];
+    }
+
     public bool UpdateResources(TeamEnum team, int foodAmount, int goldAmount)
     {
         if (_foodResources[team] + foodAmount < 0 || _goldResources[team] + goldAmount < 0)
@@ -136,6 +170,10 @@ public class GameManager : MonoBehaviour
         {
             UpdateFoodResources(team, foodAmount);
             UpdateGoldResources(team, goldAmount);
+
+            if (_onTopHUDUpdate != null)
+                _onTopHUDUpdate.Raise();
+
             return true;
         }
     }
@@ -154,6 +192,9 @@ public class GameManager : MonoBehaviour
             default:
                 break;
         }
+
+        if (_onTopHUDUpdate != null)
+            _onTopHUDUpdate.Raise();
 
         return hasUpdated;
     }
@@ -188,6 +229,11 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region ENTITIES
+    public List<Unit> GetUnitsOfType(TeamEnum team, UnitType type)
+    {
+        return _unitLists[team].Where(unit => unit.UnitType == type).ToList();
+    }
+
     public Entity InstantiateEntity(Entity entityPrefab, Vector3 pos, TeamEnum team)
     {
         return InstantiateEntity(entityPrefab, pos, Quaternion.identity, team);
@@ -227,6 +273,10 @@ public class GameManager : MonoBehaviour
         _unitLists[team].Add(unit);
         unit.SetEntityInGrid();
 
+        unit.Team = team;
+        Material material = unit.GetComponentInChildren<SpriteRenderer>().material;
+        material.SetFloat("_IsRedTeam", team == TeamEnum.BLUE? 0f : 1f);
+
         return unit;
     }
 
@@ -246,6 +296,10 @@ public class GameManager : MonoBehaviour
 
         _buildingLists[team].Add(building);
         building.SetEntityInGrid();
+
+        building.Team = team;
+        Material material = building.GetComponentInChildren<SpriteRenderer>().material;
+        material.SetFloat("_IsRedTeam", team == TeamEnum.BLUE ? 0f : 1f);
 
         return building;
     }

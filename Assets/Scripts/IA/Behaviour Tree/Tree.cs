@@ -7,11 +7,10 @@ namespace BehaviourTree
     {
         private TreeNode _root = null;
 
-        private Dictionary<string, object> _dataContext;
+        private Dictionary<string, object> _dataContext = new Dictionary<string, object>();
 
         private void Start()
         {
-            _dataContext = new Dictionary<string, object>();
             _root = SetupTree();
         }
 

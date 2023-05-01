@@ -17,6 +17,10 @@ public class TaskAttack : TreeNode
 
         if (_action == null)
         {
+            Node targetNode = Grid.Instance.GetNode(target.transform.position);
+            if (targetNode.GetTopEntity() != target)
+                target = targetNode.GetTopEntity();
+
             _action = new AttackAction(_attacker, target);
             _action.Execute();
 

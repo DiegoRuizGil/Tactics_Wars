@@ -2,26 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.Events;
 
 public class pruebas : MonoBehaviour
 {
-    public Transform initialPoint;
-    public Transform finalPoint;
 
-    public TileBase pathTile;
-    public Tilemap tilemap;
-
-    private List<Vector3> path;
-
-    private void Start()
+    [ContextMenu("Pruebas")]
+    public void Pruebas()
     {
-        object o = null;
+        Dictionary<string, object> dict = new Dictionary<string, object>();
 
-        Entity e = o as Entity;
-    }
+        dict["targetPosition"] = new Vector3(0,0,0);
 
-    private void Update()
-    {
+        Vector3? pos = dict["targetPosition"] as Vector3?;
+
+        if (pos == null)
+        {
+            Debug.Log("Valor: null");
+        }
+        else
+        {
+            Debug.Log($"Valor: {pos.Value}");
+        }
+
         
     }
 }
