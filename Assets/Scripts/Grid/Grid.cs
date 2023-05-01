@@ -1,5 +1,5 @@
-using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Grid
@@ -71,6 +71,16 @@ public class Grid
         int y = Mathf.FloorToInt(position.y - _startPosition.y) / _cellSize;
 
         return GetNode(x, y);
+    }
+
+    public List<Node> GetNodesWithResourceType(ResourceType resourceType)
+    {
+        return _nodes.OfType<Node>().Where(node => node.Resource == resourceType).ToList();
+    }
+
+    public bool CheckIfSameNode(Vector3 pos1, Vector3 pos2)
+    {
+        return GetNode(pos1).Equals(GetNode(pos2));
     }
 
     public void SetNodesNeighbours()

@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using System.Text;
+
 public class EntitiesInitializer : MonoBehaviour
 {
     [Header("Settings")]
@@ -10,7 +8,7 @@ public class EntitiesInitializer : MonoBehaviour
 
     [Header("Entities Prefabs")]
     [SerializeField]
-    private GameObject[] _prefabs;
+    private Entity[] _prefabs;
 
     [Header("Prefabs Postions")]
     [SerializeField]
@@ -24,18 +22,11 @@ public class EntitiesInitializer : MonoBehaviour
                 continue;
             Vector3 position = _positions[i];
 
-            Entity entity = GameObject.Instantiate(_prefabs[i], position, Quaternion.identity).GetComponent<Entity>();
-            if (entity == null)
-                continue;
-
-            entity.Team = _team;
-            entity.transform.parent = this.transform;
-
-            Node node = Grid.Instance.GetNode(entity.transform.position);
-            if (node != null)
-            {
-                node.AddEntity(entity);
-            }
+            GameManager.Instance.InstantiateEntity(
+                    _prefabs[i],
+                    position,
+                    _team
+                );
         }
     }
 }

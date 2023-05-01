@@ -3,32 +3,32 @@ using UnityEngine;
 public class GenerateUnitAction : BaseAction
 {
     private readonly UnitInfoSO _unitInfo;
-    private readonly Transform _parent;
+    private readonly TeamEnum _team;
     private readonly Vector3 _position;
 
-    public GenerateUnitAction(UnitInfoSO unitInfo, Transform parent, Vector3 position)
+    public GenerateUnitAction(UnitInfoSO unitInfo, Vector3 position, TeamEnum team)
     {
         _unitInfo = unitInfo;
-        _parent = parent;
+        _team = team;
         _position = position;
     }
 
     public override void Execute()
     {
-        Debug.Log($"Quitamos al jugador {_unitInfo.FoodAmount} de comida y {_unitInfo.GoldAmount} de oro.");
+        if (GameManager.Instance.UpdateResources(_team, _unitInfo.FoodAmount, _unitInfo.GoldAmount))
+        {
+            Unit unit = GameManager.Instance.InstantiateUnit(
+                    _unitInfo.Entity,
+                    _position,
+                    _team
+                );
 
-        Unit unit = GameObject.Instantiate(
-            _unitInfo.Entity,
-            _position,
-            Quaternion.identity,
-            _parent
-        ).GetComponent<Unit>();
-
-        unit.HasFinished = true;
-        unit.ApplyDamage(unit.MaxHealth / 2);
-
-        Node node = Grid.Instance.GetNode(_position);
-        if (node != null)
-            node.AddEntity(unit);
+            unit.HasFinished = true;
+            unit.ApplyDamage(unit.MaxHealth / 2);
+        }
+        else
+        {
+            Debug.LogWarning("No hay suficientes recursos para generar la unidad");
+        }
     }
 }

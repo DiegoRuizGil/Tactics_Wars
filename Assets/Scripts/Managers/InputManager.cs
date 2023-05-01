@@ -87,7 +87,7 @@ public class InputManager : MonoBehaviour
         state.EnterState();
     }
 
-    public void ClearSelectedEntities()
+    public void ClearSelectedEntities() // end turn button
     {
         SetSelectedEntity(null);
     }
@@ -120,7 +120,7 @@ public class InputManager : MonoBehaviour
 
     public void SetCanDoActions(TeamEnum team)
     {
-        _canDoActions = team == TeamEnum.BLUE;
+        _canDoActions = team == GameManager.Instance.PlayerTeam;
     }
 
     #region OnClick Events

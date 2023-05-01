@@ -22,16 +22,18 @@ public class BuildActionTest
     public IEnumerator Positive_Execute()
     {
         GameObject parent = new GameObject();
+        TeamEnum team = TeamEnum.BLUE;
+        GameManager gameManager = A.GameManager.WithBuildingParent(team, parent.transform);
         Unit unit = An.Unit.WithPosition(new Vector3(_width - 1, _height - 1, 0f));
-        Building building = An.Building;
-        BuildingInfoSO info = An.BuildingInfoSO.WithBuilding(building).WithFoodAmount(0).WithGoldAmount(0);
+        Building building = A.Building;
+        BuildingInfoSO info = A.BuildingInfoSO.WithBuilding(building).WithFoodAmount(0).WithGoldAmount(0);
 
         yield return null;
 
         Node node = Grid.Instance.GetNode(unit.transform.position);
         node.AddEntity(unit);
 
-        BuildAction action = new BuildAction(info, unit, parent.transform);
+        BuildAction action = new BuildAction(info, unit, team);
         action.Execute();
 
         Assert.AreEqual(1, parent.transform.childCount);

@@ -35,17 +35,20 @@ public abstract class Entity : MonoBehaviour
         }
     }
 
-    public void ApplyDamage(int damage)
+    public bool ApplyDamage(int damage)
     {
         if (damage < 0)
             throw new ArgumentOutOfRangeException();
 
-        if (_currentHealth < damage)
+        bool entityIsDead = _currentHealth <= damage;
+        if (entityIsDead)
             _currentHealth = 0;
         else
             _currentHealth -= damage;
-
+            
         _entityDamagedEvent?.Invoke(_currentHealth * 1f / _maxHealth);
+
+        return entityIsDead;
     }
 
     public void RecoverHealth(int amount)
@@ -61,7 +64,7 @@ public abstract class Entity : MonoBehaviour
         _entityDamagedEvent?.Invoke(_currentHealth * 1f / _maxHealth);
     }
 
-    public abstract void EntityDeath();
+    public abstract void EntityDeath(); // called in Healthbar events
 }
 
 public enum TeamEnum

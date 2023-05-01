@@ -52,7 +52,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: dbbfdb1722b507f46b0344aa40b441b8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 1110695987
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1682792683, guid: 06b93292cd136354ebf0717a510deeb6, type: 3}
+  m_Sprite: {fileID: 144456481, guid: 450bc738aad24c74780e52468e4e53c6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -241,7 +241,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _unitsInfo:
-  - {fileID: 11400000, guid: 8bf8cb7f3d2ef024baa2e55170862316, type: 2}
+  - {fileID: 11400000, guid: 8c68dc941a7e2d24db73004dd024630a, type: 2}
+  - {fileID: 11400000, guid: 2f58161df45b6284eb4a919905609fb6, type: 2}
 --- !u!1 &8106940825099855201
 GameObject:
   m_ObjectHideFlags: 0
@@ -435,8 +436,8 @@ MonoBehaviour:
   _onDeathEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: UnitBuilding, Assembly-CSharp
+      - m_Target: {fileID: 7951169316298770451}
+        m_TargetAssemblyTypeName: Building, Scripts
         m_MethodName: EntityDeath
         m_Mode: 1
         m_Arguments:
