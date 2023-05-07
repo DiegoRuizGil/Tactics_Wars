@@ -32,7 +32,7 @@ public class CheckUnitInBuildPosition : TreeNode
                 return _state;
             }
         }
-        else if (Tree.GetData("target") != null)
+        else
         {
             _state = TreeNodeState.FAILURE;
             return _state;
