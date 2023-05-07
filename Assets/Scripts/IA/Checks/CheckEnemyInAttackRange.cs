@@ -4,7 +4,7 @@ using BehaviourTree;
 
 public class CheckEnemyInAttackRange : TreeNode
 {
-    private Unit _unit;
+    private readonly Unit _unit;
 
     public CheckEnemyInAttackRange(BehaviourTree.Tree tree, Unit unit) : base(tree)
     {

@@ -14,7 +14,7 @@ public class CheckCanDoActionsTest
         GameObject go = new GameObject();
         _tree = go.AddComponent<UnitBT>();
 
-        GameManager gameManager = A.GameManager;
+        A.GameManager.WithFoodAmount(TeamEnum.BLUE, 0);
     }
 
     [TearDown]

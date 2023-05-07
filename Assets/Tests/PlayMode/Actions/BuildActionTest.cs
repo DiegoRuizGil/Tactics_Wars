@@ -33,7 +33,7 @@ public class BuildActionTest
     {
         GameObject parent = new GameObject();
         TeamEnum team = TeamEnum.BLUE;
-        GameManager gameManager = A.GameManager.WithBuildingParent(team, parent.transform);
+        A.GameManager.WithBuildingParent(team, parent.transform);
         Unit unit = An.Unit.WithPosition(new Vector3(_width - 1, _height - 1, 0f));
         Building building = A.Building;
         BuildingInfoSO info = A.BuildingInfoSO.WithBuilding(building).WithFoodAmount(0).WithGoldAmount(0);

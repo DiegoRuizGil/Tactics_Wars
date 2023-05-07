@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class IAManagerBuilder : IBuilder<IAManager>
 {
-    private IAManager _manager;
+    private readonly IAManager _manager;
 
     public IAManagerBuilder()
     {

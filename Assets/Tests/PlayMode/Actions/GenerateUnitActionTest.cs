@@ -5,17 +5,13 @@ using UnityEngine.TestTools;
 
 public class GenerateUnitActionTest
 {
-    private int _width;
-    private int _height;
-    private int _cellSize;
-
     [SetUp]
     public void SetUp()
     {
-        _width = 6;
-        _height = 11;
-        _cellSize = 1;
-        Grid.Instance = new Grid(_width, _height, _cellSize, Vector3.zero);
+        int width = 6;
+        int height = 11;
+        int cellSize = 1;
+        Grid.Instance = new Grid(width, height, cellSize, Vector3.zero);
     }
 
     [TearDown]
@@ -33,7 +29,7 @@ public class GenerateUnitActionTest
     {
         GameObject parent = new GameObject();
         TeamEnum team = TeamEnum.BLUE;
-        GameManager gameManager = A.GameManager.WithUnitParent(team, parent.transform);
+        A.GameManager.WithUnitParent(team, parent.transform);
         
         Unit unit = An.Unit;
         UnitInfoSO info = An.UnitInfoSO.WithUnit(unit).WithFoodAmount(0).WithGoldAmount(0);

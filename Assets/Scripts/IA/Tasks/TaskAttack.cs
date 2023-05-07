@@ -2,7 +2,7 @@ using BehaviourTree;
 
 public class TaskAttack : TreeNode
 {
-    private Unit _attacker;
+    private readonly Unit _attacker;
     private BaseAction _action;
 
     public TaskAttack(Tree tree, Unit attacker)

@@ -38,9 +38,6 @@ public class TopHUDManager : MonoBehaviour
 
     public void UpdateResourcesAmount()
     {
-        //if (team != GameManager.Instance.PlayerTeam)
-        //    return;
-
         _foodResourcesTextBlue.text = GameManager.Instance.FoodResources[TeamEnum.BLUE].ToString();
         _goldResourcesTextBlue.text = GameManager.Instance.GoldResources[TeamEnum.BLUE].ToString();
 
