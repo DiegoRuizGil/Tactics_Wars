@@ -6,7 +6,7 @@ public class BuildingGenerator : MonoBehaviour
     [SerializeField]
     private BuildingInfoSO[] _buildingsInfo;
 
-    public BuildingInfoSO[] BuildingsInfo { get { return _buildingsInfo; } }
+    public BuildingInfoSO[] BuildingsInfo { get { return _buildingsInfo; } set { _buildingsInfo = value; } }
 
     public List<BuildingInfoSO> GetBuildingsToBuild()
     {

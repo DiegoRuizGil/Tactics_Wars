@@ -71,11 +71,6 @@ public class CheckTargetToAttack : TreeNode
                 // enemy strong against IA unit
                 currentCost += WEAKNESS_COST;
             }
-            //else if (!enemyUnit.Weaknesses.Contains(_unit.UnitType))
-            //{
-            //    // enemy neutral against IA unit
-            //    currentCost += WEAKNESS_COST / 2;
-            //}
             else if (enemyUnit.Weaknesses.Contains(_unit.UnitType))
             {
                 // enemy weak against IA unit

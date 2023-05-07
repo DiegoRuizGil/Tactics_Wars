@@ -1,11 +1,20 @@
 using System.Collections;
 using NUnit.Framework;
-using UnityEngine;
 using UnityEngine.TestTools;
-using UnityEngine.Tilemaps;
+using UnityEngine;
 
 public class GridManagerTest
 {
+    [TearDown]
+    public void TearDown()
+    {
+        GameObject[] objects = GameObject.FindObjectsOfType<GameObject>();
+        foreach (GameObject obj in objects)
+        {
+            GameObject.DestroyImmediate(obj);
+        }
+    }
+
     [UnityTest]
     public IEnumerator Positive_InitializeGrid()
     {

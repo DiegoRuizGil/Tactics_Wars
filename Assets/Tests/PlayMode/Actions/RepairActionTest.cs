@@ -22,6 +22,16 @@ public class RepairActionTest
         _building.ApplyDamage(_building.MaxHealth / 2);
     }
 
+    [TearDown]
+    public void TearDown()
+    {
+        GameObject[] objects = GameObject.FindObjectsOfType<GameObject>();
+        foreach (GameObject obj in objects)
+        {
+            GameObject.DestroyImmediate(obj);
+        }
+    }
+
     [UnityTest]
     public IEnumerator Negative_Exectue()
     {

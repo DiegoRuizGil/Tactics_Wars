@@ -65,12 +65,14 @@ public class Unit : Entity
 
     public void SetAttackAnimation()
     {
-        _animator.SetTrigger("Attack");
+        if (_animEventSys != null)
+            _animator.SetTrigger("Attack");
     }
 
     public void SetHurtAnimation()
     {
-        _animator.SetTrigger("Hurt");
+        if (_animEventSys != null)
+            _animator.SetTrigger("Hurt");
     }
 }
 

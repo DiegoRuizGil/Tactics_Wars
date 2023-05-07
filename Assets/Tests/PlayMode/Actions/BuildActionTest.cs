@@ -18,6 +18,16 @@ public class BuildActionTest
         Grid.Instance = new Grid(_width, _height, _cellSize, Vector3.zero);
     }
 
+    [TearDown]
+    public void TearDown()
+    {
+        GameObject[] objects = GameObject.FindObjectsOfType<GameObject>();
+        foreach (GameObject obj in objects)
+        {
+            GameObject.DestroyImmediate(obj);
+        }
+    }
+
     [UnityTest]
     public IEnumerator Positive_Execute()
     {

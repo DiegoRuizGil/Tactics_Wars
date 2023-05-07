@@ -2,10 +2,15 @@ using BehaviourTree;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Unit))]
 public class UnitBT : BehaviourTree.Tree
 {
-    [SerializeField]
     private Unit _unit;
+
+    private void Awake()
+    {
+        _unit = GetComponent<Unit>();
+    }
 
     protected override TreeNode SetupTree()
     {
