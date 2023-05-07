@@ -5,9 +5,9 @@ namespace BehaviourTree
 {
     public abstract class Tree : MonoBehaviour
     {
-        private TreeNode _root = null;
+        private TreeNode _root;
 
-        private Dictionary<string, object> _dataContext = new Dictionary<string, object>();
+        private readonly Dictionary<string, object> _dataContext = new Dictionary<string, object>();
 
         private void Start()
         {

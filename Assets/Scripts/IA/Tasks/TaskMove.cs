@@ -4,7 +4,7 @@ using BehaviourTree;
 
 public class TaskMove : TreeNode
 {
-    private Unit _unit;
+    private readonly Unit _unit;
     private BaseAction _action;
 
     public TaskMove(BehaviourTree.Tree tree, Unit unit)

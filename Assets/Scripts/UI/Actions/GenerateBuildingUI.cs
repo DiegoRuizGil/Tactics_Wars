@@ -26,7 +26,6 @@ public class GenerateBuildingUI : MonoBehaviour
         int foodAmount = GameManager.Instance.FoodResources[GameManager.Instance.PlayerTeam];
         int goldAmount = GameManager.Instance.GoldResources[GameManager.Instance.PlayerTeam];
 
-        // BuildingInfoSO buildingInfo;
         for (int i = 0; i < _generateBuildingButtons.Length; i++)
         {
             if (i >= buildingsToBuild.Count)

@@ -2,7 +2,7 @@ using BehaviourTree;
 
 public class TaskFinalize : TreeNode
 {
-    private Unit _unit;
+    private readonly Unit _unit;
 
     public TaskFinalize(Tree tree, Unit unit)
         : base(tree)

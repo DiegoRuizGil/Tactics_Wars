@@ -14,7 +14,7 @@ public class CheckTargetToAttackTest
         GameObject go = new GameObject();
         _tree = go.AddComponent<UnitBT>();
 
-        GameManager gameManager = A.GameManager;
+        A.GameManager.WithFoodAmount(TeamEnum.BLUE, 0);
 
         int width = 6;
         int height = 11;

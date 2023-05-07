@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class InputBuildState : InputBaseState
 {
-    private BuildingInfoSO _buildingInfo;
+    private readonly BuildingInfoSO _buildingInfo;
 
     public InputBuildState(InputManager context, InputStateFactory factory, BuildingInfoSO buildingInfo)
         : base(context, factory)

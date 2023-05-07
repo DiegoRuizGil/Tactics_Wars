@@ -198,6 +198,7 @@ public class GameManager : MonoBehaviour
                 hasUpdated = UpdateGoldResources(team, amount);
                 break;
             default:
+                Debug.LogWarning($"{resourceType}: Tipo de recurso no contemplado");
                 break;
         }
 

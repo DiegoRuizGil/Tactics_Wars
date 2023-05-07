@@ -3,7 +3,7 @@ using BehaviourTree;
 
 public class CheckUnitInBuildPosition : TreeNode
 {
-    private Unit _unit;
+    private readonly Unit _unit;
 
     public CheckUnitInBuildPosition(BehaviourTree.Tree tree, Unit unit)
         : base(tree)
@@ -32,7 +32,7 @@ public class CheckUnitInBuildPosition : TreeNode
                 return _state;
             }
         }
-        else
+        else if (Tree.GetData("target") != null)
         {
             _state = TreeNodeState.FAILURE;
             return _state;

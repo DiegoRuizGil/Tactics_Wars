@@ -2,7 +2,7 @@ using BehaviourTree;
 
 public class CheckCanDoActions : TreeNode
 {
-    private Unit _unit;
+    private readonly Unit _unit;
 
     public CheckCanDoActions(Tree tree, Unit unit)
         : base(tree)

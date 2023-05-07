@@ -5,7 +5,7 @@ using BehaviourTree;
 
 public class CheckPositionToBuild : TreeNode
 {
-    private Unit _unit;
+    private readonly Unit _unit;
 
     public CheckPositionToBuild(BehaviourTree.Tree tree, Unit unit)
         : base(tree)

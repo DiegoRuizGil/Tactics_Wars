@@ -5,7 +5,7 @@ using BehaviourTree;
 
 public class TaskBuild : TreeNode
 {
-    private Unit _unit;
+    private readonly Unit _unit;
 
     public TaskBuild(BehaviourTree.Tree tree, Unit unit)
         : base(tree)

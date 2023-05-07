@@ -27,12 +27,10 @@ public sealed class AStarPathfinding
 
     public List<Node> GetPath(Vector3 startPosition, Vector3 finalPosition, TeamEnum team)
     {
-        List<Node> solution = new List<Node>();
-
         Node startNode = Grid.Instance.GetNode(startPosition);
         Node finalNode = Grid.Instance.GetNode(finalPosition);
 
-        _openList = new List<Node>() { startNode };
+        _openList = new List<Node> { startNode };
         _closedList = new List<Node>();
 
         startNode.GCost = 0;
@@ -93,7 +91,7 @@ public sealed class AStarPathfinding
     private List<Node> GetAStarPath(Node node)
     {
         if (node.NodeParent == null)
-            return new List<Node>() { node };
+            return new List<Node> { node };
         else
         {
             List<Node> list = new List<Node>();

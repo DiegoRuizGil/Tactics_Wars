@@ -12,10 +12,11 @@ namespace BehaviourTree
     public class TreeNode
     {
         protected TreeNodeState _state;
-
         public TreeNodeState State { get { return _state; } }
 
-        public TreeNode parent;
+        protected TreeNode _parent;
+        public TreeNode Parent { get { return _parent; } }
+
         protected List<TreeNode> _children = new List<TreeNode>();
 
         private Tree _tree;
@@ -23,7 +24,7 @@ namespace BehaviourTree
 
         public TreeNode(Tree tree)
         {
-            parent = null;
+            _parent = null;
             _tree = tree;
         }
 
@@ -38,7 +39,7 @@ namespace BehaviourTree
 
         private void Attach(TreeNode node)
         {
-            node.parent = this;
+            node._parent = this;
             _children.Add(node);
         }
 
