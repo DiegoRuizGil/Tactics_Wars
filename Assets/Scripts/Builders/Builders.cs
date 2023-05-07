@@ -11,4 +11,6 @@ public static class An
 {
     public static UnitBuilder Unit => new UnitBuilder();
     public static InputManagerBuilder InputManager => new InputManagerBuilder();
+    public static UnitInfoSOBuilder UnitInfoSO => new UnitInfoSOBuilder();
+    public static IAManagerBuilder IAManager => new IAManagerBuilder();
 }

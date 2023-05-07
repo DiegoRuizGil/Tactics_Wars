@@ -16,6 +16,18 @@ public class BuildingBuilder : IBuilder<Building>
         return this;
     }
 
+    public BuildingBuilder WithType(BuildingType type)
+    {
+        _building.BuildingType = type;
+        return this;
+    }
+
+    public BuildingBuilder WithTeam(TeamEnum team)
+    {
+        _building.Team = team;
+        return this;
+    }
+
     public Building Build()
     {
         return _building;

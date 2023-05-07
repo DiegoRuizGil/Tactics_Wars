@@ -48,7 +48,8 @@ public class MoveAction : BaseAction
 
     private IEnumerator MovementCoroutine()
     {
-        _selectedUnit.Animator.SetBool("IsMoving", true);
+        if (_selectedUnit.Animator != null)
+            _selectedUnit.Animator.SetBool("IsMoving", true);
 
         int index = 0;
         Vector3 nextPos = GetPositionWithOffset(_positions[index]);

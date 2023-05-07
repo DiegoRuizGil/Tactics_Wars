@@ -24,6 +24,16 @@ public class InputManagerTest
         _buildingInfo = A.BuildingInfoSO.WithBuilding(prefab);
     }
 
+    [TearDown]
+    public void TearDown()
+    {
+        GameObject[] objects = GameObject.FindObjectsOfType<GameObject>();
+        foreach (GameObject obj in objects)
+        {
+            GameObject.DestroyImmediate(obj);
+        }
+    }
+
     [UnityTest]
     public IEnumerator Positive_SwitchStates()
     {

@@ -12,6 +12,16 @@ public class EntityTest
         Grid.Instance = new Grid(6, 11, 1, Vector3.zero);
     }
 
+    [TearDown]
+    public void TearDown()
+    {
+        GameObject[] objects = GameObject.FindObjectsOfType<GameObject>();
+        foreach (GameObject obj in objects)
+        {
+            GameObject.DestroyImmediate(obj);
+        }
+    }
+
     [UnityTest]
     public IEnumerator Negative_ApplyDamage()
     {

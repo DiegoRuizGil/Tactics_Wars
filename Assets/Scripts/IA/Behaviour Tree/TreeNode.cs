@@ -13,6 +13,8 @@ namespace BehaviourTree
     {
         protected TreeNodeState _state;
 
+        public TreeNodeState State { get { return _state; } }
+
         public TreeNode parent;
         protected List<TreeNode> _children = new List<TreeNode>();
 

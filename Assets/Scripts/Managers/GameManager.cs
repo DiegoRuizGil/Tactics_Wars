@@ -127,15 +127,23 @@ public class GameManager : MonoBehaviour
         _turn++;
         _currentTeam = (_currentTeam == TeamEnum.BLUE) ? TeamEnum.RED : TeamEnum.BLUE;
 
-        // recover units hp on top of buildings
-        foreach (Unit unit in _unitLists[_currentTeam])
+        if (_buildingLists[_currentTeam].Count <= 0
+            && _unitLists[_currentTeam].Count <= 0)
         {
-            if (Grid.Instance.GetNode(unit.transform.position).GetEntity(0) != null)
-                unit.RecoverHealth(unit.MaxHealth / 4);
+            // lanzar evento de fin de partida
         }
+        else
+        {
+            // recover units hp on top of buildings
+            foreach (Unit unit in _unitLists[_currentTeam])
+            {
+                if (Grid.Instance.GetNode(unit.transform.position).GetEntity(0) != null)
+                    unit.RecoverHealth(unit.MaxHealth / 4);
+            }
 
-        if (_onTurnUpdate != null)
-            _onTurnUpdate.Raise(_currentTeam);
+            if (_onTurnUpdate != null)
+                _onTurnUpdate.Raise(_currentTeam);
+        }
     }
 
     [ContextMenu("Debug Resources")]
@@ -274,8 +282,13 @@ public class GameManager : MonoBehaviour
         unit.SetEntityInGrid();
 
         unit.Team = team;
-        Material material = unit.GetComponentInChildren<SpriteRenderer>().material;
-        material.SetFloat("_IsRedTeam", team == TeamEnum.BLUE? 0f : 1f);
+        SpriteRenderer spriteRenderer = unit.GetComponentInChildren<SpriteRenderer>();
+        if (spriteRenderer != null)
+        {
+            Material material = spriteRenderer.material;
+            if (material != null)
+                material.SetFloat("_IsRedTeam", team == TeamEnum.BLUE ? 0f : 1f);
+        }
 
         return unit;
     }
@@ -298,8 +311,13 @@ public class GameManager : MonoBehaviour
         building.SetEntityInGrid();
 
         building.Team = team;
-        Material material = building.GetComponentInChildren<SpriteRenderer>().material;
-        material.SetFloat("_IsRedTeam", team == TeamEnum.BLUE ? 0f : 1f);
+        SpriteRenderer spriteRenderer = building.GetComponentInChildren<SpriteRenderer>();
+        if (spriteRenderer != null)
+        {
+            Material material = spriteRenderer.material;
+            if (material != null)
+                material.SetFloat("_IsRedTeam", team == TeamEnum.BLUE ? 0f : 1f);
+        }
 
         return building;
     }
