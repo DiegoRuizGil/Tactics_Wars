@@ -82,8 +82,12 @@ public sealed class AStarPathfinding
             }
         }
 
-        List<Node> path = GetNodePath(startNode, finalNode, team);
-        ResetNodes();
+        List<Node> path = new List<Node>();
+        if (finalNode.NodeParent != null) // path found
+        {
+            path = GetNodePath(startNode, finalNode, team);
+            ResetNodes();
+        }
 
         return path;
     }
@@ -144,7 +148,7 @@ public sealed class AStarPathfinding
         foreach (Node node in visitedNodes)
         {
             node.GCost = int.MaxValue / 2;
-            node.GCost = int.MaxValue / 2;
+            node.HCost = int.MaxValue / 2;
             node.NodeParent = null;
         }
     }

@@ -8,14 +8,15 @@ public class TopHUDManager : MonoBehaviour
     [SerializeField] private Image _blueTeamIcon;
     [SerializeField] private Image _redTeamIcon;
 
-    [Header("Resources Text")]
-    [SerializeField] private TextMeshProUGUI _foodResourcesTextBlue;
-    [SerializeField] private TextMeshProUGUI _goldResourcesTextBlue;
-    [SerializeField] private TextMeshProUGUI _foodResourcesTextRed;
-    [SerializeField] private TextMeshProUGUI _goldResourcesTextRed;
+    [Header("Player Info")]
+    [SerializeField] private TextMeshProUGUI _foodAmountText;
+    [SerializeField] private TextMeshProUGUI _goldAmountText;
+    [SerializeField] private TextMeshProUGUI _entitiesAmountText;
+
 
     [Header("Buttons UI")]
     [SerializeField] private Button _endTurnButton;
+    [SerializeField] private Button _exitButton;
 
     public void UpdateHUD(TeamEnum team)
     {
@@ -38,15 +39,19 @@ public class TopHUDManager : MonoBehaviour
 
     public void UpdateResourcesAmount()
     {
-        _foodResourcesTextBlue.text = GameManager.Instance.FoodResources[TeamEnum.BLUE].ToString();
-        _goldResourcesTextBlue.text = GameManager.Instance.GoldResources[TeamEnum.BLUE].ToString();
+        TeamEnum playerTeam = GameManager.Instance.PlayerTeam;
 
-        _foodResourcesTextRed.text = GameManager.Instance.FoodResources[TeamEnum.RED].ToString();
-        _goldResourcesTextRed.text = GameManager.Instance.GoldResources[TeamEnum.RED].ToString();
+        _foodAmountText.text = GameManager.Instance.FoodResources[playerTeam].ToString();
+        _goldAmountText.text = GameManager.Instance.GoldResources[playerTeam].ToString();
+
+        int entitiesAmount = GameManager.Instance.UnitLists[playerTeam].Count;
+        int maxEntities = GameManager.Instance.MaxUnitAmount;
+        _entitiesAmountText.text = $"{entitiesAmount}/{maxEntities}";
     }
 
     private void SetInteracionEndTurn(TeamEnum team)
     {
         _endTurnButton.interactable = team == GameManager.Instance.PlayerTeam;
+        _exitButton.interactable = team == GameManager.Instance.PlayerTeam;
     }
 }

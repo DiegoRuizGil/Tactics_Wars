@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using UnityEngine;
 
@@ -29,6 +30,12 @@ public class GameManager : MonoBehaviour
     private TeamEnumEvent _onTurnUpdate;
     [SerializeField]
     private VoidEvent _onTopHUDUpdate;
+    [SerializeField]
+    private TeamEnumEvent _onGameFinished;
+
+    [Header("Save info")]
+    [SerializeField]
+    private SaveToLoadSO _saveToLoadSO;
 
     [Header("Debug")]
     [SerializeField]
@@ -49,7 +56,7 @@ public class GameManager : MonoBehaviour
 
     [Space(20)]
     [SerializeField]
-    private int _turn;
+    private int _turn = 1;
     [SerializeField]
     private TeamEnum _currentTeam;
 
@@ -63,7 +70,8 @@ public class GameManager : MonoBehaviour
     public Dictionary<TeamEnum, int> GoldResources { get { return _goldResources; } }
     public Dictionary<TeamEnum, List<Unit>> UnitLists { get { return _unitLists; } }
     public Dictionary<TeamEnum, List<Building>> BuildingLists { get { return _buildingLists; } }
-    public TeamEnum CurrentTeam { get { return _currentTeam; } }
+    public int Turn { get { return _turn; } set { _turn = value; } }
+    public TeamEnum CurrentTeam { get { return _currentTeam; } set { _currentTeam = value; } }
 
     private void Awake()
     {
@@ -127,18 +135,40 @@ public class GameManager : MonoBehaviour
         _turn++;
         _currentTeam = (_currentTeam == TeamEnum.BLUE) ? TeamEnum.RED : TeamEnum.BLUE;
 
+        if (_currentTeam == PlayerTeam)
+        {
+            if (_saveToLoadSO.IsNewGame)
+            {
+                FileInfo newFile = SaveSystem.Save();
+                _saveToLoadSO.SaveToLoad = newFile;
+                _saveToLoadSO.IsNewGame = false;
+            }
+            else
+            {
+                SaveSystem.Save(_saveToLoadSO.SaveToLoad.Name);
+            }   
+        }
+
         if (_buildingLists[_currentTeam].Count <= 0
             && _unitLists[_currentTeam].Count <= 0)
         {
-            // lanzar evento de fin de partida
+            TeamEnum winner = (_currentTeam == TeamEnum.BLUE) ? TeamEnum.RED : TeamEnum.BLUE;
+            
+            if (_onGameFinished != null)
+                _onGameFinished.Raise(winner);
         }
         else
         {
             // recover units hp on top of buildings
             foreach (Unit unit in _unitLists[_currentTeam])
             {
-                if (Grid.Instance.GetNode(unit.transform.position).GetEntity(0) != null)
-                    unit.RecoverHealth(unit.MaxHealth / 4);
+                if (unit.JustInstantiated)
+                {
+                    unit.JustInstantiated = false;
+                    unit.RecoverHealth(unit.MaxHealth / 2);
+                }
+                else if (Grid.Instance.GetNode(unit.transform.position).GetEntity(0) != null)
+                    unit.RecoverHealth(unit.MaxHealth / 8);
             }
 
             if (_onTurnUpdate != null)
@@ -160,6 +190,12 @@ public class GameManager : MonoBehaviour
     private void ShowResourcesRed()
     {
         Debug.Log($"[RED] Food: {_foodResources[TeamEnum.RED]} Gold: {_goldResources[TeamEnum.RED]}");
+    }
+
+    public void UpdateTopHUD()
+    {
+        if (_onTopHUDUpdate != null)
+            _onTopHUDUpdate.Raise();
     }
 
     #region RESOURCES
@@ -234,6 +270,22 @@ public class GameManager : MonoBehaviour
             _goldResources[team] += amount;
             return true;
         }  
+    }
+    
+    public void SetFoodResources(TeamEnum team, int amount)
+    {
+        if (amount >= 0)
+        {
+            _foodResources[team] = amount;
+        }
+    }
+
+    public void SetGoldResources(TeamEnum team, int amount)
+    {
+        if (amount >= 0)
+        {
+            _goldResources[team] = amount;
+        }
     }
     #endregion
 

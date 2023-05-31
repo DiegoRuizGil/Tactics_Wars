@@ -118,6 +118,11 @@ public class InputManager : MonoBehaviour
         }
     }
 
+    public void BlockPlayerActions()
+    {
+        _canDoActions = false;
+    }
+
     public void SetCanDoActions(TeamEnum team)
     {
         _canDoActions = team == GameManager.Instance.PlayerTeam;

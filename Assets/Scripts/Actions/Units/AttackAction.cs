@@ -22,16 +22,24 @@ public class AttackAction : BaseAction
     public void ApplyDamage()
     {
         AnimationEventSystem.AnimationFinishedEvent -= ApplyDamage;
-        AnimationEventSystem.AnimationFinishedEvent += SetActionFinished;
 
         bool isDead =_defender.ApplyDamage(CalculateDamage());
-        
-        if (!isDead)
+
+        if (_defender is Unit)
         {
-            if (_defender is Unit)
-                (_defender as Unit).SetHurtAnimation();
-            else
+            if (isDead)
+            {
                 SetActionFinished();
+            }
+            else
+            {
+                AnimationEventSystem.AnimationFinishedEvent += SetActionFinished;
+                (_defender as Unit).SetHurtAnimation();
+            } 
+        }
+        else if (_defender is Building)
+        {
+            SetActionFinished();
         }
     }
 

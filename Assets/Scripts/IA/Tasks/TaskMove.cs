@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using BehaviourTree;
 
@@ -20,11 +22,25 @@ public class TaskMove : TreeNode
             // PREVIOS NODE HAS SET THE TARGET POSITION
             Vector3 targetPosition = (Tree.GetData("targetPosition") as Vector3?).Value;
 
+            if (ManhattanDistance(_unit.transform.position, targetPosition) <= _unit.AttackRange
+                    && Tree.GetData("target") != null) // only when target to attack is selected
+            {
+                _state = TreeNodeState.SUCCESS;
+                return _state;
+            }
+
             List<Node> aStarPath = AStarPathfinding.Instance.GetPath(
                     _unit.transform.position,
                     targetPosition,
                     _unit.Team
                 );
+
+            if (aStarPath.Count <= _unit.AttackRange - 1
+                 && Tree.GetData("target") != null) // only when target to attack is selected
+            {
+                _state = TreeNodeState.RUNNING;
+                return _state;
+            }
 
             List<Vector3> path = GetPathInRange(aStarPath);
 
@@ -50,20 +66,35 @@ public class TaskMove : TreeNode
 
     private List<Vector3> GetPathInRange(List<Node> aStarPath)
     {
-        List<Vector3> pathInRange = new List<Vector3>();
+        int limit = Math.Min(_unit.MovementRange, aStarPath.Count);
 
-        for (int i=0; i < _unit.MovementRange; i++)
+        List<Node> pathInRange = aStarPath.GetRange(0, limit);
+        int pathCount = pathInRange.Count;
+
+        for (int i = pathCount - 1; i >= 0; i++)
         {
-            if (i >= aStarPath.Count)
+            if (pathInRange[i].GetEntity(1) != null
+                && pathInRange[i].GetEntity(1).Team == _unit.Team)
+            {
+                pathInRange.RemoveAt(i);
+            }
+            else
+            {
                 break;
-
-            if (aStarPath[i].GetTopEntity() != null &&
-                aStarPath[i].GetTopEntity().Team == _unit.Team)
-                continue;
-
-            pathInRange.Add(aStarPath[i].Position);
+            }
         }
 
-        return pathInRange;
+        return pathInRange.Select(node => node.Position).ToList();
+    }
+
+    private int ManhattanDistance(Vector3 pos1, Vector3 pos2)
+    {
+        Node node1 = Grid.Instance.GetNode(pos1);
+        Node node2 = Grid.Instance.GetNode(pos2);
+
+        int xdistance = Math.Abs(node1.GridX - node2.GridX);
+        int ydistance = Math.Abs(node1.GridY - node2.GridY);
+
+        return xdistance + ydistance;
     }
 }

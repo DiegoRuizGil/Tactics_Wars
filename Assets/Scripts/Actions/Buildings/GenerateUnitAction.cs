@@ -24,7 +24,8 @@ public class GenerateUnitAction : BaseAction
                 );
 
             unit.HasFinished = true;
-            unit.ApplyDamage(unit.MaxHealth / 2);
+            unit.CurrentHealth = unit.MaxHealth / 2;
+            unit.JustInstantiated = true;
         }
         else
         {
