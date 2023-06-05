@@ -16,6 +16,8 @@ public class Unit : Entity
     [SerializeField]
     private bool _hasFinished;
     [SerializeField]
+    private bool _justInstantiated = false;
+    [SerializeField]
     private SpriteRenderer _sprite;
     [SerializeField]
     private UnitType _unitType;
@@ -40,6 +42,7 @@ public class Unit : Entity
             _sprite.material.SetFloat("_HasFinished", _hasFinished? 1f : 0f);
         }
     }
+    public bool JustInstantiated { get { return _justInstantiated; } set { _justInstantiated = value; } }
     public UnitType UnitType { get { return _unitType; } set { _unitType = value; } }
     public List<UnitType> Weaknesses { get { return _weaknesses; } set { _weaknesses = value; } }
     public Animator Animator { get { return _animator; } }

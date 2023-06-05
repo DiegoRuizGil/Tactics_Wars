@@ -37,7 +37,7 @@ public class GenerateBuildingUI : MonoBehaviour
             BuildingInfoSO buildingInfo = buildingsToBuild[i];
 
             _generateBuildingButtons[i].gameObject.SetActive(true);
-            _generateBuildingButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = buildingInfo.Entity.name;
+            _generateBuildingButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = buildingInfo.Entity.name + "\n" + $"({buildingInfo.FoodAmount} c, {buildingInfo.GoldAmount} o)";
 
             if (foodAmount < buildingInfo.FoodAmount || goldAmount < buildingInfo.FoodAmount)
             {

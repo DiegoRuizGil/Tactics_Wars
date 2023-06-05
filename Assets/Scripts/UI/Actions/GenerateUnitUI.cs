@@ -29,7 +29,7 @@ public class GenerateUnitUI : MonoBehaviour
             UnitInfoSO unitInfo = unitGenerator.UnitsInfo[i];
 
             _generateUnitButtons[i].gameObject.SetActive(true);
-            _generateUnitButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = unitInfo.Entity.name;
+            _generateUnitButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = unitInfo.Entity.name + "\n" + $"({unitInfo.FoodAmount} c, {unitInfo.GoldAmount} o)";
 
             if (foodAmount < unitInfo.FoodAmount || goldAmount < unitInfo.FoodAmount)
             {
@@ -37,6 +37,7 @@ public class GenerateUnitUI : MonoBehaviour
                 continue;
             }
 
+            _generateUnitButtons[i].onClick.RemoveAllListeners();
             _generateUnitButtons[i].onClick.AddListener(
                 () => _inputManager.SetGenerateUnitState(unitInfo)
             );

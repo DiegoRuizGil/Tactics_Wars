@@ -83,6 +83,11 @@ public class Grid
         return GetNode(pos1).Equals(GetNode(pos2));
     }
 
+    public bool CheckPositionOutOfBounds(Vector3 position)
+    {
+        return GetNode(position) == null;
+    }
+
     public void SetNodesNeighbours()
     {
         for (int x = 0; x < _width; x++)

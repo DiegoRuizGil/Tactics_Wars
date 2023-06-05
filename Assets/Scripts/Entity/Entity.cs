@@ -20,7 +20,7 @@ public abstract class Entity : MonoBehaviour
 
     public string Name { get { return _name; } }
     public int MaxHealth { get { return _maxHealth; } }
-    public int CurrentHealth { get { return _currentHealth; } }
+    public int CurrentHealth { get { return _currentHealth; } set { _currentHealth = value; } }
     public TeamEnum Team { get { return _team; } set { _team = value; } }
 
     public bool SetEntityInGrid()

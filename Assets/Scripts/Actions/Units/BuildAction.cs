@@ -28,6 +28,7 @@ public class BuildAction : BaseAction
         else
         {
             Debug.LogWarning("No hay suficientes recursos para generar el edificio");
+            _selectedUnit.HasFinished = true;
         }
     }
 }

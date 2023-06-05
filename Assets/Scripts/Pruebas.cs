@@ -3,28 +3,35 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.Events;
+using TMPro;
 
-public class pruebas : MonoBehaviour
+public class Pruebas : MonoBehaviour
 {
+    [SerializeField]
+    private TextMeshProUGUI _text;
 
-    [ContextMenu("Pruebas")]
-    public void Pruebas()
+    [SerializeField]
+    private Transform _posA;
+    [SerializeField]
+    private Transform _posB;
+
+    public void ShowWinner(TeamEnum winner)
     {
-        Dictionary<string, object> dict = new Dictionary<string, object>();
+        _text.text += winner.ToString();
+    }
 
-        dict["targetPosition"] = new Vector3(0,0,0);
+    [ContextMenu("Pathfinding")]
+    public void CalculatePath()
+    {
+        List<Node> path = AStarPathfinding.Instance.GetPath(_posA.position, _posB.position, TeamEnum.BLUE);
 
-        Vector3? pos = dict["targetPosition"] as Vector3?;
-
-        if (pos == null)
+        string s = ">> ";
+        foreach (Node node in path)
         {
-            Debug.Log("Valor: null");
+            s += $"({node.Position.x}, {node.Position.y}) ";
         }
-        else
-        {
-            Debug.Log($"Valor: {pos.Value}");
-        }
+        Debug.Log($"Nuevo camino generado: {s}");
 
-        
+        Debug.Log($"Max Int Value: {int.MaxValue}");
     }
 }

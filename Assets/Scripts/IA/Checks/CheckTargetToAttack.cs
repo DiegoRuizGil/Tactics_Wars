@@ -59,11 +59,16 @@ public class CheckTargetToAttack : TreeNode
         foreach (Unit enemyUnit in  unitList)
         {
             // APPLY DISTANCE COST
-            currentCost += AStarPathfinding.Instance.GetPath(
+            List<Node> path = AStarPathfinding.Instance.GetPath(
                     _unit.transform.position,
                     enemyUnit.transform.position,
                     _unit.Team
-                ).Count;
+                );
+
+            if (path.Count == 0)
+                continue;
+            else
+                currentCost += path.Count;
 
             // APPLY WEAKNESS COST
             if (_unit.Weaknesses.Contains(enemyUnit.UnitType))
@@ -93,11 +98,16 @@ public class CheckTargetToAttack : TreeNode
         foreach (Building building in buildingList)
         {
             // APPLY DISTANCE COST
-            currentCost += AStarPathfinding.Instance.GetPath(
+            List<Node> path = AStarPathfinding.Instance.GetPath(
                     _unit.transform.position,
                     building.transform.position,
                     _unit.Team
-                ).Count;
+                );
+
+            if (path.Count == 0)
+                continue;
+            else
+                currentCost += path.Count;
 
             // APPLY HP COST
             currentCost += HP_COST * (building.CurrentHealth * HP_INTERVALS / building.MaxHealth);

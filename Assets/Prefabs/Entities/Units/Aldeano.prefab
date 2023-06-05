@@ -263,7 +263,7 @@ Animator:
   m_GameObject: {fileID: 2194316704349638734}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3ba1853b733acb245b3a77336c9ecce5, type: 2}
+  m_Controller: {fileID: 22100000, guid: 3547cd9b19e50fc458ac00b8977384c3, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -321,6 +321,7 @@ MonoBehaviour:
   _attackRange: 1
   _hasMoved: 0
   _hasFinished: 0
+  _justInstantiated: 0
   _sprite: {fileID: 2960605644864773474}
   _unitType: 1
   _weaknesses: 
@@ -355,7 +356,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ccb92c02a0f43f45aca44fc9034597f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _unit: {fileID: 1109210306339172455}
 --- !u!1 &2546471576217603899
 GameObject:
   m_ObjectHideFlags: 0

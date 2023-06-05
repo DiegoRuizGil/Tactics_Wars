@@ -23,7 +23,9 @@ public class InputNoActionState : InputBaseState
             {
                 Entity entity = node.GetTopEntity();
                 if (entity == null)
-                    Context.SetSelectedEntity(entity);
+                    Context.SetSelectedEntity(null);
+                else if (entity.Team != GameManager.Instance.PlayerTeam)
+                    Context.SetSelectedEntity(null);
                 else if (entity.Team == GameManager.Instance.PlayerTeam)
                     Context.SetSelectedEntity(entity);
             }

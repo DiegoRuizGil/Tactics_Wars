@@ -128,7 +128,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Alabardero_0
+      name: Idle_Alabardero_0
       rect:
         serializedVersion: 2
         x: 0
@@ -149,7 +149,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Alabardero_1
+      name: Idle_Alabardero_1
       rect:
         serializedVersion: 2
         x: 32
@@ -170,7 +170,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Alabardero_2
+      name: Idle_Alabardero_2
       rect:
         serializedVersion: 2
         x: 64
@@ -191,7 +191,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Alabardero_3
+      name: Idle_Alabardero_3
       rect:
         serializedVersion: 2
         x: 96
@@ -212,7 +212,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Alabardero_4
+      name: Move_Alabardero_0
       rect:
         serializedVersion: 2
         x: 0
@@ -233,7 +233,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Alabardero_5
+      name: Move_Alabardero_1
       rect:
         serializedVersion: 2
         x: 32
@@ -254,7 +254,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Alabardero_6
+      name: Move_Alabardero_2
       rect:
         serializedVersion: 2
         x: 64
@@ -275,7 +275,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Alabardero_7
+      name: Move_Alabardero_3
       rect:
         serializedVersion: 2
         x: 96
@@ -296,7 +296,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Alabardero_8
+      name: Move_Alabardero_4
       rect:
         serializedVersion: 2
         x: 128
@@ -317,7 +317,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Alabardero_9
+      name: Move_Alabardero_5
       rect:
         serializedVersion: 2
         x: 160
@@ -338,7 +338,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Alabardero_10
+      name: Hurt_Alabardero_0
       rect:
         serializedVersion: 2
         x: 0
@@ -359,7 +359,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Alabardero_11
+      name: Hurt_Alabardero_1
       rect:
         serializedVersion: 2
         x: 32
@@ -380,7 +380,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Alabardero_12
+      name: Hurt_Alabardero_2
       rect:
         serializedVersion: 2
         x: 64
@@ -401,7 +401,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Alabardero_13
+      name: Jump_Alabardero_0
       rect:
         serializedVersion: 2
         x: 0
@@ -422,7 +422,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Alabardero_14
+      name: Jump_Alabardero_1
       rect:
         serializedVersion: 2
         x: 32
@@ -443,7 +443,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Alabardero_15
+      name: Jump_Alabardero_2
       rect:
         serializedVersion: 2
         x: 64
@@ -464,7 +464,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Alabardero_16
+      name: Death_Alabardero_0
       rect:
         serializedVersion: 2
         x: 0
@@ -485,7 +485,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Alabardero_17
+      name: Death_Alabardero_1
       rect:
         serializedVersion: 2
         x: 32
@@ -506,7 +506,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Alabardero_18
+      name: Death_Alabardero_2
       rect:
         serializedVersion: 2
         x: 64
@@ -527,7 +527,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Alabardero_19
+      name: Death_Alabardero_3
       rect:
         serializedVersion: 2
         x: 96
@@ -548,7 +548,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Alabardero_20
+      name: Death_Alabardero_4
       rect:
         serializedVersion: 2
         x: 128
@@ -569,7 +569,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Alabardero_21
+      name: Attack_Alabardero_0
       rect:
         serializedVersion: 2
         x: 0
@@ -590,7 +590,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Alabardero_22
+      name: Attack_Alabardero_1
       rect:
         serializedVersion: 2
         x: 32
@@ -611,7 +611,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Alabardero_23
+      name: Attack_Alabardero_2
       rect:
         serializedVersion: 2
         x: 64
@@ -632,7 +632,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Alabardero_24
+      name: Attack_Alabardero_3
       rect:
         serializedVersion: 2
         x: 96
@@ -653,7 +653,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Alabardero_25
+      name: Attack_Alabardero_4
       rect:
         serializedVersion: 2
         x: 128
@@ -684,32 +684,32 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Alabardero_9: -901183561
-      Alabardero_0: 193380401
-      Alabardero_5: 668086670
-      Alabardero_22: 865872086
-      Alabardero_21: -403972427
-      Alabardero_15: 407716960
-      Alabardero_11: 1183593540
-      Alabardero_10: 1758987178
-      Alabardero_12: -728786639
-      Alabardero_14: 1133835150
-      Alabardero_17: 653577616
-      Alabardero_3: -1087535393
-      Alabardero_6: -2116882999
-      Alabardero_24: 953991552
-      Alabardero_25: -904530608
-      Alabardero_4: 422692857
-      Alabardero_16: 366514760
-      Alabardero_7: 1767186932
-      Alabardero_20: -2007810529
-      Alabardero_8: -1035064195
-      Alabardero_2: -94616851
-      Alabardero_23: -763973677
-      Alabardero_13: 537600402
-      Alabardero_18: 1171305351
-      Alabardero_1: 1334381427
-      Alabardero_19: 1785559558
+      Idle_Alabardero_1: 1334381427
+      Jump_Alabardero_2: 407716960
+      Move_Alabardero_3: 1767186932
+      Hurt_Alabardero_2: -728786639
+      Move_Alabardero_2: -2116882999
+      Death_Alabardero_2: 1171305351
+      Attack_Alabardero_1: 865872086
+      Idle_Alabardero_3: -1087535393
+      Move_Alabardero_4: -1035064195
+      Move_Alabardero_5: -901183561
+      Attack_Alabardero_3: 953991552
+      Death_Alabardero_3: 1785559558
+      Hurt_Alabardero_1: 1183593540
+      Move_Alabardero_1: 668086670
+      Attack_Alabardero_2: -763973677
+      Jump_Alabardero_1: 1133835150
+      Attack_Alabardero_4: -904530608
+      Hurt_Alabardero_0: 1758987178
+      Idle_Alabardero_0: 193380401
+      Attack_Alabardero_0: -403972427
+      Move_Alabardero_0: 422692857
+      Idle_Alabardero_2: -94616851
+      Jump_Alabardero_0: 537600402
+      Death_Alabardero_0: 366514760
+      Death_Alabardero_1: 653577616
+      Death_Alabardero_4: -2007810529
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
