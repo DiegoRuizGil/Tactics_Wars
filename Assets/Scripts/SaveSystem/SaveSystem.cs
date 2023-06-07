@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using System;
 using System.IO;
@@ -22,6 +21,8 @@ public class EntityData
     public string name;
     public TeamEnum team;
     public int currentHealth;
+    public bool hasMoved;
+    public bool hasFinished;
     public bool justInstantiated;
     public Vector3 position;
 }
@@ -38,7 +39,6 @@ public class ResourceData
 public class GameData
 {
     public int turn;
-    public TeamEnum currentTeam;
 }
 #endregion
 
@@ -107,6 +107,21 @@ public static class SaveSystem
         }
     }
 
+    public static bool DeleteSaveFile(string saveFile)
+    {
+        string filePath = SAVE_FOLDER + saveFile;
+
+        if (File.Exists(filePath))
+        {
+            File.Delete(filePath);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     private static string GetSceneDataString()
     {
         string data = "";
@@ -120,6 +135,8 @@ public static class SaveSystem
                     name = unit.Name,
                     team = unit.Team,
                     currentHealth = unit.CurrentHealth,
+                    hasMoved = (unit as Unit).HasMoved,
+                    hasFinished = (unit as Unit).HasFinished,
                     justInstantiated = (unit as Unit).JustInstantiated,
                     position = unit.transform.position
                 }
@@ -133,6 +150,8 @@ public static class SaveSystem
                     name = building.Name,
                     team = building.Team,
                     currentHealth = building.CurrentHealth,
+                    hasMoved = false,
+                    hasFinished = false,
                     justInstantiated = false,
                     position = building.transform.position
                 }
@@ -154,8 +173,7 @@ public static class SaveSystem
 
         GameData gameData = new GameData
         {
-            turn = GameManager.Instance.Turn,
-            currentTeam = GameManager.Instance.CurrentTeam
+            turn = GameManager.Instance.Turn
         };
 
         SceneData sceneData = new SceneData
@@ -191,4 +209,5 @@ public static class SaveSystem
 
         return fileName;
     }
+
 }

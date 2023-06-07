@@ -227,6 +227,7 @@ MonoBehaviour:
   _maxHealth: 100
   _currentHealth: 100
   _team: 0
+  _entityImage: {fileID: -1028014578, guid: 550c81ca44607464d9c3287e37236cd1, type: 3}
   _buildingType: 1
 --- !u!114 &7491995076645872549
 MonoBehaviour:

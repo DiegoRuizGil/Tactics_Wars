@@ -147,9 +147,10 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   _name: Establo
-  _maxHealth: 100
-  _currentHealth: 100
+  _maxHealth: 120
+  _currentHealth: 120
   _team: 0
+  _entityImage: {fileID: -1271232060, guid: 550c81ca44607464d9c3287e37236cd1, type: 3}
   _buildingType: 1
 --- !u!114 &5525427610173276512
 MonoBehaviour:

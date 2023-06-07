@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Arquero Info
   m_EditorClassIdentifier: 
   _entity: {fileID: 1109210306339172455, guid: 29788b4f27a04274a940e5c7528cfedc, type: 3}
-  _foodAmount: 0
-  _goldAmount: 0
+  _foodAmount: 20
+  _goldAmount: 17

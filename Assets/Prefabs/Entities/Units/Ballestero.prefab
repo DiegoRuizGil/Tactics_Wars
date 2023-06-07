@@ -228,6 +228,7 @@ GameObject:
   - component: {fileID: 3035013608622303125}
   - component: {fileID: 1109210306339172455}
   - component: {fileID: 2843562385831562170}
+  - component: {fileID: 3305919065111944993}
   m_Layer: 0
   m_Name: Ballestero
   m_TagString: Untagged
@@ -312,11 +313,12 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   _name: Ballestero
-  _maxHealth: 20
-  _currentHealth: 20
+  _maxHealth: 75
+  _currentHealth: 75
   _team: 0
-  _damage: 4
-  _movementRange: 4
+  _entityImage: {fileID: 1565389891, guid: ab0c09ef8ba40534abd208c832cdb031, type: 3}
+  _damage: 30
+  _movementRange: 2
   _attackRange: 3
   _hasMoved: 0
   _hasFinished: 0
@@ -324,6 +326,7 @@ MonoBehaviour:
   _sprite: {fileID: 2960605644864773474}
   _unitType: 8
   _weaknesses: 
+  _animator: {fileID: 5577005709104302683}
 --- !u!114 &2843562385831562170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -336,6 +339,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 596e5c1a179342140bea7cfd855675b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3305919065111944993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2194316704349638734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb13805a58360f546889cccd3ff9c337, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _attackClip: {fileID: 8300000, guid: af964cceab39df54c8db362408ee20a8, type: 3}
+  _moveClip: {fileID: 8300000, guid: 06120062075f41f44aea5a0535b9e44d, type: 3}
+  _hurtClip: {fileID: 8300000, guid: 0d8fa9ea7c022c247a9d9a87797f1014, type: 3}
+  _deathClip: {fileID: 8300000, guid: 0d8fa9ea7c022c247a9d9a87797f1014, type: 3}
 --- !u!1 &2546471576217603899
 GameObject:
   m_ObjectHideFlags: 0

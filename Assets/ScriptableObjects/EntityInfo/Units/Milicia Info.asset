@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Milicia Info
   m_EditorClassIdentifier: 
   _entity: {fileID: 1109210306339172455, guid: aca4d420324affe46af39bf1afb9d448, type: 3}
-  _foodAmount: 0
-  _goldAmount: 0
+  _foodAmount: 15
+  _goldAmount: 5

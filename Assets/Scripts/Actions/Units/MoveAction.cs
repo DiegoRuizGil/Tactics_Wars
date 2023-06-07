@@ -11,7 +11,6 @@ public class MoveAction : BaseAction
 
     public MoveAction(Unit selectedUnit, List<Vector3> positions, int unitSpeed)
     {
-
         _selectedUnit = selectedUnit;
         _positions = positions;
         _unitSpeed = unitSpeed;
@@ -51,8 +50,14 @@ public class MoveAction : BaseAction
         if (_selectedUnit.Animator != null)
             _selectedUnit.Animator.SetBool("IsMoving", true);
 
+        AnimationsAudioClip animationsAudioClip = _selectedUnit.GetComponent<AnimationsAudioClip>();
+
+        if (animationsAudioClip != null)
+            animationsAudioClip.PlayMoveClip();
+
         int index = 0;
         Vector3 nextPos = GetPositionWithOffset(_positions[index]);
+        _selectedUnit.FlipSprite(nextPos);
         while (index < _positions.Count)
         {
             if (_selectedUnit.transform.position != nextPos)
@@ -67,9 +72,12 @@ public class MoveAction : BaseAction
                 index += 1;
                 if (index < _positions.Count)
                     nextPos = GetPositionWithOffset(_positions[index]);
+                _selectedUnit.FlipSprite(nextPos);
             }
             yield return null;
         }
+
+        SoundManager.Instance.StopSoundEffectLoop();
 
         _selectedUnit.Animator.SetBool("IsMoving", false);
         _selectedUnit.HasMoved = true;

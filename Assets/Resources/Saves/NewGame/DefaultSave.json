@@ -4,32 +4,25 @@
       "name": "Aldeano",
       "team": 0,
       "currentHealth": -1,
+      "hasMoved": false,
+      "hasFinished": false,
       "justInstantiated": false,
       "position": {
-        "x": -5.5,
-        "y": -5.5,
+        "x": -13.5,
+        "y": -8.5,
         "z": 0.0
       }
     },
     {
-      "name": "Aldeano",
+      "name": "Caballeria Ligera",
       "team": 0,
       "currentHealth": -1,
+      "hasMoved": false,
+      "hasFinished": false,
       "justInstantiated": false,
       "position": {
-        "x": -1.5,
-        "y": -5.5,
-        "z": 0.0
-      }
-    },
-    {
-      "name": "Milicia",
-      "team": 0,
-      "currentHealth": -1,
-      "justInstantiated": false,
-      "position": {
-        "x": -3.5,
-        "y": -3.5,
+        "x": -14.5,
+        "y": -9.5,
         "z": 0.0
       }
     },
@@ -37,10 +30,38 @@
       "name": "Centro Urbano",
       "team": 0,
       "currentHealth": -1,
+      "hasMoved": false,
+      "hasFinished": false,
       "justInstantiated": false,
       "position": {
-        "x": -3.5,
-        "y": -5.5,
+        "x": -13.5,
+        "y": -7.5,
+        "z": 0.0
+      }
+    },
+    {
+      "name": "Aldeano",
+      "team": 1,
+      "currentHealth": -1,
+      "hasMoved": false,
+      "hasFinished": false,
+      "justInstantiated": false,
+      "position": {
+        "x": 3.5,
+        "y": 5.5,
+        "z": 0.0
+      }
+    },
+    {
+      "name": "Caballeria Ligera",
+      "team": 1,
+      "currentHealth": -1,
+      "hasMoved": false,
+      "hasFinished": false,
+      "justInstantiated": false,
+      "position": {
+        "x": 4.5,
+        "y": 6.5,
         "z": 0.0
       }
     },
@@ -48,43 +69,12 @@
       "name": "Centro Urbano",
       "team": 1,
       "currentHealth": -1,
+      "hasMoved": false,
+      "hasFinished": false,
       "justInstantiated": false,
       "position": {
-        "x": -0.5,
+        "x": 3.5,
         "y": 4.5,
-        "z": 0.0
-      }
-    },
-    {
-      "name": "Aldeano",
-      "team": 1,
-      "currentHealth": 1,
-      "justInstantiated": false,
-      "position": {
-        "x": -3.5,
-        "y": -0.5,
-        "z": 0.0
-      }
-    },
-    {
-      "name": "Milicia",
-      "team": 1,
-      "currentHealth": 1,
-      "justInstantiated": false,
-      "position": {
-        "x": -3.5,
-        "y": -1.5,
-        "z": 0.0
-      }
-    },
-    {
-      "name": "Milicia",
-      "team": 1,
-      "currentHealth": -1,
-      "justInstantiated": false,
-      "position": {
-        "x": -3.5,
-        "y": -2.5,
         "z": 0.0
       }
     }
@@ -92,7 +82,7 @@
   "resources": [
     {
       "team": 0,
-      "food": 1000,
+      "food": -1,
       "gold": -1
     },
     {
@@ -102,7 +92,6 @@
     }
   ],
   "gameData": {
-    "turn": 1,
-    "currentTeam": 1
+    "turn": 1
   }
 }

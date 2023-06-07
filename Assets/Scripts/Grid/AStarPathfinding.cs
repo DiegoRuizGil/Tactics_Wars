@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -8,6 +9,7 @@ public sealed class AStarPathfinding
 
     private List<Node> _openList;
     private List<Node> _closedList;
+    private List<Node> _nodeToReset;
 
     private const int MOVE_COST = 10;
 
@@ -27,11 +29,14 @@ public sealed class AStarPathfinding
 
     public List<Node> GetPath(Vector3 startPosition, Vector3 finalPosition, TeamEnum team)
     {
+        ResetNodes();
+
         Node startNode = Grid.Instance.GetNode(startPosition);
         Node finalNode = Grid.Instance.GetNode(finalPosition);
 
         _openList = new List<Node> { startNode };
         _closedList = new List<Node>();
+        _nodeToReset = new List<Node> { startNode, finalNode };
 
         startNode.GCost = 0;
         startNode.HCost = GetHeuristic(startPosition, finalPosition);
@@ -79,6 +84,8 @@ public sealed class AStarPathfinding
 
                     _openList.Add(nextNode);
                 }
+
+                //_nodeToReset.Add(nextNode);
             }
         }
 
@@ -86,7 +93,7 @@ public sealed class AStarPathfinding
         if (finalNode.NodeParent != null) // path found
         {
             path = GetNodePath(startNode, finalNode, team);
-            ResetNodes();
+            //ResetNodes();
         }
 
         return path;
@@ -94,15 +101,18 @@ public sealed class AStarPathfinding
 
     private List<Node> GetAStarPath(Node node)
     {
-        if (node.NodeParent == null)
-            return new List<Node> { node };
-        else
+        List<Node> path = new List<Node>();
+        Node currentNode = node;
+
+        path.Add(currentNode);
+        while (currentNode.NodeParent != null)
         {
-            List<Node> list = new List<Node>();
-            list.AddRange(GetAStarPath(node.NodeParent));
-            list.Add(node);
-            return list;
+            currentNode = currentNode.NodeParent;
+            path.Add(currentNode);
         }
+
+        path.Reverse();
+        return path;
     }
 
     private List<Node> GetNodePath(Node startNode, Node finalNode, TeamEnum team)
@@ -136,16 +146,19 @@ public sealed class AStarPathfinding
 
     private void ResetNodes()
     {
-        if (_openList == null || _closedList == null)
-            return;
-        if (_openList.Count == 0 && _closedList.Count == 0)
-            return;
+        //if (_openList == null || _closedList == null)
+        //    return;
+        //if (_openList.Count == 0 && _closedList.Count == 0)
+        //    return;
 
-        List<Node> visitedNodes = new List<Node>();
-        visitedNodes.AddRange(_openList);
-        visitedNodes.AddRange(_closedList);
+        //List<Node> visitedNodes = new List<Node>();
+        //visitedNodes.AddRange(_openList);
+        //visitedNodes.AddRange(_closedList);
 
-        foreach (Node node in visitedNodes)
+        //if (_nodeToReset == null)
+        //    return;
+
+        foreach (Node node in Grid.Instance.Nodes.Cast<Node>())
         {
             node.GCost = int.MaxValue / 2;
             node.HCost = int.MaxValue / 2;

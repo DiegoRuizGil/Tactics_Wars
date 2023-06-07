@@ -150,6 +150,6 @@ public class Node
 
     public void ShowInfo()
     {
-        Debug.Log($"({GridX}, {GridY}) Edificio: {_nodeEntities[0]?.Name}. Unidad: {_nodeEntities[1]?.Name}. Recurso: {_resource}.");
+        Debug.Log($"Puede construir edificio de unidades: {CanBuildUnitBuilding(GameManager.Instance.PlayerTeam)}");
     }
 }

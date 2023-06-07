@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Caballeria Ligera Info
   m_EditorClassIdentifier: 
   _entity: {fileID: 1109210306339172455, guid: 226b256160dc40642b3a1babebeb1da9, type: 3}
-  _foodAmount: 0
-  _goldAmount: 0
+  _foodAmount: 25
+  _goldAmount: 15

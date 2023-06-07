@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: MolinoInfoSO
   m_EditorClassIdentifier: 
   _entity: {fileID: 7434981032931518839, guid: 8d075118bb71d784b9a45abeb81dd3b3, type: 3}
-  _foodAmount: 100
-  _goldAmount: 100
+  _foodAmount: 0
+  _goldAmount: 50

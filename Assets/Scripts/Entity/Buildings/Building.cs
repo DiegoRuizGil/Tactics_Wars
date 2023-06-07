@@ -13,6 +13,9 @@ public class Building : Entity
     private void Start()
     {
         _animEventSys = GetComponent<AnimationEventSystem>();
+
+        if (_entityDamagedEvent != null)
+            _entityDamagedEvent?.Invoke(CurrentHealth * 1f / MaxHealth, false);
     }
 
     public override void EntityDeath()

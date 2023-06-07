@@ -15,7 +15,7 @@ public class GenerateUnitAction : BaseAction
 
     public override void Execute()
     {
-        if (GameManager.Instance.UpdateResources(_team, _unitInfo.FoodAmount, _unitInfo.GoldAmount))
+        if (GameManager.Instance.UpdateResources(_team, _unitInfo.FoodAmount * -1, _unitInfo.GoldAmount * -1))
         {
             Unit unit = GameManager.Instance.InstantiateUnit(
                     _unitInfo.Entity,

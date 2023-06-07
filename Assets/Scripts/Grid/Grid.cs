@@ -14,6 +14,7 @@ public class Grid
 
     public int Width { get { return _width; } }
     public int Height { get { return _height; } }
+    public Node[,] Nodes { get { return _nodes; } }
 
     public Grid(int width, int height, int cellSize, Vector3 startPoint)
     {

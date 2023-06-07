@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: ArmeriaInfoSO
   m_EditorClassIdentifier: 
   _entity: {fileID: 7491995076645872548, guid: c0c18c98b9f887d40bdd87d546180179, type: 3}
-  _foodAmount: 100
-  _goldAmount: 100
+  _foodAmount: 80
+  _goldAmount: 25

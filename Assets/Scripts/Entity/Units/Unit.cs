@@ -24,6 +24,7 @@ public class Unit : Entity
     [SerializeField]
     private List<UnitType> _weaknesses = new List<UnitType>();
 
+    [SerializeField]
     private Animator _animator;
     private AnimationEventSystem _animEventSys;
 
@@ -40,6 +41,11 @@ public class Unit : Entity
                 return;
 
             _sprite.material.SetFloat("_HasFinished", _hasFinished? 1f : 0f);
+
+            if (_animator != null)
+            {
+                _animator.SetBool("Finished", _hasFinished);
+            }
         }
     }
     public bool JustInstantiated { get { return _justInstantiated; } set { _justInstantiated = value; } }
@@ -49,8 +55,10 @@ public class Unit : Entity
 
     private void Start()
     {
-        _animator = GetComponent<Animator>();
         _animEventSys = GetComponent<AnimationEventSystem>();
+
+        if (_entityDamagedEvent != null)
+            _entityDamagedEvent?.Invoke(CurrentHealth * 1f / MaxHealth, false);
     }
 
     public override void EntityDeath()
@@ -76,6 +84,30 @@ public class Unit : Entity
     {
         if (_animEventSys != null)
             _animator.SetTrigger("Hurt");
+    }
+
+    public void FlipSprite(Vector3 lookingAt)
+    {
+        if (_sprite == null)
+            return;
+
+        Vector3 unitPosition = new Vector3(
+                Mathf.Floor(transform.position.x),
+                Mathf.Floor(transform.position.y),
+                transform.position.z
+            );
+        Vector3 targetPosition = new Vector3(
+                Mathf.Floor(lookingAt.x),
+                Mathf.Floor(lookingAt.y),
+                lookingAt.z
+            );
+
+        Vector3 direction = (targetPosition - unitPosition).normalized;
+
+        if (direction.x > 0)
+            _sprite.flipX = false;
+        else if (direction.x < 0)
+            _sprite.flipX = true;
     }
 }
 

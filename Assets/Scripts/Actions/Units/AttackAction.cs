@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class AttackAction : BaseAction
 {
-    private const float DAMAGE_COEFFICIENT = 0.5f;
+    private const float DAMAGE_COEFFICIENT = 0.25f;
     private readonly Unit _attacker;
     private readonly Entity _defender;
 
@@ -16,6 +16,11 @@ public class AttackAction : BaseAction
     public override void Execute()
     {
         AnimationEventSystem.AnimationFinishedEvent += ApplyDamage;
+
+        _attacker.FlipSprite(_defender.transform.position);
+        if (_defender is Unit)
+            (_defender as Unit).FlipSprite(_attacker.transform.position);
+
         _attacker.SetAttackAnimation(); // action called at the end of the animation
     }
 

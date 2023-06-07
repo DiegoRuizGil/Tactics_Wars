@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Aldeano Info
   m_EditorClassIdentifier: 
   _entity: {fileID: 1109210306339172455, guid: 8bf26e9f20e51a9418a207bbaa612512, type: 3}
-  _foodAmount: 0
+  _foodAmount: 10
   _goldAmount: 0

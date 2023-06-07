@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: GranjaInfoSO
   m_EditorClassIdentifier: 
   _entity: {fileID: 5274554113530335973, guid: bda3516f14708f24fa5b9c6d202bf3da, type: 3}
-  _foodAmount: 100
-  _goldAmount: 100
+  _foodAmount: 10
+  _goldAmount: 5

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Alabardero Info
   m_EditorClassIdentifier: 
   _entity: {fileID: 1109210306339172455, guid: 464a7759457c0e9409ecc13fe3433db3, type: 3}
-  _foodAmount: 0
-  _goldAmount: 0
+  _foodAmount: 20
+  _goldAmount: 40

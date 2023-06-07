@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: GoldResource
   m_EditorClassIdentifier: 
   _resourceType: 2
-  _resourceTile: {fileID: 11400000, guid: b0b9853b6801daf4ea1c30fbe33da1f2, type: 2}
+  _resourceTile: {fileID: 11400000, guid: d206242ac775be54f83d7775745e824b, type: 2}

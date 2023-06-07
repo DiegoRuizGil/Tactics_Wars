@@ -51,12 +51,17 @@ public class SceneInitializer : MonoBehaviour
                         entity.team
                     );
 
-                Debug.Log($"{entity.name}: {entity.currentHealth}");
                 if (entity.currentHealth > 0)
                     instance.CurrentHealth = entity.currentHealth;
 
                 if (instance is Unit)
-                    (instance as Unit).JustInstantiated = entity.justInstantiated;
+                {
+                    Unit unit = instance as Unit;
+
+                    unit.HasMoved = entity.hasMoved;
+                    unit.HasFinished = entity.hasFinished;
+                    unit.JustInstantiated = entity.justInstantiated;
+                }
             }
             else
             {

@@ -1,7 +1,8 @@
+using System.Collections.Generic;
+using System.Linq;
 using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 public class SavesMenuManager : MonoBehaviour
 {
@@ -17,7 +18,8 @@ public class SavesMenuManager : MonoBehaviour
     private void Awake()
     {
         DirectoryInfo directoryInfo = new DirectoryInfo(SaveSystem.SAVE_FOLDER);
-        FileInfo[] saveFiles = directoryInfo.GetFiles("*.json");
+        List<FileInfo> saveFiles = directoryInfo.GetFiles("*.json").ToList();
+        saveFiles.Sort((a, b) => b.LastWriteTime.CompareTo(a.LastWriteTime));
 
         foreach (FileInfo fileInfo in saveFiles)
         {

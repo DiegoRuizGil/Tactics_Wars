@@ -135,19 +135,20 @@ public class GameManager : MonoBehaviour
         _turn++;
         _currentTeam = (_currentTeam == TeamEnum.BLUE) ? TeamEnum.RED : TeamEnum.BLUE;
 
-        if (_currentTeam == PlayerTeam)
-        {
-            if (_saveToLoadSO.IsNewGame)
-            {
-                FileInfo newFile = SaveSystem.Save();
-                _saveToLoadSO.SaveToLoad = newFile;
-                _saveToLoadSO.IsNewGame = false;
-            }
-            else
-            {
-                SaveSystem.Save(_saveToLoadSO.SaveToLoad.Name);
-            }   
-        }
+        // AUTOSAVE
+        //if (_currentTeam == PlayerTeam)
+        //{
+        //    if (_saveToLoadSO.IsNewGame)
+        //    {
+        //        FileInfo newFile = SaveSystem.Save();
+        //        _saveToLoadSO.SaveToLoad = newFile;
+        //        _saveToLoadSO.IsNewGame = false;
+        //    }
+        //    else
+        //    {
+        //        SaveSystem.Save(_saveToLoadSO.SaveToLoad.Name);
+        //    }   
+        //}
 
         if (_buildingLists[_currentTeam].Count <= 0
             && _unitLists[_currentTeam].Count <= 0)
@@ -190,6 +191,12 @@ public class GameManager : MonoBehaviour
     private void ShowResourcesRed()
     {
         Debug.Log($"[RED] Food: {_foodResources[TeamEnum.RED]} Gold: {_goldResources[TeamEnum.RED]}");
+    }
+
+    [ContextMenu("Resources Blue Team")]
+    private void ShowResourcesBlue()
+    {
+        Debug.Log($"[BLUE] Food: {_foodResources[TeamEnum.BLUE]} Gold: {_goldResources[TeamEnum.BLUE]}");
     }
 
     public void UpdateTopHUD()

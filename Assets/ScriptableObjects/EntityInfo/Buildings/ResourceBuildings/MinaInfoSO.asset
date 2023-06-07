@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: MinaInfoSO
   m_EditorClassIdentifier: 
   _entity: {fileID: 8610929512437010587, guid: 79db4abb3ddb9474b99a7f050b3d0307, type: 3}
-  _foodAmount: 100
-  _goldAmount: 100
+  _foodAmount: 50
+  _goldAmount: 0

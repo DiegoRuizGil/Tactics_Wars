@@ -39,6 +39,25 @@ public sealed class SoundManager : MonoBehaviour
         _effectSource.PlayOneShot(clip);
     }
 
+    public void PlaySoundEffectLoop(AudioClip clip)
+    {
+        _effectSource.loop = true;
+        _effectSource.clip = clip;
+        _effectSource.Play();
+    }
+
+    public void StopSoundEffectLoop()
+    {
+        _effectSource.loop = false;
+        _effectSource.Stop();
+    }
+
+    public void SetMusic(AudioClip clip)
+    {
+        _musicSource.clip = clip;
+        _musicSource.Play();
+    }
+
     public void ChangeEffectsVolume(float value)
     {
         _effectSource.volume = Mathf.Pow(value, 2f);

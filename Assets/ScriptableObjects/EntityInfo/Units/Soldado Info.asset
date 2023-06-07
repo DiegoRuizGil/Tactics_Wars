@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Soldado Info
   m_EditorClassIdentifier: 
   _entity: {fileID: 1109210306339172455, guid: 0a2eb6cf6cbdc284591057b2faa84aca, type: 3}
-  _foodAmount: 0
-  _goldAmount: 0
+  _foodAmount: 45
+  _goldAmount: 50

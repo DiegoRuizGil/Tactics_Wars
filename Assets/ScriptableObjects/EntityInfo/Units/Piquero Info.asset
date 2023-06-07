@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Piquero Info
   m_EditorClassIdentifier: 
   _entity: {fileID: 1109210306339172455, guid: 7d4ce221d22753646805de0c781c733a, type: 3}
-  _foodAmount: 0
-  _goldAmount: 0
+  _foodAmount: 20
+  _goldAmount: 15

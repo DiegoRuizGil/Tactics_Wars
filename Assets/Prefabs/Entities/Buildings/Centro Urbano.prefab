@@ -434,9 +434,10 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   _name: Centro Urbano
-  _maxHealth: 100
-  _currentHealth: 100
+  _maxHealth: 120
+  _currentHealth: 120
   _team: 0
+  _entityImage: {fileID: -58810452, guid: 550c81ca44607464d9c3287e37236cd1, type: 3}
   _buildingType: 0
 --- !u!114 &8510027132776884281
 MonoBehaviour:
@@ -465,7 +466,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _resourceType: 1
-  _resourceAmount: 25
+  _resourceAmount: 10
 --- !u!114 &8510027132776884231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -479,7 +480,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _resourceType: 2
-  _resourceAmount: 25
+  _resourceAmount: 10
 --- !u!114 &3604053354078142012
 MonoBehaviour:
   m_ObjectHideFlags: 0

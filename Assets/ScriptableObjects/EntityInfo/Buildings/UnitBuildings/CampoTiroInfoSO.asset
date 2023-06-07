@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: CampoTiroInfoSO
   m_EditorClassIdentifier: 
   _entity: {fileID: 7951169316298770451, guid: ac0681206f075ff489acc0e204e199f9, type: 3}
-  _foodAmount: 100
-  _goldAmount: 100
+  _foodAmount: 75
+  _goldAmount: 55

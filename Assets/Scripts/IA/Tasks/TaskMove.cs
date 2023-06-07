@@ -71,8 +71,10 @@ public class TaskMove : TreeNode
         List<Node> pathInRange = aStarPath.GetRange(0, limit);
         int pathCount = pathInRange.Count;
 
-        for (int i = pathCount - 1; i >= 0; i++)
+        for (int i = pathCount - 1; i >= 0; i--)
         {
+            if (i < 0)
+                Debug.Log($"Indice negativo: {i}");
             if (pathInRange[i].GetEntity(1) != null
                 && pathInRange[i].GetEntity(1).Team == _unit.Team)
             {

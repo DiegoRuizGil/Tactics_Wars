@@ -20,6 +20,8 @@ public class GenerateUnitUI : MonoBehaviour
 
         for (int i = 0; i < _generateUnitButtons.Length; i++)
         {
+            _generateUnitButtons[i].interactable = true;
+
             if (i >= unitGenerator.UnitsInfo.Length)
             {
                 _generateUnitButtons[i].gameObject.SetActive(false);
@@ -29,9 +31,9 @@ public class GenerateUnitUI : MonoBehaviour
             UnitInfoSO unitInfo = unitGenerator.UnitsInfo[i];
 
             _generateUnitButtons[i].gameObject.SetActive(true);
-            _generateUnitButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = unitInfo.Entity.name + "\n" + $"({unitInfo.FoodAmount} c, {unitInfo.GoldAmount} o)";
+            _generateUnitButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = unitInfo.Entity.name + "\n" + $"({unitInfo.FoodAmount} f, {unitInfo.GoldAmount} g)";
 
-            if (foodAmount < unitInfo.FoodAmount || goldAmount < unitInfo.FoodAmount)
+            if (!(foodAmount >= unitInfo.FoodAmount && goldAmount >= unitInfo.GoldAmount))
             {
                 _generateUnitButtons[i].interactable = false;
                 continue;

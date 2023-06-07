@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Caballero Info
   m_EditorClassIdentifier: 
   _entity: {fileID: 1109210306339172455, guid: 5ec74ff4e56e6ad48a8eaf7a86e40a45, type: 3}
-  _foodAmount: 0
-  _goldAmount: 0
+  _foodAmount: 35
+  _goldAmount: 45

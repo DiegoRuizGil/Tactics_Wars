@@ -14,11 +14,14 @@ public class ResourceGenerator : MonoBehaviour
 
     private TeamEnum _team;
 
+    private string _name;
+
     private void Start()
     {
         if (TryGetComponent(out Building building))
         {
             _team = building.Team;
+            _name = building.Name;
         }
     }
 
@@ -26,7 +29,7 @@ public class ResourceGenerator : MonoBehaviour
     {
         if (_team == team)
             return;
-
+        Debug.Log($"[{_team}] {_name} ha generado: {_resourceAmount} de {_resourceType}");
         GameManager.Instance.UpdateResource(_team, _resourceType, _resourceAmount);
     }
 }

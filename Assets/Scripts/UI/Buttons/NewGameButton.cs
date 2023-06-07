@@ -19,8 +19,6 @@ public class NewGameButton : MonoBehaviour
 
         string savePath = SaveSystem.NEW_GAME_SAVE_FOLDER + _defaultSave.name + ".json";
 
-        Debug.Log(SaveSystem.SAVE_FOLDER);
-
         if (!File.Exists(savePath))
         {
             File.WriteAllText(savePath, _defaultSave.text);

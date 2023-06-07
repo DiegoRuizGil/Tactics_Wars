@@ -28,6 +28,8 @@ public class GenerateBuildingUI : MonoBehaviour
 
         for (int i = 0; i < _generateBuildingButtons.Length; i++)
         {
+            _generateBuildingButtons[i].interactable = true;
+
             if (i >= buildingsToBuild.Count)
             {
                 _generateBuildingButtons[i].gameObject.SetActive(false);
@@ -37,9 +39,9 @@ public class GenerateBuildingUI : MonoBehaviour
             BuildingInfoSO buildingInfo = buildingsToBuild[i];
 
             _generateBuildingButtons[i].gameObject.SetActive(true);
-            _generateBuildingButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = buildingInfo.Entity.name + "\n" + $"({buildingInfo.FoodAmount} c, {buildingInfo.GoldAmount} o)";
+            _generateBuildingButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = buildingInfo.Entity.name + "\n" + $"({buildingInfo.FoodAmount} f, {buildingInfo.GoldAmount} g)";
 
-            if (foodAmount < buildingInfo.FoodAmount || goldAmount < buildingInfo.FoodAmount)
+            if (!(foodAmount >= buildingInfo.FoodAmount && goldAmount >= buildingInfo.GoldAmount))
             {
                 _generateBuildingButtons[i].interactable = false;
                 continue;

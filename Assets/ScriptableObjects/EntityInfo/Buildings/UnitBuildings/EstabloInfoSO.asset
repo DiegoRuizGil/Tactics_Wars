@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: EstabloInfoSO
   m_EditorClassIdentifier: 
   _entity: {fileID: 5525427610173276513, guid: 33dd927aea95e4b40a77b3711327cd3a, type: 3}
-  _foodAmount: 100
-  _goldAmount: 100
+  _foodAmount: 105
+  _goldAmount: 55
