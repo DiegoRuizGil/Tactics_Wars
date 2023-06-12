@@ -19,6 +19,29 @@ public class TopHUDManager : MonoBehaviour
     [SerializeField] private Button _endTurnButton;
     [SerializeField] private Button _exitButton;
 
+    [Space(10)]
+    [SerializeField] private InputManager _inputManager;
+
+    private bool _activateButtons = false;
+
+    private void Update()
+    {
+        if (_inputManager.CurrentState is InputWaitingState)
+        {
+            _endTurnButton.interactable = false;
+            _exitButton.interactable = false;
+
+            _activateButtons = true;
+        }
+        else if (_activateButtons)
+        {
+            _endTurnButton.interactable = true;
+            _exitButton.interactable = true;
+
+            _activateButtons = false;
+        }
+    }
+
     public void UpdateHUD(TeamEnum team)
     {
         UpdateTurnInfo(team);
@@ -42,6 +65,8 @@ public class TopHUDManager : MonoBehaviour
 
     public void UpdatePlayerInfo()
     {
+        _turnText.text = $"{Mathf.CeilToInt(GameManager.Instance.Turn / 2f)}";
+
         TeamEnum playerTeam = GameManager.Instance.PlayerTeam;
 
         _foodAmountText.text = GameManager.Instance.FoodResources[playerTeam].ToString();

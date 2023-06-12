@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _muteMusic: 0
   _muteSoundEffects: 0
-  _musicVolume: 0.1
-  _soundEffectsVolume: 0.2
+  _musicVolume: 0.25
+  _soundEffectsVolume: 0.25

@@ -147,11 +147,10 @@ public class GameManager : MonoBehaviour
         //    else
         //    {
         //        SaveSystem.Save(_saveToLoadSO.SaveToLoad.Name);
-        //    }   
+        //    }
         //}
 
-        if (_buildingLists[_currentTeam].Count <= 0
-            && _unitLists[_currentTeam].Count <= 0)
+        if (!_buildingLists[_currentTeam].Any(building => building.BuildingType == BuildingType.URBAN_CENTER))
         {
             TeamEnum winner = (_currentTeam == TeamEnum.BLUE) ? TeamEnum.RED : TeamEnum.BLUE;
             

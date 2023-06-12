@@ -12,25 +12,14 @@ public class SceneInitializer : MonoBehaviour
     [SerializeField]
     private SaveToLoadSO _saveToLoad;
 
-    [ContextMenu("Read JSON")]
-    public void ReadJSON()
-    {
-        
-    }
-
     public void InitializeSceneData() // called from listener
     {
-        // SceneData sceneData = JsonUtility.FromJson<SceneData>(_textJSON.text);
-
         SceneData sceneData = SaveSystem.Load(_saveToLoad.SaveToLoad.Name, _saveToLoad.IsNewGame);
 
         InstantiateEntities(sceneData.entitiesData);
-
         SetResources(sceneData.resources);
 
-        //GameManager.Instance.Turn = sceneData.gameData.turn;
-        //GameManager.Instance.CurrentTeam = sceneData.gameData.currentTeam;
-
+        GameManager.Instance.Turn = sceneData.gameData.turn;
         GameManager.Instance.UpdateTopHUD();
     }
 

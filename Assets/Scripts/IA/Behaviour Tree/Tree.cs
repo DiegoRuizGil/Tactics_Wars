@@ -40,6 +40,29 @@ namespace BehaviourTree
             return _dataContext.Remove(key);
         }
 
+        public void ClearAllData()
+        {
+            _dataContext.Clear();
+        }
+
+        public void RemoveNonMatchingKeys(string matchingKey)
+        {
+            List<string> keysToRemove = new List<string>();
+
+            foreach (string key in _dataContext.Keys)
+            {
+                if (matchingKey != key)
+                {
+                    keysToRemove.Add(key);
+                }
+            }
+
+            foreach (string key in keysToRemove)
+            {
+                _dataContext.Remove(key);
+            }
+        }
+
         public bool ContainsKeyInData(string key)
         {
             return _dataContext.ContainsKey(key);

@@ -25,22 +25,29 @@ public class TaskAttack : TreeNode
             _action.Execute();
 
             if (target.CurrentHealth <= 0)
+            {
                 Tree.ClearData("target");
+                //_attacker.HasFinished = true;
+            }
+                
 
-            _state = TreeNodeState.RUNNING;
-            return _state;
-        }
-
-        if (_action.IsRunning)
-        {
             _state = TreeNodeState.RUNNING;
             return _state;
         }
         else
         {
-            _action = null;
-            _state = TreeNodeState.SUCCESS;
-            return _state;
+            if (_action.IsRunning)
+            {
+                _state = TreeNodeState.RUNNING;
+                return _state;
+            }
+            else
+            {
+                _action = null;
+                //_attacker.HasFinished = true;
+                _state = TreeNodeState.SUCCESS;
+                return _state;
+            }
         }
     }
 }

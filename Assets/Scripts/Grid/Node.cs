@@ -112,6 +112,9 @@ public class Node
 
     public bool CanBuildUnitBuilding(TeamEnum team)
     {
+        if (GetEntity(0) != null)
+            return false;
+
         foreach (Node neighhour in Neighbours)
         {
             if (neighhour.GetEntity(0) == null)
@@ -131,6 +134,9 @@ public class Node
 
     public bool CanBuildFarm(TeamEnum team)
     {
+        if (GetEntity(0) != null)
+            return false;
+
         foreach (Node neighhour in Neighbours)
         {
             if (neighhour.GetEntity(0) == null)
@@ -150,6 +156,6 @@ public class Node
 
     public void ShowInfo()
     {
-        Debug.Log($"Puede construir edificio de unidades: {CanBuildUnitBuilding(GameManager.Instance.PlayerTeam)}");
+        // Debug.Log($"Puede construir edificio de unidades: {CanBuildUnitBuilding(GameManager.Instance.PlayerTeam)}");
     }
 }

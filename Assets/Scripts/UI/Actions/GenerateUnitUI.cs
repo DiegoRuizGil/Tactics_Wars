@@ -33,7 +33,15 @@ public class GenerateUnitUI : MonoBehaviour
             _generateUnitButtons[i].gameObject.SetActive(true);
             _generateUnitButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = unitInfo.Entity.name + "\n" + $"({unitInfo.FoodAmount} f, {unitInfo.GoldAmount} g)";
 
+            // check resources
             if (!(foodAmount >= unitInfo.FoodAmount && goldAmount >= unitInfo.GoldAmount))
+            {
+                _generateUnitButtons[i].interactable = false;
+                continue;
+            }
+
+            // check max units
+            if (GameManager.Instance.UnitLists[GameManager.Instance.PlayerTeam].Count >= GameManager.Instance.MaxUnitAmount)
             {
                 _generateUnitButtons[i].interactable = false;
                 continue;

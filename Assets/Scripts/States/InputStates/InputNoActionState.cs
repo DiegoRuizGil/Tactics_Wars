@@ -7,7 +7,7 @@ public class InputNoActionState : InputBaseState
 
     public override void EnterState()
     {
-        Debug.Log("<color=green>NoAction</color>: Entering the state");
+        //Debug.Log("<color=green>NoAction</color>: Entering the state");
         Context.SelectedUnit = null;
         if (Context.OnEntityDeselectedEvent != null)
             Context.OnEntityDeselectedEvent.Raise();

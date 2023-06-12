@@ -154,7 +154,7 @@ public sealed class Pathfinding
     private HashSet<Node> GetNeighboursAttackAction(Node currentNode)
     {
         HashSet<Node> neighbours = new HashSet<Node>();
-        foreach (Node node in currentNode.Neighbours)
+        foreach (Node node in GetNeighboursWithWalls(currentNode))
         {
             if (!node.Equals(_initialNode) && !_nodesToReset.Contains(node))
             {
@@ -162,6 +162,41 @@ public sealed class Pathfinding
                 neighbours.Add(node);
                 _nodesToReset.Add(node);
             }
+        }
+
+        return neighbours;
+    }
+
+    private List<Node> GetNeighboursWithWalls(Node currentNode)
+    {
+        List<Node> neighbours = new List<Node>();
+
+        // Up
+        Node up = Grid.Instance.GetNode(currentNode.GridX, currentNode.GridY + 1);
+        if (up != null)
+        {
+            neighbours.Add(up);
+        }
+
+        // Down
+        Node down = Grid.Instance.GetNode(currentNode.GridX, currentNode.GridY - 1);
+        if (down != null)
+        {
+            neighbours.Add(down);
+        }
+
+        // Left
+        Node left = Grid.Instance.GetNode(currentNode.GridX - 1, currentNode.GridY);
+        if (left != null)
+        {
+            neighbours.Add(left);
+        }
+
+        // Right
+        Node right = Grid.Instance.GetNode(currentNode.GridX + 1, currentNode.GridY);
+        if (right != null)
+        {
+            neighbours.Add(right);
         }
 
         return neighbours;

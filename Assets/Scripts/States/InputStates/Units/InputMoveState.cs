@@ -12,7 +12,7 @@ public class InputMoveState : InputBaseState
 
     public override void EnterState()
     {
-        Debug.Log("<color=yellow>Move</color>: Entering the state");
+        //Debug.Log("<color=yellow>Move</color>: Entering the state");
 
         if (Context.UpdateActionAreaEvent == null)
             return;

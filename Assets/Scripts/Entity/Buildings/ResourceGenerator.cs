@@ -29,7 +29,7 @@ public class ResourceGenerator : MonoBehaviour
     {
         if (_team == team)
             return;
-        Debug.Log($"[{_team}] {_name} ha generado: {_resourceAmount} de {_resourceType}");
+
         GameManager.Instance.UpdateResource(_team, _resourceType, _resourceAmount);
     }
 }

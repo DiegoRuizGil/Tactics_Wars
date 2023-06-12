@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -11,6 +9,10 @@ public class EntityInfoMenu : MonoBehaviour
     private Image _unitImage;
     [SerializeField]
     private Image _buildingImage;
+
+    [Space(10)]
+    [SerializeField]
+    private TextMeshProUGUI _entityName;
 
     [Header("Stats")]
     [SerializeField]
@@ -52,6 +54,8 @@ public class EntityInfoMenu : MonoBehaviour
 
     private void ShowEntityInfo(Entity entity)
     {
+        _entityName.text = entity.Name;
+
         _health.GetComponentInChildren<TextMeshProUGUI>().text = $"{entity.CurrentHealth}/{entity.MaxHealth}";
         _health.SetActive(true);
 
@@ -95,12 +99,12 @@ public class EntityInfoMenu : MonoBehaviour
             {
                 if (generator.ResourceType == ResourceType.FOOD)
                 {
-                    _food.GetComponentInChildren<TextMeshProUGUI>().text = $"+ {generator.ResourceAmount}";
+                    _food.GetComponentInChildren<TextMeshProUGUI>().text = $"+{generator.ResourceAmount}";
                     _food.SetActive(true);
                 }
                 else if (generator.ResourceType == ResourceType.GOLD)
                 {
-                    _gold.GetComponentInChildren<TextMeshProUGUI>().text = $"+ {generator.ResourceAmount}";
+                    _gold.GetComponentInChildren<TextMeshProUGUI>().text = $"+{generator.ResourceAmount}";
                     _gold.SetActive(true);
                 }
             }
@@ -113,6 +117,8 @@ public class EntityInfoMenu : MonoBehaviour
 
     private void ClearInfo()
     {
+        _entityName.text = "";
+
         _unitImage.gameObject.SetActive(false);
         _buildingImage.gameObject.SetActive(false);
 

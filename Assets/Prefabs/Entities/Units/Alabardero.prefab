@@ -71,7 +71,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2045723631
-  m_SortingLayer: 2
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 193380401, guid: 223465a10d27895458fde37251835d77, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -143,7 +143,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 1632498519
+  m_SortingLayerID: -263068311
   m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!114 &3266550030066379773
@@ -318,7 +318,7 @@ MonoBehaviour:
   _team: 0
   _entityImage: {fileID: 193380401, guid: 223465a10d27895458fde37251835d77, type: 3}
   _damage: 35
-  _movementRange: 2
+  _movementRange: 3
   _attackRange: 1
   _hasMoved: 0
   _hasFinished: 0

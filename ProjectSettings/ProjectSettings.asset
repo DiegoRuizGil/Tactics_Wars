@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: Tactics_Wars
+  productName: Tactics Wars
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -273,7 +273,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 1b62c75e0c02613489ea5d4e3e560c71, type: 3}
+      m_Icon: {fileID: 2800000, guid: 238ade42b4710e4488c29dbada2340c2, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0

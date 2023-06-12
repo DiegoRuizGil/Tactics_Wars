@@ -81,6 +81,7 @@ public class IAManager : MonoBehaviour
                         }
 
                         unitTree = tree;
+                        unitTree.RemoveNonMatchingKeys("buildMode");
                         unitTree.enabled = true;
                     }
                     else

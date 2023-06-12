@@ -13,27 +13,33 @@ public class ScreenSettingsMenu : MonoBehaviour
     [SerializeField]
     private ScreenSettingsSO _screenSettingsSO;
 
-    private Resolution[] _resolutions;
+    private List<Resolution> _resolutionsList;
 
     void Start()
     {
         _fullScreenToggle.isOn = _screenSettingsSO.FullScreen;
 
-        _resolutions = Screen.resolutions;
+        _resolutionsList = new List<Resolution>();
+        Resolution[] resolutions = Screen.resolutions;
 
         List<string> options = new List<string>();
         int currentResolution = 0;
-        for (int i=0; i < _resolutions.Length; i++)
+        int index = 0;
+        foreach (Resolution resolution in resolutions)
         {
-            //if ((_resolutions[i].width * 9) != (_resolutions[i].height * 16))
-            //    continue;
+            if ((resolution.width * 9) != (resolution.height * 16))
+                continue;
 
-            options.Add($"{_resolutions[i].width}x{_resolutions[i].height} {_resolutions[i].refreshRate}Hz");
+            _resolutionsList.Add(resolution);
+            options.Add($"{resolution.width}x{resolution.height} {resolution.refreshRate}Hz");
 
-            if (_resolutions[i].Equals(Screen.currentResolution))
+            if (resolution.Equals(Screen.currentResolution))
             {
-                currentResolution = i;
+                Debug.Log($"Seleccionamos nueva resolucion: {resolution.width}x{resolution.height}");
+                currentResolution = index;
             }
+
+            index++;
         }
 
         _resolutionDropdown.ClearOptions();
@@ -44,7 +50,7 @@ public class ScreenSettingsMenu : MonoBehaviour
 
     public void SetResolution(int option)
     {
-        Resolution resolution = _resolutions[option];
+        Resolution resolution = _resolutionsList[option];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
         _screenSettingsSO.CurrentResolution = resolution;
     }

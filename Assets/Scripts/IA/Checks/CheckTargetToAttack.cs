@@ -31,6 +31,7 @@ public class CheckTargetToAttack : TreeNode
 
             if (newTarget == null)
             {
+                Tree.ClearData("target");
                 _state = TreeNodeState.FAILURE;
                 return _state;
             }

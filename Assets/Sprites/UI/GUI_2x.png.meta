@@ -1652,13 +1652,13 @@ TextureImporter:
     nameFileIdTable:
       GUI_2x_22: 1013416871
       GUI_2x_35: -492279047
-      GUI_2x_69: 2073000522
       GUI_2x_18: 1457027922
       GUI_2x_59: -19571039
       GUI_2x_61: 863760023
+      GUI_2x_0: -1800472245
       GUI_2x_62: 938379622
       GUI_2x_7: 555312383
-      GUI_2x_25: -1435009022
+      GUI_2x_24: -1809197845
       GUI_2x_50: -912534527
       GUI_2x_4: 851021756
       GUI_2x_16: 293484691
@@ -1719,9 +1719,9 @@ TextureImporter:
       GUI_2x_10: 1492384246
       GUI_2x_49: -2112444760
       GUI_2x_71: -1743206181
+      GUI_2x_25: -1435009022
       GUI_2x_42: -1308165221
-      GUI_2x_0: -1800472245
-      GUI_2x_24: -1809197845
+      GUI_2x_69: 2073000522
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

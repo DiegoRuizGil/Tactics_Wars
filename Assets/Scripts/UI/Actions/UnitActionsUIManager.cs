@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class UnitActionsUIManager : MonoBehaviour
@@ -108,6 +107,15 @@ public class UnitActionsUIManager : MonoBehaviour
         }
 
         _repairButton.gameObject.SetActive(true);
-        _repairButton.interactable = _unitNode.GetEntity(0) != null;
+
+        Entity building = _unitNode.GetEntity(0);
+        if (building != null)
+        {
+            _repairButton.interactable = building.MaxHealth != building.CurrentHealth;
+        }
+        else
+        {
+            _repairButton.interactable = false;
+        }
     }
 }

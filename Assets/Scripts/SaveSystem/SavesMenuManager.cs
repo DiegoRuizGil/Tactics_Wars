@@ -30,7 +30,7 @@ public class SavesMenuManager : MonoBehaviour
             lgbc.SaveDateText = fileInfo.LastWriteTime.ToString();
             lgbc.FoodAmountText = sceneData.resources[0].food.ToString();
             lgbc.GoldAmountText = sceneData.resources[0].gold.ToString();
-            lgbc.currentTurnText = sceneData.gameData.turn.ToString();
+            lgbc.currentTurnText = Mathf.CeilToInt(sceneData.gameData.turn / 2f).ToString();
 
             int entities = 0;
             foreach (EntityData entity in sceneData.entitiesData)

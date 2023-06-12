@@ -12,7 +12,7 @@ public class InputRepairState : InputBaseState
 
     public override void EnterState()
     {
-        Debug.Log("<color=cyan>Repair</color>: Entering the state");
+        //Debug.Log("<color=cyan>Repair</color>: Entering the state");
         BaseAction action = new RepairAction(Context.SelectedUnit);
         Context.ActionHandler.ActionToHandle = action;
         Context.ActionHandler.ExecuteCommand();

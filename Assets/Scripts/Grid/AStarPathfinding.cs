@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -9,7 +8,6 @@ public sealed class AStarPathfinding
 
     private List<Node> _openList;
     private List<Node> _closedList;
-    private List<Node> _nodeToReset;
 
     private const int MOVE_COST = 10;
 
@@ -36,7 +34,6 @@ public sealed class AStarPathfinding
 
         _openList = new List<Node> { startNode };
         _closedList = new List<Node>();
-        _nodeToReset = new List<Node> { startNode, finalNode };
 
         startNode.GCost = 0;
         startNode.HCost = GetHeuristic(startPosition, finalPosition);
@@ -146,18 +143,6 @@ public sealed class AStarPathfinding
 
     private void ResetNodes()
     {
-        //if (_openList == null || _closedList == null)
-        //    return;
-        //if (_openList.Count == 0 && _closedList.Count == 0)
-        //    return;
-
-        //List<Node> visitedNodes = new List<Node>();
-        //visitedNodes.AddRange(_openList);
-        //visitedNodes.AddRange(_closedList);
-
-        //if (_nodeToReset == null)
-        //    return;
-
         foreach (Node node in Grid.Instance.Nodes.Cast<Node>())
         {
             node.GCost = int.MaxValue / 2;

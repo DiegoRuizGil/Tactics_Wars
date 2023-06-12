@@ -21,6 +21,13 @@ public class TaskMove : TreeNode
         {
             // PREVIOS NODE HAS SET THE TARGET POSITION
             Vector3 targetPosition = (Tree.GetData("targetPosition") as Vector3?).Value;
+            //if (targetPosition == null)
+            //{
+            //    _unit.HasFinished = true;
+
+            //    _state = TreeNodeState.FAILURE;
+            //    return _state;
+            //}
 
             if (ManhattanDistance(_unit.transform.position, targetPosition) <= _unit.AttackRange
                     && Tree.GetData("target") != null) // only when target to attack is selected
@@ -34,6 +41,12 @@ public class TaskMove : TreeNode
                     targetPosition,
                     _unit.Team
                 );
+
+            if (aStarPath.Count == 0)
+            {
+                _state = TreeNodeState.FAILURE;
+                return _state;
+            }
 
             if (aStarPath.Count <= _unit.AttackRange - 1
                  && Tree.GetData("target") != null) // only when target to attack is selected
@@ -50,17 +63,20 @@ public class TaskMove : TreeNode
             _state = TreeNodeState.RUNNING;
             return _state;
         }
-
-        if (_action.IsRunning)
-        {
-            _state = TreeNodeState.RUNNING;
-            return _state;
-        }
         else
         {
-            _action = null;
-            _state = TreeNodeState.SUCCESS;
-            return _state;
+            if (_action.IsRunning)
+            {
+                _state = TreeNodeState.RUNNING;
+                return _state;
+            }
+            else
+            {
+                _action = null;
+                //_unit.HasFinished = true;
+                _state = TreeNodeState.SUCCESS;
+                return _state;
+            }
         }
     }
 
