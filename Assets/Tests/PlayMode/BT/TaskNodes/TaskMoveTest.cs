@@ -20,7 +20,7 @@ public class TaskMoveTest
         int height = 11;
         int cellSize = 1;
         Grid.Instance = new Grid(width, height, cellSize, Vector3.zero);
-
+        Grid.Instance.SetNodesNeighbours();
     }
 
     [TearDown]
@@ -44,7 +44,7 @@ public class TaskMoveTest
         TaskMove taskNode = new TaskMove(_tree, unit);
 
         taskNode.Evaluate();
-        Assert.AreEqual(taskNode.State, TreeNodeState.RUNNING);
+        Assert.AreEqual(TreeNodeState.RUNNING, taskNode.State);
 
         yield return null;
     }

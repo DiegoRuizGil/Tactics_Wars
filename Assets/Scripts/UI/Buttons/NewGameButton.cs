@@ -1,17 +1,17 @@
 using System.IO;
 using UnityEngine;
-using TMPro;
+using UnityEngine.Events;
 
 public class NewGameButton : MonoBehaviour
 {
+    [SerializeField]
+    private UnityEvent _loadErrorEvent;
+
     [SerializeField]
     private TextAsset _defaultSave;
 
     [SerializeField]
     private SaveToLoadSO _saveToLoadSO;
-
-    [SerializeField]
-    private TextMeshProUGUI _errorText;
 
     public void LoadNewGame()
     {
@@ -27,6 +27,24 @@ public class NewGameButton : MonoBehaviour
         _saveToLoadSO.SaveToLoad = new FileInfo(savePath);
         _saveToLoadSO.IsNewGame = true;
 
-        LevelManager.Instance.LoadScene("GameScene");
+        try
+        {
+            if (!SaveSystem.IsValidData(SaveSystem.Load(_defaultSave.name + ".json", true)))
+            {
+                if (_loadErrorEvent != null)
+                    _loadErrorEvent.Invoke();
+            }
+            else
+            {
+                LevelManager.Instance.LoadScene("GameScene");
+            }
+        }
+        catch (System.ArgumentException ex)
+        {
+            Debug.LogWarning($"[{ex.GetType()}] {ex.Message}");
+
+            if (_loadErrorEvent != null)
+                _loadErrorEvent.Invoke();
+        }
     }
 }
