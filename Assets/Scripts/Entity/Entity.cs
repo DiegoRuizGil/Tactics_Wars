@@ -20,7 +20,7 @@ public abstract class Entity : MonoBehaviour
     [SerializeField]
     private Sprite _entityImage;
 
-    public string Name { get { return _name; } }
+    public string Name { get { return _name; } set { _name = value; } }
     public int MaxHealth { get { return _maxHealth; } }
     public int CurrentHealth { get { return _currentHealth; } set { _currentHealth = value; } }
     public TeamEnum Team { get { return _team; } set { _team = value; } }

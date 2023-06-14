@@ -27,11 +27,15 @@ public sealed class SoundManager : MonoBehaviour
         }
 
         // load sound settings
-        ChangeEffectsVolume(_soundSettings.SoundEffectsVolume);
-        ChangeMusicVolume(_soundSettings.MusicVolume);
+        if (_soundSettings != null)
+        {
+            ChangeEffectsVolume(_soundSettings.SoundEffectsVolume);
+            ChangeMusicVolume(_soundSettings.MusicVolume);
 
-        ToggleSoundEffects(_soundSettings.MuteSoundEffects);
-        ToggleMusic(_soundSettings.MuteMusic);
+            ToggleSoundEffects(_soundSettings.MuteSoundEffects);
+            ToggleMusic(_soundSettings.MuteMusic);
+        }
+        
     }
 
     public void PlaySoundEffect(AudioClip clip)
@@ -48,6 +52,9 @@ public sealed class SoundManager : MonoBehaviour
 
     public void StopSoundEffectLoop()
     {
+        if (_effectSource == null)
+            return;
+
         _effectSource.loop = false;
         _effectSource.Stop();
     }

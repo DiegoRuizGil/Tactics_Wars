@@ -35,6 +35,12 @@ public class UnitBuilder : IBuilder<Unit>
         return this;
     }
 
+    public UnitBuilder WithName(string name)
+    {
+        _unit.Name = name;
+        return this;
+    }
+
     public Unit Build()
     {
         return _unit;

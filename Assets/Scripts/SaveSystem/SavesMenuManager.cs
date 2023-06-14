@@ -2,10 +2,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.IO;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class SavesMenuManager : MonoBehaviour
 {
+    [SerializeField]
+    private UnityEvent _loadErrorEvent;
+
     [SerializeField]
     private Button _loadSaveButtonPrefab;
 
@@ -25,23 +29,33 @@ public class SavesMenuManager : MonoBehaviour
         {
             Button button = Instantiate(_loadSaveButtonPrefab, this.transform);
 
-            SceneData sceneData = SaveSystem.Load(fileInfo.Name, false);
-            LoadGameButtonController lgbc = button.gameObject.GetComponent<LoadGameButtonController>();
-            lgbc.SaveDateText = fileInfo.LastWriteTime.ToString();
-            lgbc.FoodAmountText = sceneData.resources[0].food.ToString();
-            lgbc.GoldAmountText = sceneData.resources[0].gold.ToString();
-            lgbc.currentTurnText = Mathf.CeilToInt(sceneData.gameData.turn / 2f).ToString();
-
-            int entities = 0;
-            foreach (EntityData entity in sceneData.entitiesData)
+            try
             {
-                if (entity.team == TeamEnum.BLUE && _entitiesPrefabs.TryGetPrefab(entity.name, out Entity prefab))
+                SceneData sceneData = SaveSystem.Load(fileInfo.Name, false);
+                if (SaveSystem.IsValidData(sceneData))
                 {
-                    if (prefab is Unit)
-                        entities++;
-                } 
+                    LoadGameButtonController lgbc = button.gameObject.GetComponent<LoadGameButtonController>();
+                    lgbc.SaveDateText = fileInfo.LastWriteTime.ToString();
+                    lgbc.FoodAmountText = sceneData.resources[0].food.ToString();
+                    lgbc.GoldAmountText = sceneData.resources[0].gold.ToString();
+                    lgbc.currentTurnText = Mathf.CeilToInt(sceneData.gameData.turn / 2f).ToString();
+
+                    int entities = 0;
+                    foreach (EntityData entity in sceneData.entitiesData)
+                    {
+                        if (entity.team == TeamEnum.BLUE && _entitiesPrefabs.TryGetPrefab(entity.name, out Entity prefab))
+                        {
+                            if (prefab is Unit)
+                                entities++;
+                        }
+                    }
+                    lgbc.EntitiesAmountText = entities.ToString();
+                }
             }
-            lgbc.EntitiesAmountText = entities.ToString();
+            catch (System.ArgumentException ex)
+            {
+                Debug.LogWarning($"[{ex.GetType()}] {ex.Message}");
+            }
 
             button.onClick.AddListener(() => OnButtonClick(fileInfo));
         }
@@ -49,10 +63,28 @@ public class SavesMenuManager : MonoBehaviour
 
     private void OnButtonClick(FileInfo fileInfo)
     {
-        _saveToLoadSO.SaveToLoad = fileInfo;
-        _saveToLoadSO.IsNewGame = false;
-        
-        LevelManager.Instance.LoadScene("GameScene");
+        try
+        {
+            if (!SaveSystem.IsValidData(SaveSystem.Load(fileInfo.Name, false)))
+            {
+                if (_loadErrorEvent != null)
+                    _loadErrorEvent.Invoke();
+            }
+            else
+            {
+                _saveToLoadSO.SaveToLoad = fileInfo;
+                _saveToLoadSO.IsNewGame = false;
+
+                LevelManager.Instance.LoadScene("GameScene");
+            }
+        }
+        catch (System.ArgumentException ex)
+        {
+            Debug.LogWarning($"[{ex.GetType()}] {ex.Message}");
+
+            if (_loadErrorEvent != null)
+                _loadErrorEvent.Invoke();
+        }
     }
     
 }

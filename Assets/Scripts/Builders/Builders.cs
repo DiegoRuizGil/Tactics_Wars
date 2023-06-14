@@ -5,6 +5,8 @@ public static class A
     public static BuildingBuilder Building => new BuildingBuilder();
     public static BuildingInfoSOBuilder BuildingInfoSO => new BuildingInfoSOBuilder();
     public static GameManagerBuilder GameManager => new GameManagerBuilder();
+    public static SaveToLoadSOBuilder SaveToLoad => new SaveToLoadSOBuilder();
+    public static SceneInitializerBuilder SceneInitializer => new SceneInitializerBuilder();
 }
 
 public static class An

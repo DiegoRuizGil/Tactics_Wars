@@ -4,13 +4,13 @@ using UnityEngine;
 public class SceneInitializer : MonoBehaviour
 {
     [SerializeField]
-    private TextAsset _textJSON;
-
-    [SerializeField]
     private EntitiesPrefabsSO _entitiesPrefabs;
 
     [SerializeField]
     private SaveToLoadSO _saveToLoad;
+
+    public EntitiesPrefabsSO EntitiesPrefabs { get { return _entitiesPrefabs; } set { _entitiesPrefabs = value; } }
+    public SaveToLoadSO SaveToLoad { get { return _saveToLoad; } set { _saveToLoad = value; } }
 
     public void InitializeSceneData() // called from listener
     {

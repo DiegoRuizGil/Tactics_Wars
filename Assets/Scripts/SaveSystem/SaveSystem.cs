@@ -84,7 +84,7 @@ public static class SaveSystem
 
     public static SceneData Load(string saveFileName, bool isNewGame)
     {
-        string filePath = "";
+        string filePath;
 
         if (isNewGame)
         {
@@ -120,6 +120,19 @@ public static class SaveSystem
         {
             return false;
         }
+    }
+
+    public static bool IsValidData(SceneData data)
+    {
+        if (data == null ||
+            data.entitiesData == null ||
+            data.resources == null ||
+            data.gameData == null)
+        {
+            return false;
+        }
+
+        return true;
     }
 
     private static string GetSceneDataString()

@@ -28,6 +28,12 @@ public class BuildingBuilder : IBuilder<Building>
         return this;
     }
 
+    public BuildingBuilder WithName(string name)
+    {
+        _building.Name = name;
+        return this;
+    }
+
     public Building Build()
     {
         return _building;
