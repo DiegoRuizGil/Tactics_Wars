@@ -1,0 +1,97 @@
+{
+  "entitiesData": [
+    {
+      "name": "Aldeano",
+      "team": 0,
+      "currentHealth": -1,
+      "hasMoved": false,
+      "hasFinished": false,
+      "justInstantiated": false,
+      "position": {
+        "x": -13.5,
+        "y": -8.5,
+        "z": 0.0
+      }
+    },
+    {
+      "name": "Caballeria Ligera",
+      "team": 0,
+      "currentHealth": -1,
+      "hasMoved": false,
+      "hasFinished": false,
+      "justInstantiated": false,
+      "position": {
+        "x": -14.5,
+        "y": -9.5,
+        "z": 0.0
+      }
+    },
+    {
+      "name": "Centro Urbano",
+      "team": 0,
+      "currentHealth": -1,
+      "hasMoved": false,
+      "hasFinished": false,
+      "justInstantiated": false,
+      "position": {
+        "x": -13.5,
+        "y": -7.5,
+        "z": 0.0
+      }
+    },
+    {
+      "name": "Aldeano",
+      "team": 1,
+      "currentHealth": -1,
+      "hasMoved": false,
+      "hasFinished": false,
+      "justInstantiated": false,
+      "position": {
+        "x": 3.5,
+        "y": 5.5,
+        "z": 0.0
+      }
+    },
+    {
+      "name": "Caballeria Ligera",
+      "team": 1,
+      "currentHealth": -1,
+      "hasMoved": false,
+      "hasFinished": false,
+      "justInstantiated": false,
+      "position": {
+        "x": 4.5,
+        "y": 6.5,
+        "z": 0.0
+      }
+    },
+    {
+      "name": "Centro Urbano",
+      "team": 1,
+      "currentHealth": -1,
+      "hasMoved": false,
+      "hasFinished": false,
+      "justInstantiated": false,
+      "position": {
+        "x": 3.5,
+        "y": 4.5,
+        "z": 0.0
+      }
+    }
+  ],
+  "resources": [
+    {
+      "team": 0,
+      "food": -1,
+      "gold": -1
+    },
+    {
+      "team": 1,
+      "food": -1,
+      "gold": -1
+    }
+  ],
+  "gameData": {
+    "turn": 1
+  }
+}

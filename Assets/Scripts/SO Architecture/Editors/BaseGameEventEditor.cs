@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using UnityEngine;
 using UnityEditor;
 
@@ -17,3 +18,4 @@ public class BaseGameEventEditor<T, E> : Editor where E : BaseGameEvent<T>
             gameEvent.Raise(gameEvent.DebugValue);
     }
 }
+#endif

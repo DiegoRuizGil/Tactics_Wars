@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Caballeria Ligera Animator Override Controller
+  m_Controller: {fileID: 9100000, guid: 3ba1853b733acb245b3a77336c9ecce5, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: f863e62520a32e64d90cfeef79d06bff, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: ddf51798668d4b244aed18bfa4363ae6, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: c423ba94e7fe0084f94eb47971e02204, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: eeef9dc5d03ae054e941eef1762528fd, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: e08e1a9bb0289ef4090e70928c38eada, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 95c2c1e1e4ff7f8478021b29af157f29, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 82d15548a2fb71842b5c87e6146b07be, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 1d21644511eff494e9e913a68958b0c4, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 13e3cbd59a5e55347930c3fb0227c3fc, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 2489a5b0dc1fabe478e71e1d0ff14aaa, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 976eb17763e9b2b40bdda596f260084c, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: cc687723431185d4d82cca0cc0b41021, type: 2}

@@ -41,3 +41,21 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: GridLines
+    uniqueID: 2117487229
+    locked: 0
+  - name: UI
+    uniqueID: 1632498519
+    locked: 0
+  - name: Buildings
+    uniqueID: 1110695987
+    locked: 0
+  - name: Units
+    uniqueID: 2045723631
+    locked: 0
+  - name: ActionArea
+    uniqueID: 3175139873
+    locked: 0
+  - name: UIAboveMap
+    uniqueID: 4031898985
+    locked: 0
