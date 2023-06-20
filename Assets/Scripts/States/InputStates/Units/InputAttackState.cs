@@ -11,7 +11,7 @@ public class InputAttackState : InputBaseState
 
     public override void EnterState()
     {
-        //Debug.Log("<color=red>Attack</color>: Entering the state");
+        Debug.Log("<color=red>Attack</color>: Entering the state");
 
         _attackArea = Pathfinding.Instance.GetAttackArea(
             Context.SelectedUnit.transform.position,

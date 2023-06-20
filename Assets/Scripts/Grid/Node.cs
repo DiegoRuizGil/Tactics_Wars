@@ -153,9 +153,4 @@ public class Node
 
         return false;
     }
-
-    public void ShowInfo()
-    {
-        // Debug.Log($"Puede construir edificio de unidades: {CanBuildUnitBuilding(GameManager.Instance.PlayerTeam)}");
-    }
 }

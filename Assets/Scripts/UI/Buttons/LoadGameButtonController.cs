@@ -14,9 +14,9 @@ public class LoadGameButtonController : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI _currentTurnText;
 
-    public string SaveDateText { set { _saveDateText.text = value; } }
-    public string FoodAmountText { set { _foodAmountText.text = value; } }
-    public string GoldAmountText { set { _goldAmountText.text = value; } }
-    public string EntitiesAmountText { set { _entitiesAmountText.text = value; } }
-    public string currentTurnText { set { _currentTurnText.text = value; } }
+    public string SaveDateText { get { return _saveDateText.text; } set { _saveDateText.text = value; } }
+    public string FoodAmountText { get { return _foodAmountText.text; } set { _foodAmountText.text = value; } }
+    public string GoldAmountText { get { return _goldAmountText.text; } set { _goldAmountText.text = value; } }
+    public string EntitiesAmountText { get { return _entitiesAmountText.text; } set { _entitiesAmountText.text = value; } }
+    public string currentTurnText { get { return _currentTurnText.text; } set { _currentTurnText.text = value; } }
 }

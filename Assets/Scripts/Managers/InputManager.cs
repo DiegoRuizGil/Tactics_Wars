@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InputManager : MonoBehaviour
@@ -69,16 +68,6 @@ public class InputManager : MonoBehaviour
     void Update()
     {
         _currentState.UpdateState();
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            Vector3 mousePosition = GetMouseWorldPosition();
-            Node node = Grid.Instance.GetNode(mousePosition);
-            if (node != null)
-            {
-                node.ShowInfo();
-            }
-        }
     }
 
     public void SwitchState(InputBaseState state)

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class InputWaitingState : InputBaseState
 {
-    private Unit _unit;
+    private readonly Unit _unit;
 
     public InputWaitingState(InputManager context, InputStateFactory factory, BaseAction action)
         : base(context, factory)
@@ -17,14 +17,14 @@ public class InputWaitingState : InputBaseState
 
     public override void EnterState()
     {
-        //Debug.Log("<color=cyan>Waiting</color>: Entering the state");
+        Debug.Log("<color=cyan>Waiting</color>: Entering the state");
         Context.SelectedUnit = null;
         Context.OnEntityDeselectedEvent.Raise();
     }
 
     public override void UpdateState()
     {
-        //Debug.Log("<color=cyan>Waiting</color> to finish the action");
+        Debug.Log("<color=cyan>Waiting</color> to finish the action");
     }
 
     private void FinalizeUnit() // check if unit can do more actions

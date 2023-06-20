@@ -81,8 +81,6 @@ public sealed class AStarPathfinding
 
                     _openList.Add(nextNode);
                 }
-
-                //_nodeToReset.Add(nextNode);
             }
         }
 
@@ -90,7 +88,6 @@ public sealed class AStarPathfinding
         if (finalNode.NodeParent != null) // path found
         {
             path = GetNodePath(startNode, finalNode, team);
-            //ResetNodes();
         }
 
         return path;
