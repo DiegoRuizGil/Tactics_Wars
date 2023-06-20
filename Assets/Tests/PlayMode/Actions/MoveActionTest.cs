@@ -17,6 +17,9 @@ public class MoveActionTest
         _height = 11;
         _cellSize = 1;
         Grid.Instance = new Grid(_width, _height, _cellSize, Vector3.zero);
+
+        GameObject go = new GameObject();
+        go.AddComponent<SoundManager>();
     }
 
     [TearDown]

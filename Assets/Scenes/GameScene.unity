@@ -138,7 +138,6 @@ GameObject:
   m_Component:
   - component: {fileID: 51739668}
   - component: {fileID: 51739670}
-  - component: {fileID: 51739669}
   m_Layer: 0
   m_Name: Buildings
   m_TagString: Untagged
@@ -161,23 +160,6 @@ Transform:
   m_Father: {fileID: 2112823551}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &51739669
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 51739667}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b1e68e477f35fd4bb002dc2be0a692b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _team: 0
-  _prefabs:
-  - {fileID: 8510027132776884280, guid: 2376e13499889934cbee34bafe7b881d, type: 3}
-  _positions:
-  - {x: -3.5, y: -5.5, z: 0}
 --- !u!114 &51739670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -326,7 +308,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f61a13bcb7641d4f869b5715537f6b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _textJSON: {fileID: 4900000, guid: b806962905ba9164799ed69e641a900e, type: 3}
   _entitiesPrefabs: {fileID: 11400000, guid: 60df32408b2a0fd44a535ae69b60000a, type: 2}
   _saveToLoad: {fileID: 11400000, guid: 4950683ff00dfde459eb45bd6248ba49, type: 2}
 --- !u!114 &130257196
@@ -887,7 +868,6 @@ GameObject:
   m_Component:
   - component: {fileID: 511602437}
   - component: {fileID: 511602439}
-  - component: {fileID: 511602438}
   m_Layer: 0
   m_Name: Units
   m_TagString: Untagged
@@ -910,25 +890,6 @@ Transform:
   m_Father: {fileID: 1119635709}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &511602438
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 511602436}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b1e68e477f35fd4bb002dc2be0a692b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _team: 1
-  _prefabs:
-  - {fileID: 1109210306339172455, guid: 8bf26e9f20e51a9418a207bbaa612512, type: 3}
-  - {fileID: 1109210306339172455, guid: aca4d420324affe46af39bf1afb9d448, type: 3}
-  _positions:
-  - {x: -0.5, y: 3.5, z: 0}
-  - {x: -0.5, y: 2.5, z: 0}
 --- !u!114 &511602439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1810,7 +1771,6 @@ GameObject:
   m_Component:
   - component: {fileID: 957455014}
   - component: {fileID: 957455016}
-  - component: {fileID: 957455015}
   m_Layer: 0
   m_Name: Buildings
   m_TagString: Untagged
@@ -1833,23 +1793,6 @@ Transform:
   m_Father: {fileID: 1119635709}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &957455015
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 957455013}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b1e68e477f35fd4bb002dc2be0a692b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _team: 1
-  _prefabs:
-  - {fileID: 8510027132776884280, guid: 2376e13499889934cbee34bafe7b881d, type: 3}
-  _positions:
-  - {x: -0.5, y: 4.5, z: 0}
 --- !u!114 &957455016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2584,7 +2527,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1025400187}
   - component: {fileID: 1025400188}
-  - component: {fileID: 1025400189}
   m_Layer: 0
   m_Name: Units
   m_TagString: Untagged
@@ -2623,27 +2565,6 @@ MonoBehaviour:
   _unityEventResponse:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1025400189
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1025400186}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b1e68e477f35fd4bb002dc2be0a692b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _team: 0
-  _prefabs:
-  - {fileID: 1109210306339172455, guid: 8bf26e9f20e51a9418a207bbaa612512, type: 3}
-  - {fileID: 1109210306339172455, guid: 8bf26e9f20e51a9418a207bbaa612512, type: 3}
-  - {fileID: 1109210306339172455, guid: aca4d420324affe46af39bf1afb9d448, type: 3}
-  _positions:
-  - {x: -5.5, y: -5.5, z: 0}
-  - {x: -1.5, y: -5.5, z: 0}
-  - {x: -3.5, y: -3.5, z: 0}
 --- !u!1 &1119635708
 GameObject:
   m_ObjectHideFlags: 0

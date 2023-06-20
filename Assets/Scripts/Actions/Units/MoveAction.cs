@@ -79,7 +79,9 @@ public class MoveAction : BaseAction
 
         SoundManager.Instance.StopSoundEffectLoop();
 
-        _selectedUnit.Animator.SetBool("IsMoving", false);
+        if (_selectedUnit.Animator != null)
+            _selectedUnit.Animator.SetBool("IsMoving", false);
+        
         _selectedUnit.HasMoved = true;
 
         ActionFinished?.Invoke();
