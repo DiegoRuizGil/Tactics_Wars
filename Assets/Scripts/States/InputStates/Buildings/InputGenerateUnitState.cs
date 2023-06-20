@@ -13,7 +13,7 @@ public class InputGenerateUnitState : InputBaseState
 
     public override void EnterState()
     {
-        //Debug.Log("<color=yellow>Generate Unit</color>: Entering the state");
+        Debug.Log("<color=yellow>Generate Unit</color>: Entering the state");
         BaseAction action = new GenerateUnitAction(
             _unitInfo,
             Context.SelectedBuilding.transform.position,

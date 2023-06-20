@@ -27,7 +27,6 @@ public class TaskAttack : TreeNode
             if (target.CurrentHealth <= 0)
             {
                 Tree.ClearData("target");
-                //_attacker.HasFinished = true;
             }
                 
 
@@ -44,7 +43,6 @@ public class TaskAttack : TreeNode
             else
             {
                 _action = null;
-                //_attacker.HasFinished = true;
                 _state = TreeNodeState.SUCCESS;
                 return _state;
             }

@@ -4,8 +4,6 @@ using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour
 {
-    public static LevelManager Instance;
-
     [SerializeField]
     private GameObject _loadingCanvas;
     [SerializeField]
@@ -13,11 +11,15 @@ public class LevelManager : MonoBehaviour
 
     private float _target;
 
+    private static LevelManager _instance;
+
+    public static LevelManager Instance { get { return _instance; } }
+
     private void Awake()
     {
-        if (Instance == null)
+        if (_instance == null)
         {
-            Instance = this;
+            _instance = this;
             DontDestroyOnLoad(gameObject);
         }
         else

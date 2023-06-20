@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using UnityEngine;
 
@@ -134,21 +133,6 @@ public class GameManager : MonoBehaviour
 
         _turn++;
         _currentTeam = (_currentTeam == TeamEnum.BLUE) ? TeamEnum.RED : TeamEnum.BLUE;
-
-        // AUTOSAVE
-        //if (_currentTeam == PlayerTeam)
-        //{
-        //    if (_saveToLoadSO.IsNewGame)
-        //    {
-        //        FileInfo newFile = SaveSystem.Save();
-        //        _saveToLoadSO.SaveToLoad = newFile;
-        //        _saveToLoadSO.IsNewGame = false;
-        //    }
-        //    else
-        //    {
-        //        SaveSystem.Save(_saveToLoadSO.SaveToLoad.Name);
-        //    }
-        //}
 
         if (!_buildingLists[_currentTeam].Any(building => building.BuildingType == BuildingType.URBAN_CENTER))
         {
